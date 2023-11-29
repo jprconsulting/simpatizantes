@@ -1,0 +1,143 @@
+
+<div class="flex flex-wrap">
+    <div class="w-full px-4">
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+            <label class="label2">Registro de votantes</label>
+            <form [formGroup]="VotantesForm">
+                <div class="modal-body margen">
+                    <div class="grid gap-4 grid-cols-2">
+                        <div>
+                            <label class="spacio">Nombre(s)*:</label>
+                            <input class="custom-input" formControlName="Nombres">
+                            <div *ngIf="VotantesForm.get('Nombres')?.touched" class="error-message">
+                                <div *ngIf="VotantesForm.get('Nombres')?.hasError('required')" class="text-danger">
+                                    El nombre es requerido
+                                </div>
+                                <div *ngIf="VotantesForm.get('Nombres')?.hasError('pattern')" class="text-danger">
+                                    El nombre no puede contener numeros
+                                </div>
+                                <div *ngIf="VotantesForm.get('Nombres')?.hasError('minlength')" class="text-danger">
+                                    El nombre no puede ser menor a 3 caracteres.
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="spacio">Apellido Paterno*:</label>
+                            <input class="custom-input" formControlName="ApellidoPaterno">
+                            <div *ngIf="VotantesForm.get('ApellidoPaterno')?.touched" class="error-message">
+                                <div *ngIf="VotantesForm.get('ApellidoPaterno')?.hasError('required')" class="text-danger">
+                                    El apellido paterno es requerido
+                                </div>
+                                <div *ngIf="VotantesForm.get('ApellidoPaterno')?.hasError('pattern')" class="text-danger">
+                                    El apellido paterno no puede contener numeros
+                                </div>
+                                <div *ngIf="VotantesForm.get('ApellidoPaterno')?.hasError('minlength')" class="text-danger">
+                                    El apellido paterno no puede ser menor a 4 caracteres.
+                                </div>
+                            </div>
+                        </div>
+                        <div> 
+                            <label class="spacio">Apellido Materno*:</label>
+                            <input class="custom-input" formControlName="ApellidoMaterno">
+                            <div *ngIf="VotantesForm.get('ApellidoMaterno')?.touched" class="error-message">
+                                <div *ngIf="VotantesForm.get('ApellidoMaterno')?.hasError('required')" class="text-danger">
+                                    El apellido materno es requerido
+                                </div>
+                                <div *ngIf="VotantesForm.get('ApellidoMaterno')?.hasError('pattern')" class="text-danger">
+                                    El apellido materno no puede contener numeros
+                                </div>
+                                <div *ngIf="VotantesForm.get('ApellidoMaterno')?.hasError('minlength')" class="text-danger">
+                                    El apellido materno no puede ser menor a 4 caracteres.
+                                </div>
+                            </div>
+                        </div>
+                        <div> 
+                            <label class="spacio">Fecha de nacimiento*:</label>
+                            <input type="date" class="custom-input" formControlName="FechaNacimiento">
+                            <div *ngIf="VotantesForm.get('FechaNacimiento')?.touched" class="error-message">
+                                <div *ngIf="VotantesForm.get('FechaNacimiento')?.hasError('required')" class="text-danger">
+                                    El fecha de nacimiento es requerido
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div> 
+                            <label class="spacio">Domicilio*:</label>
+                            <input class="date" class="custom-input" formControlName="Domicilio">
+                            <div *ngIf="VotantesForm.get('Domicilio')?.touched" class="error-message">
+                                <div *ngIf="VotantesForm.get('Domicilio')?.hasError('required')" class="text-danger">
+                                    El domicilio es requerido
+                                </div>
+                                <div *ngIf="VotantesForm.get('Domicilio')?.hasError('minlength')" class="text-danger">
+                                    El apellido materno no puede ser menor a 7 caracteres.
+                                </div>
+                            </div>
+                        </div>
+                        <div> 
+                            <label class="spacio">Genero*:</label>
+                            <select class="custom-input" formControlName="Sexo">
+                                <option value="1">One</option>
+                                <option value="2">Two</option>                                    
+                                <option value="3">Three</option>
+                            </select>
+                            <div *ngIf="VotantesForm.get('Sexo')?.touched" class="error-message">
+                                <div *ngIf="VotantesForm.get('Sexo')?.hasError('required')" class="text-danger">
+                                    El genero es requerido
+                                </div>
+                            </div>
+                        </div>
+                        <div> 
+                            <label class="spacio">CURP*:</label>
+                            <input class="custom-input" formControlName="CURP">
+                            <div *ngIf="VotantesForm.get('CURP')?.touched" class="error-message">
+                                <div *ngIf="VotantesForm.get('CURP')?.hasError('required')" class="text-danger">
+                                    El CURP es requerido
+                                </div>
+                                <div *ngIf="VotantesForm.get('CURP')?.hasError('pattern')" class="text-danger">
+                                    El CURP no valido
+                                </div>
+                                <div *ngIf="VotantesForm.get('CURP')?.hasError('minlength')" class="text-danger">
+                                    El CURP no puede tener menos de 18 caracteres
+                                </div>
+                                <div *ngIf="VotantesForm.get('CURP')?.hasError('maxlength')" class="text-danger">
+                                    El CURP no puede tener mas de 18 caracteres
+                                </div>
+                            </div>
+                        </div>
+                        <div> 
+                            <label class="spacio">Estatus*:</label>                                
+                            <select class="custom-input" formControlName="Estatus">
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                            <div *ngIf="VotantesForm.get('Estatus')?.touched" class="error-message">
+                                <div *ngIf="VotantesForm.get('Estatus')?.hasError('required')" class="text-danger">
+                                    El estatus es requerido
+                                </div>
+                            </div>
+                        </div>
+                        <div> 
+                            <label class="spacio">Municipio*:</label>
+                            <select class="custom-input" formControlName="MunicipioId">
+                                <option value="1">One</option>                                    
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                            <div *ngIf="VotantesForm.get('MunicipioId')?.touched" class="error-message">
+                                <div *ngIf="VotantesForm.get('MunicipioId')?.hasError('required')" class="text-danger">
+                                    El municipio es requerido
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        <h5 class="label1">Todos los campos marcados con * son requeridos. </h5>
+                        <button class="center-button" (click)="agregaraVotante()">
+                            Enviar
+                        </button>
+            </form>
+        </div>
+    </div>
+</div>
+                  

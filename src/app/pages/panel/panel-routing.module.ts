@@ -29,6 +29,12 @@ const routes: Routes = [{
       loadChildren: () => import('./tables/tables.module')
         .then(mcrp => mcrp.TablesModule)
     },
+    
+    {
+      path: 'Votantes',
+      loadChildren:() => import("./votante/votante.module")
+      .then(c => c.VotanteModule)
+    },
 
   ]
 }];

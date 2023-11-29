@@ -1,0 +1,46 @@
+.margen{
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+
+}
+.spacio{
+    padding-bottom: 5px;
+    display: block;
+    color: #4a5568; /* Color de texto gris */
+    font-size: 0.875rem; /* Tamaño de fuente */
+    font-weight: bold;
+    margin-bottom: 0.5rem; /* Espacio inferior */
+}
+
+.label1{ 
+    padding-left: 50px;
+}
+.center-button {
+    display: block;
+    margin: 0 auto;
+    background-color: #3490dc;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+}
+.custom-input {
+    border: 1px solid #e2e8f0; /* Borde gris */
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 100%;
+}
+.label2{ 
+    text-align: center;
+    font-size: 1.5rem;
+    padding-top: 20px;
+}
+.text-danger {
+    color: #e53e3e; /* Rojo oscuro, ajusta el color según tus preferencias */
+    font-size: 0.875rem; /* Ajusta el tamaño de fuente según tus preferencias */
+}
