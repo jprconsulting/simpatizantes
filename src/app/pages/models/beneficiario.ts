@@ -1,4 +1,4 @@
-export interface Votante
+export interface Beneficiario
     {
         Id: number;
         Nombres: string;

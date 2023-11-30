@@ -31,9 +31,9 @@ const routes: Routes = [{
     },
     
     {
-      path: 'Votantes',
-      loadChildren:() => import("./votante/votante.module")
-      .then(c => c.VotanteModule)
+      path: 'Beneficiario',
+      loadChildren:() => import("./Beneficiario/beneficiario.module")
+      .then(c => c.BeneficiarioModule)
     },
 
   ]
