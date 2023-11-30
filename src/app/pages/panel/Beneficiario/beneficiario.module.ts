@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { VotanteRoutingModule } from './votante-routing.module';
-import { VotanteComponent } from '../votante/votante.component';
+import { BeneficiarioRoutingModule } from './beneficiario-routing.module';
+import { BeneficiarioComponent } from './beneficiario.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    VotanteComponent
+    BeneficiarioComponent
   ],
   imports: [
     CommonModule,
-    VotanteRoutingModule,
+    BeneficiarioRoutingModule,
     FormsModule, 
     ReactiveFormsModule,
   ]
 })
-export class VotanteModule { }
+export class BeneficiarioModule { }

@@ -1,26 +1,25 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { VotanteService } from '../../core/services/votantes.service';
-
+import { BeneficiarioService } from '../../core/services/Beneficiario.service';
 @Component({
-  selector: 'app-votante',
-  templateUrl: './votante.component.html',
-  styleUrls: ['./votante.component.css']
+  selector: 'app-beneficiario',
+  templateUrl: './beneficiario.component.html',
+  styleUrls: ['./beneficiario.component.css']
 })
-export class VotanteComponent {
-  VotantesForm!: FormGroup;
+export class BeneficiarioComponent {
+  BeneficiarioForm!: FormGroup;
 
 
   constructor(
     private formBuilder: FormBuilder,
-    private votanteService: VotanteService,
+    private beneficiarioService: BeneficiarioService,
 
     
     ){
     this.creaFormulario();
   }
   creaFormulario(){
-    this.VotantesForm = this.formBuilder.group({
+    this.BeneficiarioForm = this.formBuilder.group({
       Nombres: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$'), Validators.minLength(3)]],
       ApellidoPaterno: ['', [Validators.required,Validators.pattern('^[a-zA-Z ]+$'), Validators.minLength(4)]],
       ApellidoMaterno: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$'), Validators.minLength(4)]],
@@ -33,10 +32,10 @@ export class VotanteComponent {
     })
   }
   agregaraVotante() {
-      const Votante = { ...this.VotantesForm.value };
-      console.log('votante', Votante);
+      const Beneficiario = { ...this.BeneficiarioForm.value };
+      console.log('Beneficiario', Beneficiario);
       this.ResetForm();
-      this.votanteService.postVotante(Votante).subscribe({
+      this.beneficiarioService.postVotante(Beneficiario).subscribe({
         next: () => {
           
           this.ResetForm();
@@ -48,6 +47,6 @@ export class VotanteComponent {
       });
   }
   ResetForm(){
-    this.VotantesForm.reset();
+    this.BeneficiarioForm.reset();
   }
 }
