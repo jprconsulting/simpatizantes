@@ -19,6 +19,7 @@ import { NotificationDropdownComponent } from './components/dropdowns/notificati
 import { PagesDropdownComponent } from './components/dropdowns/pages-dropdown/pages-dropdown.component';
 import { TableDropdownComponent } from './components/dropdowns/table-dropdown/table-dropdown.component';
 import { UserDropdownComponent } from './components/dropdowns/user-dropdown/user-dropdown.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { UserDropdownComponent } from './components/dropdowns/user-dropdown/user
         NotificationDropdownComponent,
         PagesDropdownComponent,
         TableDropdownComponent,
-        UserDropdownComponent
+        UserDropdownComponent,
+        ModalComponent
     ],
     exports: [
         AdminNavbarComponent,

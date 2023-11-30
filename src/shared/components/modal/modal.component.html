@@ -1,0 +1,169 @@
+
+
+<div class="flex justify-between">
+  <div>
+    <button (click)="openModal()" class="min-w-140-px bg-red-600 text-white py-2 rounded-md hover:bg-red-950">Agregar usuario</button>
+  </div>
+  <div>
+  </div>
+  <div>
+    <input
+      class="border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+      type="text"
+      placeholder="Buscar"/>
+  </div>
+</div>
+<!-- modal -->
+<div class="modal fixed inset-0 overflow-y-auto flex" *ngIf="showModal">
+  <div class="flex items-center justify-center w-full">
+    <div class="modal-overlay absolute w-full h-full bg-gray-800 opacity-50"></div>
+    <div class="modal-container bg-white w-11/12  mx-auto rounded shadow-lg z-50 overflow-y-auto">
+      <!-- Add your modal content here -->
+      <div class="modal-content py-4 text-left px-6">
+        <div class="flex justify-between items-center pb-3">
+          <div>
+            <p class="text-2xl font-bold -mr-56">Registrar Ususario</p>
+          </div>
+          <div></div>
+          <div>
+            <button (click)="closeModal()" class="modal-close cursor-pointer z-50">
+              <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                <path
+                  d="M6.83 6l-5 5L2 10.83 6.83 6 2 1.17 3.17 0 8 4.83 12.83 0 14 1.17 9.17 6 14 10.83 12.83 12 8 7.17 3.17 12 2 10.83 6.83 6z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <!-- fomulario -->
+        <div class="flex max-w-md mt-8 p-6 bg-white rounded-md justify-items-stretch">
+          <form>
+            <div class="flex flex-wrap">
+              <div class="w-full lg:w-6/12 px-4">
+                <div class="relative w-full mb-6">
+                  <label
+                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                    Nombre
+                  </label>
+                  <input
+                    required
+                    id="nombre"
+                    type="text"
+                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="w-full lg:w-6/12 px-4">
+                <div class="relative w-full mb-3">
+                  <label
+                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                    Apellido paterno
+                  </label>
+                  <input
+                    required
+                    id="apellido-paterno"
+                    type="text"
+                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="w-full lg:w-6/12 px-4">
+                <div class="relative w-full mb-3">
+                  <label
+                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                    Apellido materno
+                  </label>
+                  <input
+                    required
+                    id="apellido-materno"
+                    type="text"
+                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="w-full lg:w-6/12 px-4">
+                <div class="relative w-full mb-3">
+                  <label
+                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                    Correo
+                  </label>
+                  <input
+                    required
+                    id="correo"
+                    type="email"
+                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="w-full lg:w-6/12 px-4">
+                <div class="relative w-full mb-3">
+                  <label
+                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                    Estatus
+                  </label>
+                  <div class="">
+                    <div class="flex items-center mb-4">
+                        <input id="activo" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="activo" class=" ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Activo</label>
+                    </div>
+                </div>
+                </div>
+              </div>
+              <div class="w-full lg:w-6/12 px-4">
+                <div class="relative w-full mb-3">
+                  <label
+                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                    Contraseña
+                  </label>
+                  <input
+                    requirede
+                    id="contrasena"
+                    type="password"
+                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="w-full lg:w-6/12 px-4">
+                <div class="relative w-full mb-3">
+                  <label
+                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                    Rol
+                  </label>
+                  <select id="roles" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Selecciona un rol</option>
+                    <option value="administrador">Administrador</option>
+                    <option value="operador">Operador</option>
+                  </select><br>
+                </div>
+              </div>
+            </div>
+            <hr class="mt-6 border-b-1 border-blueGray-300" />
+            <button type="submit" class="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-950">Guardar</button>
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
