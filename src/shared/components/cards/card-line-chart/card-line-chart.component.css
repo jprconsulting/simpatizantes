@@ -1,0 +1,33 @@
+
+p {
+    font-size: 1.1rem; 
+    line-height: 1.5;
+    color: #333;
+    text-align: justify;
+    margin-bottom: 8px;
+
+  }
+  
+  ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    padding-left: 1.5rem; 
+  }
+
+  li {
+    margin-bottom: 0.5rem; 
+
+  }
+
+  /* Estilos para centrar el contenido */
+.center-container {
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+.margin{
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
