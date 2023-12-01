@@ -20,6 +20,7 @@ import { PagesDropdownComponent } from './components/dropdowns/pages-dropdown/pa
 import { TableDropdownComponent } from './components/dropdowns/table-dropdown/table-dropdown.component';
 import { UserDropdownComponent } from './components/dropdowns/user-dropdown/user-dropdown.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ModalComponent } from './components/modal/modal.component';
         PagesDropdownComponent,
         TableDropdownComponent,
         UserDropdownComponent,
-        ModalComponent
+        ModalComponent,
+
     ],
     exports: [
         AdminNavbarComponent,
@@ -62,11 +64,14 @@ import { ModalComponent } from './components/modal/modal.component';
         NotificationDropdownComponent,
         PagesDropdownComponent,
         TableDropdownComponent,
-        UserDropdownComponent
+        UserDropdownComponent,
+        
+
     ],
     imports: [
         CommonModule,
-        RouterModule
+        RouterModule,
+        NgChartsModule
     ]
 })
 export class SharedModule { }
