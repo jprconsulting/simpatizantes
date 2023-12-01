@@ -20,6 +20,8 @@ import { PagesDropdownComponent } from './components/dropdowns/pages-dropdown/pa
 import { TableDropdownComponent } from './components/dropdowns/table-dropdown/table-dropdown.component';
 import { UserDropdownComponent } from './components/dropdowns/user-dropdown/user-dropdown.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { CardLineBeneficiariosComponent } from './components/cards/card-line-beneficiarios/card-line-beneficiarios.component';
+import { ModalBeneficiarioComponent } from './components/modal-beneficiario/modal-beneficiario.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { ModalComponent } from './components/modal/modal.component';
         PagesDropdownComponent,
         TableDropdownComponent,
         UserDropdownComponent,
-        ModalComponent
+        ModalComponent,
+        CardLineBeneficiariosComponent,
+        ModalBeneficiarioComponent
     ],
     exports: [
         AdminNavbarComponent,

@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PanelModule } from './pages/panel/panel.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,

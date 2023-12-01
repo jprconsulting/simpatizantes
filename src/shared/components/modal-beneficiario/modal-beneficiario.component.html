@@ -1,27 +1,6 @@
 
 
-<div class="flex justify-between">
-  <div>
-    <button (click)="openModal()" class="min-w-140-px bg-purple-900 text-white py-2 rounded-md hover:bg-purple-950">Agregar usuario</button>
 
-  </div>
-  <div>
-  </div>
-  <div>
-    <button title="Descargar base de datos de usuarios" class="mr-5">
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cloud-download" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <path d="M19 18a3.5 3.5 0 0 0 0 -7h-1a5 4.5 0 0 0 -11 -2a4.6 4.4 0 0 0 -2.1 8.4" />
-        <path d="M12 13l0 9" />
-        <path d="M9 19l3 3l3 -3" />
-      </svg>
-    </button>
-    <input
-      class="border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-      type="text"
-      placeholder="Buscar"/>
-  </div>
-</div>
 <!-- modal -->
 <div class="modal fixed inset-0  flex" *ngIf="showModal">
   <div class="flex items-center justify-center w-full">
@@ -31,7 +10,7 @@
       <div  class=" modal-content py-4 text-left px-6">
         <div class="flex justify-between items-center pb-3">
           <div>
-            <p class="text-2xl font-bold -mr-56">Registrar usuario</p>
+            <p class="text-2xl font-bold -mr-56">Registrar beneficiario </p>
           </div>
           <div></div>
           <div>
@@ -54,7 +33,7 @@
                     class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    Nombre
+                  Nombre(s)*:
                   </label>
                   <input
                     required
@@ -71,7 +50,7 @@
                     class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    Apellido paterno
+                  Apellido Paterno*:
                   </label>
                   <input
                     required
@@ -88,7 +67,7 @@
                     class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    Apellido materno
+                  Apellido Materno*:
                   </label>
                   <input
                     required
@@ -105,33 +84,62 @@
                     class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    Correo
+                  Fecha de nacimiento*:
                   </label>
                   <input
-                    required
-                    id="correo"
-                    type="email"
-                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    value=""
-                  />
+                type="date"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                formControlName="FechaNacimiento"
+              />
+
                 </div>
               </div>
-
               <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label
                     class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    Contraseña
+                  Domicilio:
                   </label>
                   <input
-                    requirede
-                    id="contrasena"
-                    type="password"
+                    required
+                    id="apellido-materno"
+                    type="text"
                     class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     value=""
                   />
+                </div>
+              </div>
+              <div class="w-full lg:w-6/12 px-4">
+                <div class="relative w-full mb-3">
+                  <label
+                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                  Genero*:
+                  </label>
+                  <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="Sexo">
+                    <option value="1">Masculino</option>
+                    <option value="2">Fenmenino</option>
+                  </select>
+                </div>
+              </div>
+              <div class="w-full lg:w-6/12 px-4">
+                <div class="relative w-full mb-3">
+                  <label
+                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                    CURP*:
+                  </label>
+                  <input
+                    required
+                    id="apellido-materno"
+                    type="text"
+                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    value=""
+                  /><br>
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
@@ -155,15 +163,32 @@
                     class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    Rol
+                  Municipio*:
                   </label>
-                  <select id="roles" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option selected>Selecciona un rol</option>
-                    <option value="administrador">Administrador</option>
-                    <option value="operador">Operador</option>
-                  </select><br>
+                  <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="Sexo">
+                    <option value="1">Tlaxcala</option>
+                    <option value="2">Puebla</option>
+                    <option value="2">Oaxaca</option>
+                  </select>
                 </div>
               </div>
+              <div class="w-full lg:w-6/12 px-4">
+                <div class="relative w-full mb-3">
+                  <label
+                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                  Ubicar en el mapa*:
+                  </label>
+                  <input
+                  id="searchInput"
+                   class="controls border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  type="text"
+                  placeholder="Enter a location"
+                />
+                </div>
+              </div>
+
             </div>
             <button type="submit" class="justify-center w-20 bg-purple-900 text-white py-2 rounded-md hover:bg-red-950">Guardar</button>
           </form>
@@ -171,6 +196,20 @@
 
       </div>
 
+    </div>
+  </div>
+</div>
+<div class="flex flex-wrap">
+  <div class="w-full px-4">
+    <div
+      class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
+    >
+      <div
+        id="map-canvas"
+        class="relative w-full rounded h-600-px"
+        data-lat="19.316818295403003"
+        data-lng="-98.23837658175323"
+      ></div>
     </div>
   </div>
 </div>
