@@ -1,25 +1,6 @@
 
-p {
-    font-size: 1.1rem; 
-    line-height: 1.5;
-    color: #333;
-    text-align: justify;
-    margin-bottom: 8px;
 
-  }
   
-  ul {
-    list-style-type: disc;
-    margin-left: 1.5rem;
-    padding-left: 1.5rem; 
-  }
-
-  li {
-    margin-bottom: 0.5rem; 
-
-  }
-
-  /* Estilos para centrar el contenido */
 .center-container {
     display: flex;
     justify-content: center;
@@ -54,11 +35,18 @@ p {
 }
 
 .tamaño{
-  width: 600px;
-  height: 600px;
+  width: 400px;
+  height: 400px;
   margin: auto; /* Esto centra el elemento horizontalmente */
   display: flex;
   justify-content: center; /* Esto centra el contenido dentro del contenedor flex */
   align-items: center; 
-  
+}
+
+.mar{
+  margin-top: 50px;
+}
+.espacio{
+  margin-top: 25px;
+  margin-bottom: 40px;
 }

@@ -58,7 +58,8 @@ export class CardLineChartComponent implements OnInit {
     labels: ['Ayuda Entregada', 'Beneficiarios en espera']
   };
 
-  public pieChartType3: keyof ChartTypeRegistry = 'pie';
+  public pieChartType3: keyof ChartTypeRegistry = 'bar';
+
   public pieChartOptions3: any = {
     responsive: true
   };
@@ -69,30 +70,5 @@ export class CardLineChartComponent implements OnInit {
 
   ngOnInit() { }
 
-
-
-  
-  divOculto7: boolean = true;
-  alternarVisibilidad7() {
-    this.divOculto7 = !this.divOculto7;
-    this.divOculto8 = true;
-    this.divOculto9 = true;
-    
-  }
-  divOculto8: boolean = true;
-  alternarVisibilidad8() {
-    this.divOculto7 = true;
-    this.divOculto8 = !this.divOculto8;
-    this.divOculto9 = true;
-    
-  }
-  divOculto9: boolean = true;
-  alternarVisibilidad9() {
-  
-    this.divOculto7 = true;
-    this.divOculto8 = true;
-    this.divOculto9 = !this.divOculto9;
-   
-  }
  
 }
