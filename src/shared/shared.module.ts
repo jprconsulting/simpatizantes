@@ -22,6 +22,7 @@ import { UserDropdownComponent } from './components/dropdowns/user-dropdown/user
 import { ModalComponent } from './components/modal/modal.component';
 import { CardLineBeneficiariosComponent } from './components/cards/card-line-beneficiarios/card-line-beneficiarios.component';
 import { ModalBeneficiarioComponent } from './components/modal-beneficiario/modal-beneficiario.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -45,8 +46,11 @@ import { ModalBeneficiarioComponent } from './components/modal-beneficiario/moda
         TableDropdownComponent,
         UserDropdownComponent,
         ModalComponent,
+
         CardLineBeneficiariosComponent,
         ModalBeneficiarioComponent
+
+
     ],
     exports: [
         AdminNavbarComponent,
@@ -66,11 +70,14 @@ import { ModalBeneficiarioComponent } from './components/modal-beneficiario/moda
         NotificationDropdownComponent,
         PagesDropdownComponent,
         TableDropdownComponent,
-        UserDropdownComponent
+        UserDropdownComponent,
+
+
     ],
     imports: [
         CommonModule,
-        RouterModule
+        RouterModule,
+        NgChartsModule
     ]
 })
 export class SharedModule { }

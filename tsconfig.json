@@ -29,5 +29,11 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
+  },
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "tw-elements/*": ["node_modules/tw-elements/src/*"]
+    }
   }
 }

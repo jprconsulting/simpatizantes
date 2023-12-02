@@ -1,4 +1,4 @@
-<div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-slate-500" style="background: url('https://image.slidesdocs.com/responsive-images/background/coffee-wooden-table-powerpoint-background_e07a7b9141__960_540.jpg') center center / cover no-repeat; background-size: cover;">
+<div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-slate-500" style="background: url('https://img.freepik.com/foto-gratis/fondo-madera_24972-623.jpg') center center / cover no-repeat; background-size: cover;">
   <div class="p-4 flex-auto">
     <!-- Chart -->
     <div class="relative" style="height: 500px; z-index: -1;">
@@ -23,14 +23,59 @@
   </div>
 </div>
 
+<div class="container">
+  <h1 class="titulo">Estadisticas</h1>
+</div>
+<br>
+<div class="SquareGrey container-fluid mb-4 mt-4">
+  <div class="col-md-6">
+    <div class="flex flex-row justify-center">
+      <button type="button" class="basis-1/4 m-2" (click)="alternarVisibilidad7()">Programas DIF</button>
+      <button type="button" class="basis-1/4 m-2" (click)="alternarVisibilidad8()">Satisfacción</button>
+      <button type="button" class="basis-1/4 m-2" (click)="alternarVisibilidad9()">Beneficios Entregados</button>
+    </div>    
+</div>
 
+  <div class="tamaño" [ngStyle]="{ display: divOculto7 ? 'none' : 'block' }">
+    <canvas #graphCanvas7 baseChart
+            [data]="pieChartData"
+            [labels]="pieChartData.labels"
+            [options]="pieChartOptions"
+            [legend]="pieChartLegend"
+            [type]="pieChartType"
+            class="w-full h-full">
+    </canvas>
+  </div>
+  <div class="tamaño" [ngStyle]="{ display: divOculto8 ? 'none' : 'block' }">
+    <canvas #graphCanvas8 baseChart
+            [data]="pieChartData2"
+            [labels]="pieChartData.labels"
+            [options]="pieChartOptions2"
+            [legend]="pieChartLegend2"
+            [type]="pieChartType2"
+            class="w-full h-full">
+    </canvas>
+  </div>
+  <div class="tamaño" [ngStyle]="{ display: divOculto9 ? 'none' : 'block' }">
+    <canvas #graphCanvas9
+            baseChart
+            [data]="pieChartData3"
+            [labels]="pieChartData.labels"
+            [options]="pieChartOptions3"
+            [legend]="pieChartLegend3"
+            [type]="pieChartType3"
+            class="w-full h-full">
+    </canvas>
+  </div>
+  <br />
+</div>
 <div class="margin">
   <div class="center-container">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
       <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.068.157 2.148.279 3.238.364.466.037.893.281 1.153.671L12 21l2.652-3.978c.26-.39.687-.634 1.153-.67 1.09-.086 2.17-.208 3.238-.365 1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
     </svg>
   </div>
-  <p>En [Nombre de la Plataforma], estamos comprometidos con la eficiencia, transparencia y el impacto positivo. Gracias por formar parte de nuestra comunidad y contribuir a hacer posible estas acciones significativas.</p>
+  <p>En DIF, estamos comprometidos con la eficiencia, transparencia y el impacto positivo. Gracias por formar parte de nuestra comunidad y contribuir a hacer posible estas acciones significativas.</p>
   <ul class="list-disc">
     
     <li><h2>Registro de Beneficiarios</h2>
@@ -44,9 +89,13 @@
     </li>
   </ul>
   <br>
-  <br>
   <p>¡Explora nuestra amplia selección! Estamos aquí para hacer tu experiencia simple y emocionante. ¡Disfruta de tus actividades!</p>
 </div>
+
+
+
+
+
 
 
   

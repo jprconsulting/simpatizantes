@@ -31,3 +31,34 @@ p {
     align-items: center;
     height: 100vh;
 }
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.titulo {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* En tu archivo de estilos CSS o en el componente */
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.tamaño{
+  width: 600px;
+  height: 600px;
+  margin: auto; /* Esto centra el elemento horizontalmente */
+  display: flex;
+  justify-content: center; /* Esto centra el contenido dentro del contenedor flex */
+  align-items: center; 
+  
+}

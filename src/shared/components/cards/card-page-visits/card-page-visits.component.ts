@@ -1,7 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import {Modal,Ripple,initTE,} from "tw-elements";
-import { Input,} from "tw-elements";
-import "tw-elements";
 
 @Component({
   selector: "app-card-page-visits",
@@ -9,9 +6,16 @@ import "tw-elements";
 })
 export class CardPageVisitsComponent implements OnInit {
   constructor() {}
+  showModal = false;
 
+  openModal(): void {
+    this.showModal = true;
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+  }
   ngOnInit(): void {
-    initTE({ Modal, Ripple });
-    initTE({ Input });
+
   }
 }
