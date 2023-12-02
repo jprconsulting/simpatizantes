@@ -13,7 +13,7 @@ export class CardLineChartComponent implements OnInit {
       {
         data: [150, 120, 105, 90, 70],
         backgroundColor: ['#E4BCD4', '#957DAD', '#C6E1F1', '#F4D9BC', '#ECDFD8'],
-        label: 'Asistencia'
+        label: 'Asistencia Social'
       }
     ],
     labels: ['Asistencia Social', 'Asistencia Jurídica', 'Asistencia Alimentaria', 'Salud y Bienestar', 'Desarrollo Familiar']
@@ -33,7 +33,7 @@ export class CardLineChartComponent implements OnInit {
       {
         data: [90, 10],
         backgroundColor: ['#957DAD', '#E4BCD4'],
-        label: 'Asistencia'
+        label: 'Beneficiarios Conformes'
       }
     ],
     labels: ['Beneficiarios satisfechos', 'Beneficiarios no satisfechos']
@@ -52,7 +52,7 @@ export class CardLineChartComponent implements OnInit {
       {
         data: [90, 10],
         backgroundColor: [ '#C6E1F1','#957DAD'],
-        label: 'Asistencias'
+        label: 'Beneficiarios en espera'
       }
     ],
     labels: ['Ayuda Entregada', 'Beneficiarios en espera']
