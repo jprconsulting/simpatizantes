@@ -7,6 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PanelModule } from './pages/panel/panel.module';
 import { NgChartsModule } from 'ng2-charts';
+{{
+  }}
+
 @NgModule({
   declarations: [
     AppComponent,

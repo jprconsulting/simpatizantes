@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
+  selector: 'app-modal-beneficiario',
+  templateUrl: './modal-beneficiario.component.html',
+  styleUrls: ['./modal-beneficiario.component.css']
 })
-export class ModalComponent {
+export class ModalBeneficiarioComponent {
+
+
+
   showModal = false;
 
   openModal(): void {
@@ -15,6 +18,4 @@ export class ModalComponent {
   closeModal(): void {
     this.showModal = false;
   }
-
-
 }

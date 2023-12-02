@@ -6,6 +6,16 @@ import { Component, OnInit } from "@angular/core";
 })
 export class CardPageVisitsComponent implements OnInit {
   constructor() {}
+  showModal = false;
 
-  ngOnInit(): void {}
+  openModal(): void {
+    this.showModal = true;
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+  }
+  ngOnInit(): void {
+
+  }
 }
