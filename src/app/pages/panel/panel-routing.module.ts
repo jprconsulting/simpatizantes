@@ -35,6 +35,11 @@ const routes: Routes = [{
       loadChildren:() => import("./Beneficiario/beneficiario.module")
       .then(c => c.BeneficiarioModule)
     },
+    {
+      path: 'programasocial',
+      loadChildren:() => import("./programasocial/programasocial.module")
+      .then(c => c.ProgramasocialModule)
+    },
 
   ]
 }];

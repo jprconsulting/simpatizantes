@@ -21,8 +21,10 @@ import { TableDropdownComponent } from './components/dropdowns/table-dropdown/ta
 import { UserDropdownComponent } from './components/dropdowns/user-dropdown/user-dropdown.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { CardLineBeneficiariosComponent } from './components/cards/card-line-beneficiarios/card-line-beneficiarios.component';
-import { ModalBeneficiarioComponent } from './components/modal-beneficiario/modal-beneficiario.component';
 import { NgChartsModule } from 'ng2-charts';
+import { CardBarPrograsmasocialComponent } from './components/cards/card-bar-prograsmasocial/card-bar-prograsmasocial.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 
 @NgModule({
@@ -46,9 +48,10 @@ import { NgChartsModule } from 'ng2-charts';
         TableDropdownComponent,
         UserDropdownComponent,
         ModalComponent,
-
+        CardBarPrograsmasocialComponent,
         CardLineBeneficiariosComponent,
-        ModalBeneficiarioComponent
+        
+        
 
 
     ],
@@ -65,19 +68,25 @@ import { NgChartsModule } from 'ng2-charts';
         CardSocialTrafficComponent,
         CardStatsComponent,
         CardTableComponent,
+        CardBarPrograsmasocialComponent,
         NotFoundComponent,
         IndexDropdownComponent,
         NotificationDropdownComponent,
         PagesDropdownComponent,
         TableDropdownComponent,
         UserDropdownComponent,
+        ReactiveFormsModule,
+        ColorPickerModule
 
 
     ],
     imports: [
         CommonModule,
         RouterModule,
-        NgChartsModule
+        NgChartsModule,
+        ReactiveFormsModule,
+        ColorPickerModule
+        
     ]
 })
 export class SharedModule { }
