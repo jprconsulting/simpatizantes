@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: "app-card-page-visits",
-  templateUrl: "./card-page-visits.component.html",
+  selector: "app-card-areas",
+  templateUrl: "./card-areas.component.html",
 })
-export class CardPageVisitsComponent implements OnInit {
+export class CardAreasComponent implements OnInit {
   constructor() {}
+
   showModal = false;
 
   openModal(): void {
@@ -15,9 +16,6 @@ export class CardPageVisitsComponent implements OnInit {
   closeModal(): void {
     this.showModal = false;
   }
-  ngOnInit(): void {
 
-  }
-
-
+  ngOnInit(): void {}
 }

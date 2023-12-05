@@ -8,7 +8,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CardBarChartComponent } from './components/cards/card-bar-chart/card-bar-chart.component';
 import { CardLineChartComponent } from './components/cards/card-line-chart/card-line-chart.component';
 import { CardPageVisitsComponent } from './components/cards/card-page-visits/card-page-visits.component';
-import { CardProfileComponent } from './components/cards/card-profile/card-profile.component';
+import { CardAreasComponent } from './components/cards/card-areas/card-areas.component';
 import { CardSettingsComponent } from './components/cards/card-settings/card-settings.component';
 import { CardSocialTrafficComponent } from './components/cards/card-social-traffic/card-social-traffic.component';
 import { CardStatsComponent } from './components/cards/card-stats/card-stats.component';
@@ -36,7 +36,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
         CardBarChartComponent,
         CardLineChartComponent,
         CardPageVisitsComponent,
-        CardProfileComponent,
+        CardAreasComponent,
         CardSettingsComponent,
         CardSocialTrafficComponent,
         CardStatsComponent,
@@ -49,9 +49,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
         UserDropdownComponent,
         ModalComponent,
         CardBarPrograsmasocialComponent,
-        CardLineBeneficiariosComponent,
-        
-        
+        CardLineBeneficiariosComponent
 
 
     ],
@@ -63,7 +61,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
         CardBarChartComponent,
         CardLineChartComponent,
         CardPageVisitsComponent,
-        CardProfileComponent,
+        CardAreasComponent,
         CardSettingsComponent,
         CardSocialTrafficComponent,
         CardStatsComponent,
@@ -86,7 +84,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
         NgChartsModule,
         ReactiveFormsModule,
         ColorPickerModule
-        
+
     ]
 })
 export class SharedModule { }

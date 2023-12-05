@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class ModalComponent {
   showModal = false;
+  roles = ['Director', 'Administrador'];
+  areas = ['area1', 'area2'];
 
   openModal(): void {
     this.showModal = true;
@@ -16,5 +19,14 @@ export class ModalComponent {
     this.showModal = false;
   }
 
+  usuario = {
+    rol: ''
+  };
+
+  mostrarSelectAreas = false;
+
+  onChangeRol(){
+    this.mostrarSelectAreas = this.usuario.rol=='Director';
+  }
 
 }

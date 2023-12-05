@@ -25,11 +25,11 @@ const routes: Routes = [{
         .then(mres => mres.SettingsModule)
     },
     {
-      path: 'tables',
-      loadChildren: () => import('./tables/tables.module')
+      path: 'areas',
+      loadChildren: () => import('./areas/areas.module')
         .then(mcrp => mcrp.TablesModule)
     },
-    
+
     {
       path: 'Beneficiario',
       loadChildren:() => import("./Beneficiario/beneficiario.module")

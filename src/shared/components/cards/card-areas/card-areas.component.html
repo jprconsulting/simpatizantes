@@ -7,7 +7,7 @@
         <!-- Button trigger modal -->
         <div class="flex justify-between">
           <div>
-            <button (click)="openModal()" class="min-w-140-px bg-purple-900 text-white py-2 pr-2 pl-2 rounded-md hover:bg-purple-950">Agregar beneficiario</button>
+            <button (click)="openModal()" class="min-w-140-px bg-purple-900 text-white py-2 pr-5 pl-5 rounded-md hover:bg-purple-950">Agregar área de adscripción</button>
 
           </div>
           <div>
@@ -36,7 +36,7 @@
               <div  class=" modal-content py-4 text-left px-6">
                 <div class="flex justify-between items-center pb-3">
                   <div>
-                    <p class="text-2xl font-bold -mr-56">Registrar beneficiario </p>
+                    <p class="text-2xl font-bold -mr-56">Registrar área </p>
                   </div>
                   <div></div>
                   <div>
@@ -59,7 +59,7 @@
                             class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                             htmlFor="grid-password"
                           >
-                          Nombre(s)*:
+                          Nombre*:
                           </label>
                           <input
                             required
@@ -70,104 +70,18 @@
                           />
                         </div>
                       </div>
-                      <div class="w-full lg:w-6/12 px-4">
+                      <div class="w-full lg:w-8/12 px-4">
                         <div class="relative w-full mb-3">
                           <label
                             class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                             htmlFor="grid-password"
                           >
-                          Apellido Paterno*:
+                          Descripción*:
                           </label>
-                          <input
-                            required
-                            id="apellido-paterno"
-                            type="text"
-                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            value=""
-                          />
+                          <textarea id="Descripcion" name="Descripcion" rows="4" class="custom-textarea border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" formControlName="Descripcion"></textarea>
                         </div>
                       </div>
-                      <div class="w-full lg:w-6/12 px-4">
-                        <div class="relative w-full mb-3">
-                          <label
-                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                          Apellido Materno*:
-                          </label>
-                          <input
-                            required
-                            id="apellido-materno"
-                            type="text"
-                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            value=""
-                          />
-                        </div>
-                      </div>
-                      <div class="w-full lg:w-6/12 px-4">
-                        <div class="relative w-full mb-3">
-                          <label
-                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                          Fecha de nacimiento*:
-                          </label>
-                          <input
-                        type="date"
-                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        formControlName="FechaNacimiento"
-                      />
 
-                        </div>
-                      </div>
-                      <div class="w-full lg:w-6/12 px-4">
-                        <div class="relative w-full mb-3">
-                          <label
-                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                          Domicilio:
-                          </label>
-                          <input
-                            required
-                            id="apellido-materno"
-                            type="text"
-                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            value=""
-                          />
-                        </div>
-                      </div>
-                      <div class="w-full lg:w-6/12 px-4">
-                        <div class="relative w-full mb-3">
-                          <label
-                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                          Genero*:
-                          </label>
-                          <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="Sexo">
-                            <option value="1">Masculino</option>
-                            <option value="2">Fenmenino</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="w-full lg:w-6/12 px-4">
-                        <div class="relative w-full mb-3">
-                          <label
-                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                            CURP*:
-                          </label>
-                          <input
-                            required
-                            id="apellido-materno"
-                            type="text"
-                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            value=""
-                          /><br>
-                        </div>
-                      </div>
                       <div class="w-full lg:w-6/12 px-4">
                         <div class="relative w-full mb-3">
                           <label
@@ -183,37 +97,7 @@
                           </label>
                         </div>
                       </div>
-                      <div class="w-full lg:w-6/12 px-4">
-                        <div class="relative w-full mb-3">
-                          <label
-                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                          Municipio*:
-                          </label>
-                          <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="Sexo">
-                            <option value="1">Tlaxcala</option>
-                            <option value="2">Puebla</option>
-                            <option value="2">Oaxaca</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="w-full lg:w-6/12 px-4">
-                        <div class="relative w-full mb-3">
-                          <label
-                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                          Ubicar en el mapa*:
-                          </label>
-                          <input
-                          id="searchInput"
-                           class="controls border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          type="text"
-                          placeholder="Enter a location"
-                        />
-                        </div>
-                      </div>
+
 
                     </div>
                     <div class="flex justify-between">

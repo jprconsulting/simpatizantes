@@ -17,4 +17,5 @@ export class CardSocialTrafficComponent implements OnInit {
   }
   ngOnInit(): void {}
 
+
 }
