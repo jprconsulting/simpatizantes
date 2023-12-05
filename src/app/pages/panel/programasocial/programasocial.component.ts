@@ -38,7 +38,6 @@ export class ProgramasocialComponent  implements OnInit {
   agregaraVotante() {
     const Beneficiario = { ...this.BeneficiarioForm.value };
     console.log('Beneficiario', Beneficiario);
-    this.ResetForm();
     this.beneficiarioService.postVotante(Beneficiario).subscribe({
       next: () => {
 
