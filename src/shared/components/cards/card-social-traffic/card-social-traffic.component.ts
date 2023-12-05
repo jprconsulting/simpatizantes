@@ -8,7 +8,7 @@ declare const google: any;
 })
 export class CardSocialTrafficComponent{
   municipios: Municipios[] = [];
-
+  municipiosOptions: { nombre: string, label: string }[] = [];
   constructor(private municipiosService: MunicipiosService,) {}
   showModal = false;
 
@@ -29,6 +29,12 @@ export class CardSocialTrafficComponent{
         (municipios: Municipios[]) => {
           console.log('Datos de municipios recibidos:', municipios);
           this.municipios = municipios;
+  
+          // Actualizar las opciones del select
+          this.municipiosOptions = municipios.map(municipio => ({
+            nombre: municipio.id.toString(),  // Ajusta el valor según la estructura de tus municipios
+            label: municipio.nombre
+          }));
         },
         (error: any) => {
           console.error('Error al obtener municipios:', error);
@@ -38,8 +44,6 @@ export class CardSocialTrafficComponent{
       console.error('El servicio de municipios no está definido.');
     }
   }
-  
-  
 
 
 }

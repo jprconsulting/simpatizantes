@@ -5,4 +5,5 @@ export interface Prograsmasocial
         Descripcion: string;
         Color: string;
         Estatus: boolean;
+        AreaAdscripcionId: number;
     }

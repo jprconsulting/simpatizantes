@@ -40,20 +40,31 @@
                 <div >
                     <form [formGroup]="SocialForm">
                             <div>
-                                <label for="nombre" class="lavel">NOMBRE:</label>
-                                <select class="select" formControlName="Nombre">
-                                    <option value="1">Asistencia Social</option>
-                                    <option value="2">Asistencia Jurídica</option>
-                                    <option value="3">Asistencia Alimentaria y Nutrición</option>
-                                    <option value="4">Salud y Bienestar Comunitario</option>
-                                    <option value="5">Desarrollo Familiar</option>
-                                    <option value="6">Discapacidad</option>
-                                  </select>
+                              <label for="Nombre" class="lavel">NOMBRE:</label>
+                                <input class="input" type="text" formControlName="Nombre">
                                 <div *ngIf="SocialForm.get('Nombre')?.touched" class="error-message">
                                     <div *ngIf="SocialForm.get('Nombre')?.hasError('required')">
-                                        El nombre es obligatorio
+                                        El Nombre es obligatorio
+                                    </div>
+                                    <div *ngIf="SocialForm.get('Nombre')?.hasError('minlength')">
+                                        El Nombre debe tener al menos 4 caracteres
+                                    </div>
+                                    <div *ngIf="SocialForm.get('Nombre')?.hasError('pattern')">
+                                        El Nombre no puede tener numeros ni signos
                                     </div>
                                 </div>
+                                <div>
+                                  <label for="AreaAdscripcionId" class="lavel">AREA DE ADSCRIPCION:</label>
+                                <select class="select" formControlName="AreaAdscripcionId">
+                                  <option *ngFor="let option of areasadscripcionOptions" [value]="option.nombre">{{ option.label }}</option>
+                                  </select>
+                                <div *ngIf="SocialForm.get('AreaAdscripcionId')?.touched" class="error-message">
+                                    <div *ngIf="SocialForm.get('AreaAdscripcionId')?.hasError('required')">
+                                        El area de adscripcion es obligatoria
+                                    </div>
+                                </div>
+                                </div>
+                                
                                 <label for="nombre" class="lavel">ACRONIMO:</label>
                                 <input class="input" type="text" formControlName="Acronimo">
                                 <div *ngIf="SocialForm.get('Acronimo')?.touched" class="error-message">
@@ -68,10 +79,13 @@
                                     </div>
                                 </div>
                                 <div class="grid gap-4 grid-cols-2">
-                                    <div>
-                                        <label for="Color" class="lavel">COLOR:</label>
-                                        <input [(colorPicker)]="color" [style.background]="color" class=" color-picker" formControlName="Color">
-                                    </div>
+                                  <div>
+                                    <label for="Color" class="lavel">COLOR:</label>
+                                    <input [(colorPicker)]="color" [style.background]="color" class="color-picker" (colorPickerChange)="updateColor($event)" formControlName="Color">
+                                  </div>
+                                  
+                                  
+                                  
                                     <div>
                                         <div class="w-full lg:w-6/12 px-4">
                                         <div class="relative w-full mb-3">
@@ -109,7 +123,7 @@
                                 </div>
                           <br>  
                           <br>      
-                      <button type="submit" class="justify-center w-20 bg-purple-900 text-white py-2 rounded-md hover:bg-red-950">Guardar</button>
+                      <button type="submit" class="justify-center w-20 bg-purple-900 text-white py-2 rounded-md hover:bg-red-950"(click)="agregar()">Guardar</button>
                     </form>
                   </div>
                   
