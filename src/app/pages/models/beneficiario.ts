@@ -1,13 +1,15 @@
-export interface Beneficiario
-    {
-        Id: number;
-        Nombres: string;
-        ApellidoPaterno: string;
-        ApellidoMaterno: string;
-        FechaNacimiento: Date;
-        Domicilio: string;
-        Sexo: number;
-        CURP: string;
-        Estatus: boolean;
-	    MunicipioId: number;
-    }
+export interface Beneficiario {
+  id: number;
+  nombres: string;
+  apellidoPaterno: string;
+  apellidoMaterno: string;
+  fechaNacimiento: string;
+  domicilio: string;
+  sexo: number;
+  curp: string;
+  latitud: number;
+  longitud: number;
+  estatus: boolean;
+  municipioId: number;
+  programaSocialId: number;
+}
