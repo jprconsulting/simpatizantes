@@ -18,6 +18,9 @@ export class CardBarPrograsmasocialComponent implements OnInit {
   areasadscripcionOptions: { nombre: string, label: string }[] = [];
   color: string = ''; // Inicializa color con un valor predeterminado
   formData: any;
+  title="Crear";
+  isUpdating: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private programaService: ProgramaService,
@@ -41,11 +44,16 @@ export class CardBarPrograsmasocialComponent implements OnInit {
 
   openModal(): void {
     this.showModal = true;
+    if (!this.isUpdating) {
+      // Restablecer el formulario si no está en modo de actualización
+      this.ResetForm();
+    }
   }
   
 
   closeModal(): void {
     this.showModal = false;
+    this.isUpdating = false;
   }
 
   ngOnInit() {
@@ -154,6 +162,8 @@ export class CardBarPrograsmasocialComponent implements OnInit {
       }
     );
   }
+  idToUpdate2!: number; 
+
   actualizar() {
     const socialFormValue = { ...this.SocialForm.value };
     console.log('Valor del campo Color:', socialFormValue);
@@ -168,8 +178,9 @@ export class CardBarPrograsmasocialComponent implements OnInit {
       // Asignar el nombre de la área al objeto socialFormValue
       socialFormValue.areaAdscripcion = selectedArea.nombre;
     }
-  
-    this.programaService.putPrograma(this.idToUpdate, socialFormValue).subscribe({
+    console.log('ferwohfw',this.idToUpdate2);
+    this.programaService.putPrograma(this.idToUpdate2, socialFormValue).subscribe({
+      
       next: () => {
         this.mensajeService.mensajeExito("Programa social actualizado con éxito");
         this.ResetForm();
@@ -187,17 +198,20 @@ export class CardBarPrograsmasocialComponent implements OnInit {
   get isFormDirty(): boolean {
     return Object.values(this.SocialForm.controls).some(control => control.value !== null && control.value !== undefined && control.value !== '');
   }
-  
-  submit(){
-    this.showModal ? this.agregar() : this.actualizar();
+
+  submit() {
+    if (this.isUpdating) {
+      this.actualizar();
+    } else {
+      this.agregar();
+    }
   }
- 
-idToUpdate!: number; 
+  
+  
 
 setDataModalUpdate(prograsmasocial: Prograsmasocial) {
-  // No es necesario cerrar y abrir el modal aquí
-  // this.showModal = false;
-  
+  this.isUpdating = true;
+  this.idToUpdate2 = prograsmasocial.id;
   this.SocialForm.patchValue({
     id: prograsmasocial.id,
     Nombre: prograsmasocial.nombre,
@@ -207,13 +221,8 @@ setDataModalUpdate(prograsmasocial: Prograsmasocial) {
     Acronimo: prograsmasocial.acronimo,
     Descripcion: prograsmasocial.descripcion,
   });
-  
-  // Aquí deberías abrir el modal después de actualizar el formulario
-  this.showModal = true;
-
+  this.formData = this.SocialForm.value;
   console.log(this.SocialForm.value);
 }
-
 }
-
   
