@@ -23,11 +23,11 @@
               <div  class=" modal-content py-4 text-left px-6">
                 <div class="flex justify-between items-center pb-3">
                   <div>
-                    <p class="text-2xl font-bold -mr-56">Programas Sociales</p>
+                    <p class="text-2xl font-bold -mr-56"> PROGRAMAS SOCIALES</p>
                   </div>
                   <div></div>
                   <div>
-                    <button (click)="closeModal();ResetForm()" class="modal-close cursor-pointer z-50">
+                    <button (click)="ResetForm(); closeModal()" class="modal-close cursor-pointer z-50">
                         <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
                           <path
                             d="M6.83 6l-5 5L2 10.83 6.83 6 2 1.17 3.17 0 8 4.83 12.83 0 14 1.17 9.17 6 14 10.83 12.83 12 8 7.17 3.17 12 2 10.83 6.83 6z"
@@ -38,7 +38,7 @@
                 </div>
                 <!-- fomulario -->
                 <div >
-                    <form [formGroup]="SocialForm">
+                    <form [formGroup]="SocialForm" (ngSubmit)="submit()">
                             <div>
                               <label for="Nombre" class="lavel">NOMBRE:</label>
                                 <input class="input" type="text" formControlName="Nombre">
@@ -47,67 +47,64 @@
                                         El Nombre es obligatorio
                                     </div>
                                     <div *ngIf="SocialForm.get('Nombre')?.hasError('minlength')">
-                                        El Nombre debe tener al menos 4 caracteres
+                                        El Nombre debe tener al menos 3 caracteres
                                     </div>
                                     <div *ngIf="SocialForm.get('Nombre')?.hasError('pattern')">
-                                        El Nombre no puede tener numeros ni signos
+                                      El Nombre no puede tener números ni signos
                                     </div>
                                 </div>
                                 <div>
-                                  <label for="AreaAdscripcionId" class="lavel">AREA DE ADSCRIPCION:</label>
+                                  <label for="AreaAdscripcionId" class="lavel">ÁREA DE ADSCRIPCIÓN:</label>
                                 <select class="select" formControlName="AreaAdscripcionId">
-                                  <option *ngFor="let option of areasadscripcionOptions" [value]="option.nombre">{{ option.label }}</option>
+                                  <option *ngFor="let area of areasadscripcion" [value]="area.id">{{ area.nombre }}</option>
                                   </select>
                                 <div *ngIf="SocialForm.get('AreaAdscripcionId')?.touched" class="error-message">
                                     <div *ngIf="SocialForm.get('AreaAdscripcionId')?.hasError('required')">
-                                        El area de adscripcion es obligatoria
+                                      El área de adscripción es obligatoria
                                     </div>
                                 </div>
                                 </div>
                                 
-                                <label for="nombre" class="lavel">ACRONIMO:</label>
+                                <label for="nombre" class="lavel">ACRÓNIMO:</label>
                                 <input class="input" type="text" formControlName="Acronimo">
                                 <div *ngIf="SocialForm.get('Acronimo')?.touched" class="error-message">
                                     <div *ngIf="SocialForm.get('Acronimo')?.hasError('required')">
-                                        El acronimo es obligatorio
+                                      El acrónimo es obligatorio
                                     </div>
                                     <div *ngIf="SocialForm.get('Acronimo')?.hasError('minlength')">
-                                        El acronimo debe tener al menos 4 caracteres
+                                      El acrónimo debe tener al menos 4 caracteres
                                     </div>
                                     <div *ngIf="SocialForm.get('Acronimo')?.hasError('pattern')">
-                                        El acronimo no puede tener numeros ni signos
+                                      El acrónimo no puede tener números ni signos
                                     </div>
                                 </div>
                                 <div class="grid gap-4 grid-cols-2">
                                   <div>
                                     <label for="Color" class="lavel">COLOR:</label>
                                     <input [(colorPicker)]="color" [style.background]="color" class="color-picker" (colorPickerChange)="updateColor($event)" formControlName="Color">
+
                                   </div>
                                   
                                   
                                   
-                                    <div>
-                                        <div class="w-full lg:w-6/12 px-4">
-                                        <div class="relative w-full mb-3">
-                                          <label
-                                            class="block uppercase text-blueGray-600 text-xs font-bold mb-2 lavel"
-                                            htmlFor="grid-password"
-                                          >
-                                            ESTATUS
-                                          </label>
-                                          <label class="relative inline-flex items-center cursor-pointer">
-                                            <input type="checkbox" value="" class="sr-only peer" ormControlName="Estatus">
-                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                            <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
-                                          </label>
-                                          <div *ngIf="SocialForm.get('Estatus')?.touched" class="error-message">
-                                            <div *ngIf="SocialForm.get('Estatus')?.hasError('required')">
-                                                El estaus es obligatorio
-                                            </div>
-                                          </div>  
+                                  <div>
+                                    <div class="w-full lg:w-6/12 px-4">
+                                      <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 label" htmlFor="grid-password">
+                                          ESTATUS
+                                        </label>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                          <input type="checkbox" value="" class="sr-only peer" formControlName="Estatus">
+                                          <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500"></div>
+                                          <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                        </label>
+                                        <div *ngIf="SocialForm.get('Estatus')?.touched" class="error-message">
+                                          <div *ngIf="SocialForm.get('Estatus')?.hasError('required')">El estatus es obligatorio</div>
                                         </div>
                                       </div>
                                     </div>
+                                  </div>
+                                  
                                 </div>
 
                             </div>
@@ -115,15 +112,21 @@
                                 <textarea id="Descripcion" name="Descripcion" rows="4" class="custom-textarea" formControlName="Descripcion"></textarea>
                                 <div *ngIf="SocialForm.get('Descripcion')?.touched" class="error-message">
                                     <div *ngIf="SocialForm.get('Descripcion')?.hasError('required')">
-                                        La descripcion es obligatoria
+                                      La descripción es obligatoria
                                     </div>
                                     <div *ngIf="SocialForm.get('Descripcion')?.hasError('minlength')">
-                                        La descripcion debe tener al menos 10 caracteres
+                                      La descripción debe tener al menos 10 caracteres
                                     </div>
                                 </div>
                           <br>  
                           <br>      
-                      <button type="submit" class="justify-center w-20 bg-purple-900 text-white py-2 rounded-md hover:bg-red-950"(click)="agregar()">Guardar</button>
+                          <div class="flex justify-end">
+                            <button type="submit" class="bg-purple-900 text-white py-2 px-4 rounded-md hover:bg-red-950">
+                              {{ isUpdating ? "ACTUALIZAR " : "AGREGAR " }}  
+                            </button>
+                            
+                          </div>
+                                                  
                     </form>
                   </div>
                   
@@ -138,37 +141,34 @@
   </div>
  
 </div>
-
 <div class="block w-full overflow-x-auto">
-    <!-- Projects table -->
     <table class="items-center w-full bg-transparent border-collapse">
       <thead>
         <tr>
           <th
             class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-            Nombre
+            #
           </th>
           <th
             class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
           >
-            Color
+          Nombre
           </th>
           <th
             class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
           >
-            Estatus
+          Color
           </th>
           <th
             class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
           >
-            Acronimo
+          Estatus
           </th>
           <th
-            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-          >
-            Descripcion
-          </th>
-          
+          class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+        Acrónimo
+        </th>
           <th
             class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
           >
@@ -177,36 +177,36 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr  *ngFor="let programa of prograsmasocial">
           <th
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
           >
-            Acistencia Alimenticia
+          {{ programa.id }}
           </th>
           <td
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
-            Verde
+          {{ programa.nombre }}
           </td>
           <td
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
-            Activo
+          <div class="color-circle" [style.backgroundColor]="programa.color"></div>
           </td>
           <td
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
-            Acronimo
+          {{ programa.estatus ? 'Activo' : 'Inactivo' }}
           </td>
           <td
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
-          Recuerda ajustar el valor inicial según tus necesidades ...
+          {{ programa.acronimo }}
           </td>
           <td
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
-          <button>
+          <button (click)="borrar(programa.id, programa.nombre)">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M4 7l16 0" />
@@ -216,7 +216,7 @@
               <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
             </svg>
           </button>
-          <button class="ml-4">
+          <button class="ml-4" (click)="setDataModalUpdate(programa);openModal()">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -227,156 +227,6 @@
           </td>
 
         </tr>
-        <tr>
-            <th
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-            >
-            Discapacidad
-            </th>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-              Rosa
-            </td>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-              Activo
-            </td>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-              Acronimo
-            </td>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-            Recuerda ajustar el valor inicial según tus necesidades ...
-            </td>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-            <button>
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M4 7l16 0" />
-                <path d="M10 11l0 6" />
-                <path d="M14 11l0 6" />
-                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-              </svg>
-            </button>
-            <button class="ml-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                <path d="M16 5l3 3" />
-              </svg>
-            </button>
-            </td>
-  
-          </tr>
-          <tr>
-            <th
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-            >
-            Salud y Bienestar Comunitario
-            </th>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-              Morado
-            </td>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-              Activo
-            </td>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-              Acronimo
-            </td>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-            Recuerda ajustar el valor inicial según tus necesidades ...
-            </td>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-            <button>
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M4 7l16 0" />
-                <path d="M10 11l0 6" />
-                <path d="M14 11l0 6" />
-                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-              </svg>
-            </button>
-            <button class="ml-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                <path d="M16 5l3 3" />
-              </svg>
-            </button>
-            </td>
-  
-          </tr>
-          <tr>
-            <th
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-            >
-              Acistencia Juridica
-            </th>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-              Azul
-            </td>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-              Desactivado
-            </td>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-              Acronimo
-            </td>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-            Recuerda ajustar el valor inicial según tus necesidades ...
-            </td>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-            <button>
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M4 7l16 0" />
-                <path d="M10 11l0 6" />
-                <path d="M14 11l0 6" />
-                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-              </svg>
-            </button>
-            <button class="ml-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                <path d="M16 5l3 3" />
-              </svg>
-            </button>
-            </td>
-  
-          </tr>
         
       </tbody>
     </table>

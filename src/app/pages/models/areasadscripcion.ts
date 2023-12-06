@@ -1,6 +1,6 @@
 export interface Areasadscripcion
     {
-        Id: number;
+        id: number;
         nombre: string; 
         Descripcion: string;
         Estatus: number;
