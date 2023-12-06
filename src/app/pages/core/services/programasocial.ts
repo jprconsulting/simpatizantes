@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HandleErrorService } from './handle-error.service';
 import { Observable, Subject, throwError } from 'rxjs';
 import { catchError, tap} from 'rxjs/operators';
-import { Prograsmasocial } from '../../models/roles';
+import { Prograsmasocial } from '../../models/programasocial';
 
 import { environment } from 'src/environment/environment';
 import { Injectable } from '@angular/core';
@@ -20,7 +20,7 @@ export class ProgramaService {
     private handleErrorService: HandleErrorService
   ) { }
   postPrograma(Prograsmasocial: Prograsmasocial): Observable<Prograsmasocial> {
-    return this.http.post<Prograsmasocial>(`${this.route}`, Prograsmasocial)
+    return this.http.post<Prograsmasocial>(`${this.route}/crear`, Prograsmasocial)
       .pipe(
         tap(() => {
           
@@ -33,12 +33,12 @@ export class ProgramaService {
     return this._refreshLisPrograma$;
   }
   getPrograma():Observable<Prograsmasocial[]> {
-    return this.http.get<Prograsmasocial[]>(`${this.route}`).pipe(
+    return this.http.get<Prograsmasocial[]>(`${this.route}/obtener-todos`).pipe(
       catchError(this.handleErrorService.handleError)
     );
   }
-  putPrograma(result: Prograsmasocial): Observable<Prograsmasocial> {
-    return this.http.put<Prograsmasocial>(`${this.route}`, result)
+  putPrograma(id:number,result: Prograsmasocial): Observable<Prograsmasocial> {
+    return this.http.put<Prograsmasocial>(`${this.route}/actualizar/${id}`, result)
       .pipe(
         tap(() => {
           this._refreshLisPrograma$.next(null);
@@ -47,7 +47,7 @@ export class ProgramaService {
       );
   }
   deletePrograma(id: number) {
-    return this.http.delete(`${this.route}/eliminar_Beneficiario/${id}`)
+    return this.http.delete(`${this.route}/eliminar/${id}`)
       .pipe(
         tap(() => {
           this._refreshLisPrograma$.next;

@@ -1,9 +1,12 @@
 export interface Prograsmasocial
     {
-        Id: number;
-        Nombre: string;
-        Descripcion: string;
-        Color: string;
-        Estatus: boolean;
-        AreaAdscripcionId: number;
+        id: number;
+        nombre: string;
+        descripcion: string;
+        color: string;
+        estatus: boolean;
+        areaAdscripcionId: number;
+        areaAdscripcion: string;
+        acronimo: string;
+
     }
