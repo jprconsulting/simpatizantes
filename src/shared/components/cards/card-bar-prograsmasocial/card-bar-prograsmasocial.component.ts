@@ -54,6 +54,7 @@ export class CardBarPrograsmasocialComponent implements OnInit {
   closeModal(): void {
     this.showModal = false;
     this.isUpdating = false;
+    this.selectedColor='';
   }
 
   ngOnInit() {
@@ -186,6 +187,7 @@ export class CardBarPrograsmasocialComponent implements OnInit {
         this.ResetForm();
         this.actualizarTabla();
         console.log(socialFormValue);
+        this.closeModal();
       },
       error: (error) => {
         this.mensajeService.mensajeError("Error al actualizar programa social");
@@ -198,6 +200,9 @@ export class CardBarPrograsmasocialComponent implements OnInit {
   get isFormDirty(): boolean {
     return Object.values(this.SocialForm.controls).some(control => control.value !== null && control.value !== undefined && control.value !== '');
   }
+  get tieneColor(): boolean {
+    return this.color !== undefined && this.color !== null && this.color.trim() !== '';
+  }
 
   submit() {
     if (this.isUpdating) {
@@ -206,16 +211,16 @@ export class CardBarPrograsmasocialComponent implements OnInit {
       this.agregar();
     }
   }
-  
-  
+  selectedColor='';
 
 setDataModalUpdate(prograsmasocial: Prograsmasocial) {
   this.isUpdating = true;
   this.idToUpdate2 = prograsmasocial.id;
+  this.selectedColor! = prograsmasocial.color;
   this.SocialForm.patchValue({
     id: prograsmasocial.id,
     Nombre: prograsmasocial.nombre,
-    Color: prograsmasocial.color || '',
+    Color: prograsmasocial.color,
     Estatus: prograsmasocial.estatus,
     AreaAdscripcionId: prograsmasocial.areaAdscripcionId,
     Acronimo: prograsmasocial.acronimo,

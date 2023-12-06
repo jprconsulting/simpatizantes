@@ -93,5 +93,61 @@ body {
   display: inline-block;
   margin-right: 8px;
 }
+.color-bubble {
+  width: 30px; /* Ajusta el tamaño según tus preferencias */
+  height: 30px; /* Ajusta el tamaño según tus preferencias */
+  border-radius: 50%;
+  margin-left: 10px; /* Ajusta el margen según tus preferencias */
+  display: inline-block;
+  border: 2px solid white; /* Añade un borde blanco para mayor visibilidad */
+}
 
+.table-header {
+  background-color: #2d3748; /* Dark gray background color */
+  color: #cbd5e0; /* Light gray text color */
+}
 
+/* Table Cells */
+.table-cell {
+  padding: 0.75rem; /* Padding for cells */
+  text-align: left; /* Text alignment */
+  font-size: 0.75rem; /* Font size */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Alternating Row Colors */
+.table-row-even {
+  background-color: #4a5568; /* Darker gray for even rows */
+}
+
+.table-row-odd {
+  background-color: #2d3748; /* Dark gray for odd rows */
+}
+
+/* Font Weight for Header Text */
+.table-header th {
+  font-weight: bold; /* Bold text for header cells */
+}
+
+/* styles.css */
+
+.table-header th.actions-header {
+  padding: 0.75rem; /* Adjust padding as needed */
+  background-color: #f8fafc; /* Replace with your preferred background color */
+  color: #64748b; /* Replace with your preferred text color */
+  border: 1px solid #cbd5e0; /* Replace with your preferred border color */
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* If you want to style the first header specifically (e.g., different border color) */
+.table-header th.actions-header:first-child {
+  border-left: 0; /* Remove left border for the first header cell */
+}
+
+/* If you want to style the last header specifically (e.g., different border color) */
+.table-header th.actions-header:last-child {
+  border-right: 0; /* Remove right border for the last header cell */
+}

@@ -81,12 +81,8 @@
                                 <div class="grid gap-4 grid-cols-2">
                                   <div>
                                     <label for="Color" class="lavel">COLOR:</label>
-                                    <input [(colorPicker)]="color" [style.background]="color" class="color-picker" (colorPickerChange)="updateColor($event)" formControlName="Color">
-
+                                    <input [(colorPicker)]="selectedColor" [style.background]="selectedColor" class="color-picker" (colorPickerChange)="updateColor($event)" formControlName="Color">
                                   </div>
-                                  
-                                  
-                                  
                                   <div>
                                     <div class="w-full lg:w-6/12 px-4">
                                       <div class="relative w-full mb-3">
@@ -145,41 +141,37 @@
     <table class="items-center w-full bg-transparent border-collapse">
       <thead>
         <tr>
-          <th
-            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+          <th class="table-header">
             #
           </th>
-          <th
-            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-          >
-          Nombre
+          
+          <th class="table-header">
+            Nombre
+          </th>
+          <th class="table-header">
+            Color
           </th>
           <th
-            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-          >
-          Color
-          </th>
-          <th
-            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+          class="table-header"
           >
           Estatus
           </th>
           <th
-          class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+          class="table-header"
         >
         Acrónimo
         </th>
           <th
-            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+          class="table-header"
           >
             Acciones
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr  *ngFor="let programa of prograsmasocial">
+        <tr *ngFor="let programa of prograsmasocial; let i = index" [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0}">
           <th
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold"
           >
           {{ programa.id }}
           </th>
