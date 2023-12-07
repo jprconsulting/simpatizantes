@@ -103,8 +103,9 @@ body {
 }
 
 .table-header {
-  background-color: #2d3748; /* Dark gray background color */
-  color: #cbd5e0; /* Light gray text color */
+  background-color: #4f0d6b;
+  color: #ffffff; 
+  height: 32px;
 }
 
 /* Table Cells */
@@ -114,40 +115,18 @@ body {
   font-size: 0.75rem; /* Font size */
   white-space: nowrap; /* Prevent text wrapping */
 }
-
-/* Alternating Row Colors */
-.table-row-even {
-  background-color: #4a5568; /* Darker gray for even rows */
-}
-
-.table-row-odd {
-  background-color: #2d3748; /* Dark gray for odd rows */
-}
-
-/* Font Weight for Header Text */
-.table-header th {
-  font-weight: bold; /* Bold text for header cells */
-}
-
-/* styles.css */
-
-.table-header th.actions-header {
-  padding: 0.75rem; /* Adjust padding as needed */
-  background-color: #f8fafc; /* Replace with your preferred background color */
-  color: #64748b; /* Replace with your preferred text color */
-  border: 1px solid #cbd5e0; /* Replace with your preferred border color */
-  text-align: left;
-  font-size: 0.75rem;
+.custom-table-header {
+  border-t: 0;
+  border-l: 0;
+  border-right: 0;
+  font-size: 0.5rem;
   font-weight: bold;
-  white-space: nowrap;
+  padding: 4px;
 }
 
-/* If you want to style the first header specifically (e.g., different border color) */
-.table-header th.actions-header:first-child {
-  border-left: 0; /* Remove left border for the first header cell */
+.custom-table-row {
+  border-bottom: 1px solid #d2c9d8; /* Cambia el color a tu preferencia */
 }
-
-/* If you want to style the last header specifically (e.g., different border color) */
-.table-header th.actions-header:last-child {
-  border-right: 0; /* Remove right border for the last header cell */
+.custom-table-row:hover {
+  background-color: #ddd1dd; /* Cambia el color a tu preferencia */
 }
