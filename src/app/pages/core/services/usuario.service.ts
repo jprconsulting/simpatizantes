@@ -10,17 +10,49 @@ import { Injectable } from '@angular/core';
 })
 export class UsuariosService {
     route = `${environment.apiUrl}/usuarios`;
-  private _refreshLisMunicipios$ = new Subject<Usuarios | null>();
+  private _refreshLisUsuarios$ = new Subject<Usuarios | null>();
   constructor(
     private http: HttpClient,
     private handleErrorService: HandleErrorService
   ) { }
-  get refreshLis_refreshLisMunicipios() {
-    return this._refreshLisMunicipios$;
-  }
+
   getUsuarios(): Observable<Usuarios[]> {
     return this.http.get<Usuarios[]>(`${this.route}/obtener-todos`).pipe(
       catchError(this.handleErrorService.handleError)
     );
+  }
+  get refreshLis_refreshLisUsuarios() {
+    return this._refreshLisUsuarios$;
+  }
+
+  postPrograma(Usuario: Usuarios): Observable<Usuarios> {
+    return this.http.post<Usuarios>(`${this.route}/crear`, Usuario)
+      .pipe(
+        tap(() => {
+
+        }),
+        catchError(this.handleErrorService.handleError)
+
+      );
+  }
+
+  putPrograma(id:number,result: Usuarios): Observable<Usuarios> {
+    return this.http.put<Usuarios>(`${this.route}/actualizar/${id}`, result)
+      .pipe(
+        tap(() => {
+          this._refreshLisUsuarios$.next(null);
+        }),
+        catchError(this.handleErrorService.handleError)
+      );
+  }
+
+  deleteUsuario(id: number) {
+    return this.http.delete(`${this.route}/eliminar/${id}`)
+      .pipe(
+        tap(() => {
+          this._refreshLisUsuarios$.next;
+        }),
+        catchError(this.handleErrorService.handleError)
+      );
   }
 }
