@@ -1,5 +1,6 @@
-export interface Prograsmasocial
+export interface Roles
     {
         Id: number;
         Nombre: string;
+
     }

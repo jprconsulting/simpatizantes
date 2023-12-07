@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class BeneficiarioService {
-  route = `${environment.apiUrl}/Beneficiario`;
+  route = `${environment.apiUrl}/beneficiarios`;
 
   private _refreshLisBeneficiario$ = new Subject<Beneficiario | null>();
 
@@ -23,17 +23,17 @@ export class BeneficiarioService {
     return this.http.post<Beneficiario>(`${this.route}/agregar_beneficiario`, beneficiario)
       .pipe(
         tap(() => {
-          
+
         }),
         catchError(this.handleErrorService.handleError)
-        
+
       );
   }
   get refreshLis_refreshLisBeneficiario() {
     return this._refreshLisBeneficiario$;
   }
   getBeneficiario():Observable<Beneficiario[]> {
-    return this.http.get<Beneficiario[]>(`${this.route}/obtener_beneficiario`).pipe(
+    return this.http.get<Beneficiario[]>(`${this.route}/obtener-todos`).pipe(
       catchError(this.handleErrorService.handleError)
     );
   }

@@ -17,7 +17,7 @@ export class AreasadscripcionService {
   ) { }
 
   getAreasadscripcion():Observable<Areasadscripcion[]> {
-    return this.http.get<Areasadscripcion[]>(`${this.route}`).pipe(
+    return this.http.get<Areasadscripcion[]>(`${this.route}/obtener-todos`).pipe(
       catchError(this.handleErrorService.handleError)
     );
   }
