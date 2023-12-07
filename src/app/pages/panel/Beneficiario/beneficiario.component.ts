@@ -75,20 +75,21 @@ export class BeneficiarioComponent implements OnInit {
                     const colorRGB = programaSocial.color;
         // Resto de tu lógica...
            for (const beneficiario of this.beneficiarios) {
-          const marker = new google.maps.Marker({
-            position: new google.maps.LatLng(beneficiario.latitud, beneficiario.longitud),
-            map: map,
-            animation: google.maps.Animation.DROP,
-            title: `${beneficiario.nombres} ${beneficiario.apellidoPaterno} ${beneficiario.apellidoMaterno}`,
-            icon: {
-              path: google.maps.SymbolPath.CIRCLE,
-              fillColor: colorRGB,  // Cambia 'red' a 'blue' para hacerlo azul
-              fillOpacity: 1,
-              strokeWeight: 1,
-              scale: 8  // Ajusta el tamaño según sea necesario
-            }
-          });
-  
+            const colorRGB = 'rgb(255, 0, 0)';  // Cambia estos valores según el color deseado
+
+            // Crea un marcador personalizado con el color especificado
+            const marker = new google.maps.Marker({
+              position: new google.maps.LatLng(beneficiario.latitud, beneficiario.longitud),
+              map: map,
+              icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: colorRGB,
+                fillOpacity: 1,
+                strokeWeight: 0,
+                scale: 10  // Ajusta el tamaño del marcador según sea necesario
+              },
+              title: `${beneficiario.nombres} ${beneficiario.apellidoPaterno} ${beneficiario.apellidoMaterno}`,
+            });
           // Contenido del infowindow
           const contentString = `
             <div class="max-w-sm rounded overflow-hidden shadow-lg">
