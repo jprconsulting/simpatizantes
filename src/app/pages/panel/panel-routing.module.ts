@@ -10,6 +10,11 @@ const routes: Routes = [{
       path: '', redirectTo: 'dashboard', pathMatch: 'full'
     },
     {
+      path: 'bienvenida',
+      loadChildren: () => import('./bienvenida/bienvenida.module')
+        .then(i => i.BienvenidaModule)
+    },
+    {
       path: 'dashboard',
       loadChildren: () => import('./dashboard/dashboard.module')
         .then(i => i.DashboardModule)
