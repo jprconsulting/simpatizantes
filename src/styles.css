@@ -2,3 +2,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('src/shared/components/footer-admin/image/Dif 3.jpg'); /* Reemplaza 'ruta/de/tu/imagen.jpg' con la ruta de tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+}
+
+.login-container {
+    width: 300px;
+    margin: auto;
+    margin-top: 100px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente para que la información sea legible */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+button {
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

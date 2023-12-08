@@ -44,3 +44,13 @@
     color: #e53e3e; /* Rojo oscuro, ajusta el color según tus preferencias */
     font-size: 0.875rem; /* Ajusta el tamaño de fuente según tus preferencias */
 }
+#map-canvas {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 100; /* Ajusta el índice z para que sea menor que otros elementos en la página */
+  }
+  
+  

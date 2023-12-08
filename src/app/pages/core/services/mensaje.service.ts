@@ -41,7 +41,7 @@ export class MensajeService {
       confirmButtonText: 'Sí, borrarlo!'
     }).then((result) => {
       if (result.value) {
-        onConfirm(); 
+        onConfirm();
       }
     });
   }
