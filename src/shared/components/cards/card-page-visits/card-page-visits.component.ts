@@ -9,6 +9,7 @@ import { Usuarios } from "src/app/pages/models/usuario";
 @Component({
   selector: "app-card-page-visits",
   templateUrl: "./card-page-visits.component.html",
+  styleUrls: ["./card-page-visits.component.css" ],
 })
 export class CardPageVisitsComponent implements OnInit {
   UsuarioForm: FormGroup;
@@ -20,6 +21,7 @@ export class CardPageVisitsComponent implements OnInit {
     private mensajeService: MensajeService,
     ) {
       this.UsuarioForm = this.formBuilder.group({
+        id: [''],
         nombre: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]],
         apellidoPaterno: ['',Validators.required],
         apellidoMaterno: ['',Validators.required],
@@ -156,6 +158,7 @@ export class CardPageVisitsComponent implements OnInit {
     this.isUpdating = true;
     this.idToUpdate2 = usuarios.id;
     this.UsuarioForm.patchValue({
+      Id: usuarios.id,
       Nombre: usuarios.nombre,
       Apellidopaterno: usuarios.apellidoPaterno,
       Apellidomaterno: usuarios.apellidoMaterno,
