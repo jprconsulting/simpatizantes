@@ -58,10 +58,16 @@ export class BeneficiarioComponent implements OnInit {
       (beneficiarios: Beneficiario[]) => {
         console.log('Datos de beneficiarios recibidos:', beneficiarios);
         this.beneficiarios = beneficiarios;
-      
+    
         this.programaService.getPrograma().subscribe(
           (programasocial: Prograsmasocial[]) => {
             this.prograsmasocial = programasocial;
+    
+            // Crear un diccionario de colores asociados con el id del programa social
+            const coloresPorPrograma: { [id: number]: string } = {};
+            this.prograsmasocial.forEach(programaSocial => {
+              coloresPorPrograma[programaSocial.id] = programaSocial.color;
+            });
     
             // Mapea los valores del programa social usando el ID
             this.beneficiarios.forEach(beneficiario => {
@@ -69,27 +75,24 @@ export class BeneficiarioComponent implements OnInit {
               if (programaSocial) {
                 beneficiario.programaSocialId = programaSocial.id;
                 console.log('Valores del programa social:', programaSocial);
-            
-                
-                
-                    const colorRGB = programaSocial.color;
-        // Resto de tu lógica...
-           for (const beneficiario of this.beneficiarios) {
-            const colorRGB = 'rgb(255, 0, 0)';  // Cambia estos valores según el color deseado
+    
+                const colorRGB = coloresPorPrograma[beneficiario.programaSocialId] || 'rgb(255, 0, 0)';
+    
+                // Resto de tu lógica...
+                const marker = new google.maps.Marker({
+                  position: new google.maps.LatLng(beneficiario.latitud, beneficiario.longitud),
+                  map: map,
+                  icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillColor: colorRGB,
+                    fillOpacity: 1,
+                    strokeWeight: 0,
+                    scale: 10  // Ajusta el tamaño del marcador según sea necesario
+                  },
+                  title: `${beneficiario.nombres} ${beneficiario.apellidoPaterno} ${beneficiario.apellidoMaterno}`,
+                });
+    
 
-            // Crea un marcador personalizado con el color especificado
-            const marker = new google.maps.Marker({
-              position: new google.maps.LatLng(beneficiario.latitud, beneficiario.longitud),
-              map: map,
-              icon: {
-                path: google.maps.SymbolPath.CIRCLE,
-                fillColor: colorRGB,
-                fillOpacity: 1,
-                strokeWeight: 0,
-                scale: 10  // Ajusta el tamaño del marcador según sea necesario
-              },
-              title: `${beneficiario.nombres} ${beneficiario.apellidoPaterno} ${beneficiario.apellidoMaterno}`,
-            });
           // Contenido del infowindow
           const contentString = `
             <div class="max-w-sm rounded overflow-hidden shadow-lg">
@@ -118,21 +121,19 @@ export class BeneficiarioComponent implements OnInit {
           const infowindow = new google.maps.InfoWindow({
             content: contentString,
           });
-  
+
           google.maps.event.addListener(marker, "click", function () {
             infowindow.open(map, marker);
           });
-          
         }
-      }
-    });
-  }
+      });
+    }
+  );
+},
+(error: any) => {
+  console.error('Error al obtener beneficiarios:', error);
+}
 );
-      },
-      (error: any) => {
-        console.error('Error al obtener beneficiarios:', error);
-      }
-    );
   }
   
   obtenerBeneficiarios() {
