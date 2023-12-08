@@ -8,9 +8,14 @@
         <div class="flex justify-between">
           <div>
             <button (click)="openModal()" class="min-w-140-px bg-purple-900 text-white py-2 pr-2 pl-2 rounded-md hover:bg-purple-950">Agregar Prograna</button>
-
-          </div>
+          </div>          
           <div>
+            <div style="display: flex; align-items: center;">
+            <input class="border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+            type="text"
+            placeholder="Buscar"
+            (input)="aplicarFiltro()" />
+            </div>
           </div>
 
         </div><br><br>
@@ -40,7 +45,7 @@
                 <div >
                     <form [formGroup]="SocialForm" (ngSubmit)="submit()">
                             <div>
-                              <label for="Nombre" class="lavel">NOMBRE:</label>
+                              <label for="Nombre" class="lavel">NOMBRE*:</label>
                                 <input class="input" type="text" formControlName="Nombre">
                                 <div *ngIf="SocialForm.get('Nombre')?.touched" class="error-message">
                                     <div *ngIf="SocialForm.get('Nombre')?.hasError('required')">
@@ -54,7 +59,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                  <label for="AreaAdscripcionId" class="lavel">ÁREA DE ADSCRIPCIÓN:</label>
+                                  <label for="AreaAdscripcionId" class="lavel">ÁREA DE ADSCRIPCIÓN*:</label>
                                 <select class="select" formControlName="AreaAdscripcionId">
                                   <option *ngFor="let area of areasadscripcion" [value]="area.id">{{ area.nombre }}</option>
                                   </select>
@@ -65,7 +70,7 @@
                                 </div>
                                 </div>
                                 
-                                <label for="nombre" class="lavel">ACRÓNIMO:</label>
+                                <label for="nombre" class="lavel">ACRÓNIMO*:</label>
                                 <input class="input" type="text" formControlName="Acronimo">
                                 <div *ngIf="SocialForm.get('Acronimo')?.touched" class="error-message">
                                     <div *ngIf="SocialForm.get('Acronimo')?.hasError('required')">
@@ -80,17 +85,17 @@
                                 </div>
                                 <div class="grid gap-4 grid-cols-2">
                                   <div>
-                                    <label for="Color" class="lavel">COLOR:</label>
+                                    <label for="Color" class="lavel">COLOR*:</label>
                                     <input [(colorPicker)]="selectedColor" [style.background]="selectedColor" class="color-picker" (colorPickerChange)="updateColor($event)" formControlName="Color">
                                   </div>
                                   <div>
                                     <div class="w-full lg:w-6/12 px-4">
                                       <div class="relative w-full mb-3">
-                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 label" htmlFor="grid-password">
-                                          ESTATUS
+                                        <label class="lavel" htmlFor="grid-password">
+                                          ESTATUS*
                                         </label>
                                         <label class="relative inline-flex items-center cursor-pointer">
-                                          <input type="checkbox" value="" class="sr-only peer" formControlName="Estatus">
+                                          <input type="checkbox" value="" class="sr-only peer" formControlName="Estatus" [required]="true">
                                           <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500"></div>
                                           <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                         </label>
@@ -104,8 +109,8 @@
                                 </div>
 
                             </div>
-                            <label for="Descripcion" class="lavel">DESCRIPCION:</label>
-                                <textarea id="Descripcion" name="Descripcion" rows="4" class="custom-textarea" formControlName="Descripcion"></textarea>
+                            <label for="Descripcion" class="lavel">DESCRIPCION*:</label>
+                                <textarea id="Descripcion" name="Descripcion" rows="2" class="custom-textarea" formControlName="Descripcion"></textarea>
                                 <div *ngIf="SocialForm.get('Descripcion')?.touched" class="error-message">
                                     <div *ngIf="SocialForm.get('Descripcion')?.hasError('required')">
                                       La descripción es obligatoria
@@ -116,13 +121,13 @@
                                 </div>
                           <br>  
                           <br>      
+                          TODOS LOS CAMPOS MARCADOS CON * SON REQUERIDOS
                           <div class="flex justify-end">
-                            <button type="submit" class="bg-purple-900 text-white py-2 px-4 rounded-md hover:bg-red-950">
-                              {{ isUpdating ? "ACTUALIZAR " : "AGREGAR " }}  
+                            <button type="submit" class="bg-purple-900 text-white py-2 px-4 rounded-md hover:bg-red-950" >
+                              {{ isUpdating ? " AGREGAR" : "ACTUALIZAR" }}
                             </button>
-                            
                           </div>
-                                                  
+                          
                     </form>
                   </div>
                   
@@ -169,7 +174,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let programa of prograsmasocial; let i = index" [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0}">
+        <tr *ngFor="let programa of prograsmasocial; let i = index"  [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
           <th
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold"
           >

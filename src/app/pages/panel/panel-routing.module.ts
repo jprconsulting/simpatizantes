@@ -45,6 +45,11 @@ const routes: Routes = [{
       loadChildren:() => import("./programasocial/programasocial.module")
       .then(c => c.ProgramasocialModule)
     },
+    {
+      path: 'evidencias',
+      loadChildren:() => import("./evidencia/evidencia.module")
+      .then(c => c.EvidenciaModule)
+    },
 
   ]
 }];
