@@ -20,6 +20,10 @@ export class CardBarPrograsmasocialComponent implements OnInit {
   formData: any;
   title="Crear";
   isUpdating: boolean = false;
+  id!: number;
+  nombre!: string;
+  programasFiltrados: Prograsmasocial[] = []; 
+  filtroTexto: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -58,8 +62,9 @@ export class CardBarPrograsmasocialComponent implements OnInit {
   }
 
   ngOnInit() {
-  this.obtenerA();
-  this.obtenerProgramas();
+    this.obtenerA();
+    this.obtenerProgramas();
+    this.aplicarFiltro();
   }
 
   ResetForm() {
@@ -135,7 +140,7 @@ export class CardBarPrograsmasocialComponent implements OnInit {
   obtenerProgramas() {
     this.programaService.getPrograma().subscribe(
       (prograsmasocial: Prograsmasocial[]) => {
-        console.log('Datos:', prograsmasocial);
+        console.log('Datos:', prograsmasocial); 
         this.prograsmasocial = prograsmasocial;
       }
     );
@@ -229,5 +234,14 @@ setDataModalUpdate(prograsmasocial: Prograsmasocial) {
   this.formData = this.SocialForm.value;
   console.log(this.SocialForm.value);
 }
+
+aplicarFiltro() {
+  this.programasFiltrados = this.prograsmasocial.filter(programa =>
+    programa.nombre.toLowerCase().includes(this.filtroTexto.toLowerCase())
+  );
+}
+
+
+
 }
   
