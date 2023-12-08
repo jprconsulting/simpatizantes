@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MensajeService } from "src/app/pages/core/services/mensaje.service";
 import { UsuariosService } from "src/app/pages/core/services/usuario.service";
+import { Roles } from "src/app/pages/models/roles";
 import { Usuarios } from "src/app/pages/models/usuario";
 
 
@@ -19,20 +20,17 @@ export class CardPageVisitsComponent implements OnInit {
     private mensajeService: MensajeService,
     ) {
       this.UsuarioForm = this.formBuilder.group({
-        id: [null],
         nombre: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]],
-        apellidopaterno: ['',Validators.required],
-        apellidomaterno: ['',Validators.required],
+        apellidoPaterno: ['',Validators.required],
+        apellidoMaterno: ['',Validators.required],
+        password: ['',Validators.required],
         correo: ['', [Validators.required, Validators.minLength(10)]],
-        rol: [null],
-        Estatus: [false, [Validators.required]],
-        Acronimo: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[a-zA-Z ]+$')]],
+        rolId: ['',Validators.required],
+        Estatus: [false, [Validators.required]]
 
       });
 
-  }
-
-
+    }
 
   showModal = false;
   usuarios: Usuarios[] = [];
@@ -63,6 +61,15 @@ export class CardPageVisitsComponent implements OnInit {
     if (estatusControl) {
       estatusControl.setValue(estatusControl.value === 1 ? 0 : 1);
     }
+  }
+
+  obtenerRoles() {
+    this.usuariosService.getRoles().subscribe(
+      (roles: Roles[]) => {
+        console.log('Datos:', roles);
+        this.usuarios = this.usuarios;
+      }
+    );
   }
 
   obtenerUsuarios(): void {
@@ -111,18 +118,19 @@ export class CardPageVisitsComponent implements OnInit {
     );
   }
   agregar() {
+
     // Copia los valores del formulario
     const usuarioFormValue = { ...this.UsuarioForm.value };
-    delete usuarioFormValue.id;
 
-    this.usuariosService.postPrograma(usuarioFormValue).subscribe({
+
+    this.usuariosService.postUsuario(usuarioFormValue).subscribe({
       next: () => {
         this.ResetForm();
         this.mensajeService.mensajeExito("usuario agregado Exitosamente");
         this.actualizarTabla();
         this.closeModal();
       },
-      error: (error) => {
+      error: () => {
         this.mensajeService.mensajeError("Error al agregar usuario");
       }
     });
@@ -149,13 +157,12 @@ export class CardPageVisitsComponent implements OnInit {
     this.isUpdating = true;
     this.idToUpdate2 = usuarios.id;
     this.UsuarioForm.patchValue({
-      id: usuarios.id,
       Nombre: usuarios.nombre,
       Apellidopaterno: usuarios.apellidoPaterno,
       Apellidomaterno: usuarios.apellidoMaterno,
       Correo: usuarios.correo,
       Contraseña: usuarios.password,
-      Rolid: usuarios.RolId,
+      rolId: usuarios.RolId,
     });
     this.formData = this.UsuarioForm.value;
     console.log(this.UsuarioForm.value);
