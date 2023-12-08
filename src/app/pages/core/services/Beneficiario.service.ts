@@ -20,7 +20,7 @@ export class BeneficiarioService {
     private handleErrorService: HandleErrorService
   ) { }
   postVotante(beneficiario: Beneficiario): Observable<Beneficiario> {
-    return this.http.post<Beneficiario>(`${this.route}/agregar_beneficiario`, beneficiario)
+    return this.http.post<Beneficiario>(`${this.route}/crear`, beneficiario)
       .pipe(
         tap(() => {
 
@@ -37,8 +37,9 @@ export class BeneficiarioService {
       catchError(this.handleErrorService.handleError)
     );
   }
-  putBeneficiario(result: Beneficiario): Observable<Beneficiario> {
-    return this.http.put<Beneficiario>(`${this.route}/editar_beneficiario`, result)
+
+  putBeneficiario(id:number, result: Beneficiario): Observable<Beneficiario> {
+    return this.http.put<Beneficiario>(`${this.route}/actualizar/${id}`, result)
       .pipe(
         tap(() => {
           this._refreshLisBeneficiario$.next(null);
@@ -46,8 +47,9 @@ export class BeneficiarioService {
         catchError(this.handleErrorService.handleError)
       );
   }
+
   deleteBeneficiario(id: number) {
-    return this.http.delete(`${this.route}/eliminar_Beneficiario/${id}`)
+    return this.http.delete(`${this.route}/eliminar/${id}`)
       .pipe(
         tap(() => {
           this._refreshLisBeneficiario$.next;
