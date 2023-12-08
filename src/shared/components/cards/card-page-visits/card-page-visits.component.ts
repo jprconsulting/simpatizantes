@@ -26,8 +26,7 @@ export class CardPageVisitsComponent implements OnInit {
         password: ['',Validators.required],
         correo: ['', [Validators.required, Validators.minLength(10)]],
         rolId: ['',Validators.required],
-        Estatus: [false, [Validators.required]]
-
+        Estatus: [false, [Validators.required]],
       });
 
     }
@@ -117,11 +116,11 @@ export class CardPageVisitsComponent implements OnInit {
       }
     );
   }
-  agregar() {
 
+
+  agregar() {
     // Copia los valores del formulario
     const usuarioFormValue = { ...this.UsuarioForm.value };
-
 
     this.usuariosService.postUsuario(usuarioFormValue).subscribe({
       next: () => {
