@@ -11,6 +11,7 @@ declare const google: any;
 @Component({
   selector: "app-card-social-traffic",
   templateUrl: "./card-social-traffic.component.html",
+  styleUrls: ["./card-social-traffic.component.css" ],
 })
 export class CardSocialTrafficComponent{
   municipios: Municipios[] = [];
@@ -218,13 +219,13 @@ export class CardSocialTrafficComponent{
     this.formData = this.SocialForm.value;
     console.log(this.SocialForm.value);
   }
-  
+
 map(){
   const mapElement = document.getElementById("map-canvas") || null;
   const lat = mapElement?.getAttribute("data-lat") || null;
   const lng = mapElement?.getAttribute("data-lng") || null;
   const myLatlng = new google.maps.LatLng(lat, lng);
- 
+
   const mapOptions = {
     zoom: 15,
     scrollwheel: false,
@@ -343,7 +344,7 @@ mapa2(): void {
     animation: google.maps.Animation.DROP,
     title: "Hello World!",
   });
-  
+
   const contentString = `
   <div class="max-w-sm rounded overflow-hidden shadow-lg">
     <img class="w-24 h-24 mb-3 rounded-full shadow-lg justify-center " src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeJH_SWkfpDpy8Y0yPzJ0-7UBwkt9RTSFXUw&usqp=CAU" alt="Sunset in the mountains">
