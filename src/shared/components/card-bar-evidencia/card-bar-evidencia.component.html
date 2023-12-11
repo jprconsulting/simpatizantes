@@ -44,17 +44,33 @@
                   <!-- fomulario -->
                   <div >
                       <form [formGroup]="EvidenciaForm" (ngSubmit)="submit()">
-                            <div>
-                                <label for="Beneficiario" class="lavel">BENEFICIARIO*:</label>
-                                <select class="select" formControlName="Beneficiario">
-                                  <option *ngFor="let beneficiario of beneficiarios" [value]="beneficiario.id">{{ beneficiario.nombres }} {{ beneficiario.apellidoPaterno }} {{ beneficiario.apellidoMaterno }}</option>
-                                </select>
-                                <div *ngIf="EvidenciaForm.get('Beneficiario')?.touched" class="error-message">
-                                    <div *ngIf="EvidenciaForm.get('Beneficiario')?.hasError('required')">
-                                      El beneficiario es requerido
-                                    </div>
-                                </div>
+                        <div>
+                          <label for="programaSocialSelect">Selecciona un programa social:</label>
+                          <select id="programaSocialSelect" (change)="filtrarProgramaSocial($event)">
+                            <option *ngFor="let programa of prograsmasocial" [value]="programa.id">{{ programa.nombre }}</option>
+                          </select>
+                          <div id="resultadosFiltro">{{ programaSeleccionado }}</div>
+                        </div>
+
+                        
+                        <div>
+                          <label for="Beneficiario" class="lavel">BENEFICIARIO*:</label>
+                          <ng-select
+                          [items]="filteredBeneficiarios"
+                          bindLabel="nombres"
+                          bindValue="id"
+                          formControlName="Beneficiario"
+                          [searchable]="true"
+                          [ngClass]="{'is-invalid': EvidenciaForm.get('Beneficiario')?.touched && EvidenciaForm.get('Beneficiario')?.invalid}"
+                          (input)="aplicarFiltro()"
+                        ></ng-select>                        
+                          <div *ngIf="EvidenciaForm.get('Beneficiario')?.touched" class="error-message">
+                            <div *ngIf="EvidenciaForm.get('Beneficiario')?.hasError('required')">
+                              El beneficiario es requerido
                             </div>
+                          </div>
+                        </div>
+                        
                             <div>
                               <!-- Vista previa de la imagen -->
                               <img class="img" *ngIf="EvidenciaForm.get('Foto')?.value" [src]="EvidenciaForm.get('Foto')?.value" width="50%" height="50%" alt="Vista previa de la imagen">
@@ -79,6 +95,7 @@
                                 </div>
                             </div>
                             <br>      
+                            
                             TODOS LOS CAMPOS MARCADOS CON * SON REQUERIDOS
                             <div class="flex justify-end">
                               <button type="submit" class="bg-purple-900 text-white py-2 px-4 rounded-md hover:bg-red-950" >

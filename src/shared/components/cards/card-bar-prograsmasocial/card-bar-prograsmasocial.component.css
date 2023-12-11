@@ -4,6 +4,11 @@ body {
   color: #1a202c;
   font-family: 'sans-serif';
 }
+.modal-container {
+  margin-top: 5%; 
+  border-bottom-width: 50px;
+  padding-bottom: 10px;
+}
 
 .container {
   margin-left: auto;
@@ -129,4 +134,15 @@ body {
 }
 .custom-table-row:hover {
   background-color: #ddd1dd; /* Cambia el color a tu preferencia */
+}
+button[disabled] {
+  background-color: #ccc; /* Cambia el color del fondo */
+  cursor: not-allowed;    /* Cambia el cursor */
+  /* Otros estilos según tus necesidades */
+}
+
+/* Estilo cuando el formulario es válido */
+button:not([disabled]) { /* Cambia el color del fondo cuando el formulario es válido */
+  cursor: pointer;           /* Cambia el cursor cuando el formulario es válido */
+  /* Otros estilos según tus necesidades */
 }

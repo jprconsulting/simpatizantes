@@ -24,6 +24,7 @@ export class CardBarPrograsmasocialComponent implements OnInit {
   nombre!: string;
   programasFiltrados: Prograsmasocial[] = []; 
   filtroTexto: string = '';
+  toggleValue = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,7 +39,7 @@ export class CardBarPrograsmasocialComponent implements OnInit {
       areaAdscripcion: [''],
       Descripcion: [''],
       Color: [null],
-      Estatus: [false, [Validators.required]],
+      Estatus: [true, [Validators.required]],
       Acronimo: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[a-zA-Z ]+$')]],
 
     });
@@ -53,18 +54,19 @@ export class CardBarPrograsmasocialComponent implements OnInit {
       this.ResetForm();
     }
   }
-  
-
   closeModal(): void {
+    console.log('Cerrando el modal');
     this.showModal = false;
     this.isUpdating = false;
-    this.selectedColor='';
+    this.selectedColor = '';
+    this.ResetForm();
   }
-
+  
   ngOnInit() {
     this.obtenerA();
     this.obtenerProgramas();
     this.aplicarFiltro();
+    
   }
 
   ResetForm() {
