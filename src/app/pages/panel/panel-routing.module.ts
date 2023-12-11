@@ -50,6 +50,11 @@ const routes: Routes = [{
       loadChildren:() => import("./evidencia/evidencia.module")
       .then(c => c.EvidenciaModule)
     },
+    {
+      path: 'mapa-programas-sociales',
+      loadChildren:() => import("./mapa-programas-sociales/mapa-programas-sociales.module")
+      .then(i => i.MapaProgramasSocialesModule)
+    },
 
   ]
 }];
