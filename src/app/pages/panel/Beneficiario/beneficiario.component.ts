@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BeneficiarioService } from '../../core/services/Beneficiario.service';
 import { Beneficiario } from '../../models/beneficiario';
-import { ProgramaService } from '../../core/services/programasocial';
+import { ProgramaService } from '../../core/services/programasocial.service';
 import { Prograsmasocial } from '../../models/programasocial';
 
 declare const google: any;
@@ -27,10 +27,18 @@ export class BeneficiarioComponent implements OnInit {
   ) {
   }
 
-
-  ngOnInit(): void {
+  ngAfterViewInit() {
     this.mapa();
   }
+  
+  ngOnInit() {
+    // Asegúrate de que el DOM esté completamente cargado
+    document.addEventListener('DOMContentLoaded', () => {
+      // Llama a la función que inicializa el mapa aquí
+      this.mapa();
+    });
+  }
+  
   
   obtenerBeneficiarios() {
     this.beneficiarioService.getBeneficiario().subscribe(

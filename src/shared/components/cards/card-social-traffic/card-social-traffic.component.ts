@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { BeneficiarioService } from "src/app/pages/core/services/Beneficiario.service";
 import { MensajeService } from "src/app/pages/core/services/mensaje.service";
 import { MunicipiosService } from "src/app/pages/core/services/municipios.service";
-import { ProgramaService } from "src/app/pages/core/services/programasocial";
+import { ProgramaService } from "src/app/pages/core/services/programasocial.service";
 import { Beneficiario } from "src/app/pages/models/beneficiario";
 import { Municipios } from "src/app/pages/models/municipios";
 import { Prograsmasocial } from "src/app/pages/models/programasocial";
@@ -55,8 +55,12 @@ export class CardSocialTrafficComponent{
       });
     }
   showModal = false;
-
-
+  mostrarMapa = false;
+  activarMapa() {
+    this.mostrarMapa = true;
+    // Puedes llamar a cualquier lógica adicional necesaria para activar el mapa aquí
+    this.map();
+  }
   openModal(): void {
     this.showModal = true;
   }
