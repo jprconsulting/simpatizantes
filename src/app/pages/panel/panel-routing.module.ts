@@ -25,9 +25,9 @@ const routes: Routes = [{
         .then(mrec => mrec.MapsModule)
     },
     {
-      path: 'settings',
-      loadChildren: () => import('./settings/settings.module')
-        .then(mres => mres.SettingsModule)
+      path: 'usuarios',
+      loadChildren: () => import('./usuarios/usuarios.module')
+        .then(mres => mres.UsuariosModule)
     },
     {
       path: 'areas',

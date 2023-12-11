@@ -7,7 +7,9 @@ import { Areasadscripcion } from "src/app/pages/models/areasadscripcion";
 @Component({
   selector: "app-card-areas",
   templateUrl: "./card-areas.component.html",
+  styleUrls: ['./card-areas.component.css']
 })
+
 export class CardAreasComponent implements OnInit {
   isUpdating: boolean = false;
   AreaForm: FormGroup;
@@ -142,8 +144,8 @@ export class CardAreasComponent implements OnInit {
     this.AreaForm.patchValue({
       id: areasadscripcion.id,
       nombre: areasadscripcion.nombre,
-      Descripcion: areasadscripcion.Descripcion,
-      Estatus: areasadscripcion.Estatus,
+      Descripcion: areasadscripcion.descripcion,
+      Estatus: areasadscripcion.estatus,
     });
     this.formData = this.AreaForm.value;
     console.log(this.AreaForm.value);
