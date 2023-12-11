@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AreasadscripcionService } from 'src/app/pages/core/services/areasadscripcion.service';
 import { MensajeService } from 'src/app/pages/core/services/mensaje.service';
-import { ProgramaService } from 'src/app/pages/core/services/programasocial';
+import { ProgramaService } from 'src/app/pages/core/services/programasocial.service';
 import { Areasadscripcion } from 'src/app/pages/models/areasadscripcion';
 import { Prograsmasocial } from 'src/app/pages/models/programasocial';
 
@@ -36,7 +36,7 @@ export class CardBarPrograsmasocialComponent implements OnInit {
       Nombre: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]],
       AreaAdscripcionId: ['',Validators.required],
       areaAdscripcion: [''],
-      Descripcion: ['', [Validators.required, Validators.minLength(10)]],
+      Descripcion: [''],
       Color: [null],
       Estatus: [false, [Validators.required]],
       Acronimo: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[a-zA-Z ]+$')]],

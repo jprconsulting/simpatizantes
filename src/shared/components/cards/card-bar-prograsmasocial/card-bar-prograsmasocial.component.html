@@ -111,14 +111,6 @@
                             </div>
                             <label for="Descripcion" class="lavel">DESCRIPCION*:</label>
                                 <textarea id="Descripcion" name="Descripcion" rows="2" class="custom-textarea" formControlName="Descripcion"></textarea>
-                                <div *ngIf="SocialForm.get('Descripcion')?.touched" class="error-message">
-                                    <div *ngIf="SocialForm.get('Descripcion')?.hasError('required')">
-                                      La descripción es obligatoria
-                                    </div>
-                                    <div *ngIf="SocialForm.get('Descripcion')?.hasError('minlength')">
-                                      La descripción debe tener al menos 10 caracteres
-                                    </div>
-                                </div>
                           <br>  
                           <br>      
                           TODOS LOS CAMPOS MARCADOS CON * SON REQUERIDOS
