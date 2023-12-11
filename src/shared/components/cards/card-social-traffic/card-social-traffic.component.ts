@@ -11,6 +11,7 @@ declare const google: any;
 @Component({
   selector: "app-card-social-traffic",
   templateUrl: "./card-social-traffic.component.html",
+  styleUrls: ["./card-social-traffic.component.css" ],
 })
 export class CardSocialTrafficComponent{
   municipios: Municipios[] = [];
@@ -51,7 +52,6 @@ export class CardSocialTrafficComponent{
         estatus: [true, [Validators.required]],
         municipioId: ['',Validators.required],
         programaSocialId: ['',Validators.required],
-
       });
     }
   showModal = false;
@@ -222,78 +222,83 @@ export class CardSocialTrafficComponent{
     this.formData = this.SocialForm.value;
     console.log(this.SocialForm.value);
   }
-  
-map(){
-  const mapElement = document.getElementById("map-canvas") || null;
-  const lat = mapElement?.getAttribute("data-lat") || null;
-  const lng = mapElement?.getAttribute("data-lng") || null;
-  const myLatlng = new google.maps.LatLng(lat, lng);
- 
-  const mapOptions = {
-    zoom: 15,
-    scrollwheel: false,
-    center: myLatlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    // ... (otros ajustes de estilo)
-  };
 
-  const map = new google.maps.Map(mapElement, mapOptions);
+  map() {
+    let selectedLat: number | undefined;
+    let selectedLng: number | undefined;
 
-  const input = document.getElementById('searchInput');
-  const autocomplete = new google.maps.places.Autocomplete(input);
-  autocomplete.bindTo('bounds', map);
-
-  autocomplete.addListener("place_changed", function () {
-    const place = autocomplete.getPlace();
-    if (!place.geometry) {
-      window.alert("Autocomplete's returned place contains no geometry");
+    const mapElement = document.getElementById("map-canvas");
+    if (!mapElement) {
+      console.error("El elemento del mapa no fue encontrado");
       return;
     }
 
-    map.setCenter(place.geometry.location);
-    map.setZoom(15);
-   const marker = new google.maps.Marker({
-      position: place.geometry.location,
-      map: map,
-      animation: google.maps.Animation.DROP,
-      title: place.name,
+    let lat = mapElement.getAttribute("data-lat");
+    let lng = mapElement.getAttribute("data-lng");
+
+    if (!lat || !lng) {
+      console.error("Los atributos de latitud y/o longitud no están presentes");
+      return;
+    }
+
+    const myLatlng = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
+
+    const mapOptions = {
+      zoom: 15,
+      scrollwheel: false,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      // ... (otros ajustes de estilo)
+    };
+
+    const map = new google.maps.Map(mapElement, mapOptions);
+
+    const input = document.getElementById('searchInput');
+    const autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', map);
+
+    autocomplete.addListener("place_changed", function () {
+      const place = autocomplete.getPlace();
+      if (!place.geometry) {
+        window.alert("Autocomplete's returned place contains no geometry");
+        return;
+      }
+
+      const selectedLat = place.geometry.location.lat();
+      const selectedLng = place.geometry.location.lng();
+
+      mapElement.setAttribute("data-lat", selectedLat.toString());
+      mapElement.setAttribute("data-lng", selectedLng.toString());
+
+      const newLatLng = new google.maps.LatLng(selectedLat, selectedLng);
+      map.setCenter(newLatLng);
+      map.setZoom(15);
+
+      const marker = new google.maps.Marker({
+        position: newLatLng,
+        map: map,
+        animation: google.maps.Animation.DROP,
+        title: place.name,
+      });
+
+      const contentString = `
+        <!-- Contenido de la ventana de información (infowindow) -->
+        <!-- ... -->
+      `;
+
+      const infowindow = new google.maps.InfoWindow({
+        content: contentString,
+      });
+
+      google.maps.event.addListener(marker, "click", function () {
+        infowindow.open(map, marker);
+      });
     });
-  const contentString = `
-  <div class="max-w-sm rounded overflow-hidden shadow-lg">
-    <img class="w-24 h-24 mb-3 rounded-full shadow-lg justify-center " src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeJH_SWkfpDpy8Y0yPzJ0-7UBwkt9RTSFXUw&usqp=CAU" alt="Sunset in the mountains">
-    <div class="px-6 py-4">
-      <div class="font-bold text-xl mb-2">Cristian Carreto Trejo</div>
-      <p class="text-gray-900 text-base">
-        Programa inscrito:
-        <p class="text-gray-700 text-base">
-        Asistencia Jurídica
-        </p>
-      </p>
-      <p class="text-gray-900 text-base">
-      Dirección:
-        <p class="text-gray-700 text-base">
-          Calle Cuauhtémoc, Tlaxcala
-        </p>
-      </p>
-    </div>
-    <div class="px-6 pt-4 pb-2">
-      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Teléfono: 246 218 4918</span>
-    </div>
-  </div>
-  `;
-  const infowindow = new google.maps.InfoWindow({
-    content: contentString,
-  });
-  const infoWindowOpenOptions = {
-    map: map,
-    anchor: marker,
-    shouldFocus: false
-  };
-  google.maps.event.addListener(marker, "click", function () {
-    infowindow.open(map, marker);
-  });
-});
-}
+    this.SocialForm.patchValue({
+      longitud: selectedLng,
+      latitud: selectedLat
+    });
+  }
 
 mapa2(): void {
   const latitudControl = this.SocialForm.get('latitud');
@@ -347,7 +352,7 @@ mapa2(): void {
     animation: google.maps.Animation.DROP,
     title: "Hello World!",
   });
-  
+
   const contentString = `
   <div class="max-w-sm rounded overflow-hidden shadow-lg">
     <img class="w-24 h-24 mb-3 rounded-full shadow-lg justify-center " src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeJH_SWkfpDpy8Y0yPzJ0-7UBwkt9RTSFXUw&usqp=CAU" alt="Sunset in the mountains">

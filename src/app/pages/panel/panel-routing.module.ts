@@ -36,8 +36,8 @@ const routes: Routes = [{
     },
 
     {
-      path: 'Beneficiario',
-      loadChildren:() => import("./Beneficiario/beneficiario.module")
+      path: 'beneficiario',
+      loadChildren:() => import("./beneficiario/beneficiario.module")
       .then(c => c.BeneficiarioModule)
     },
     {
