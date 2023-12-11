@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SettingsRoutingModule } from './settings-routing.module';
-import { SettingsComponent } from './settings.component';
 import { SharedModule } from 'src/shared/shared.module';
+import { UsuariosComponent } from './usuarios.component';
+import { UsuariosRoutingModule } from './usuarios-routing.module';
 
 
 @NgModule({
   declarations: [
-    SettingsComponent
+    UsuariosComponent
   ],
   imports: [
     CommonModule,
-    SettingsRoutingModule,
+    UsuariosRoutingModule,
     SharedModule
   ],
-  exports: [SettingsComponent]
+  exports: [UsuariosComponent]
 })
-export class SettingsModule { }
+export class UsuariosModule { }

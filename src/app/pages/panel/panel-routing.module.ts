@@ -26,8 +26,8 @@ const routes: Routes = [{
     },
     {
       path: 'usuarios',
-      loadChildren: () => import('./settings/settings.module')
-        .then(mres => mres.SettingsModule)
+      loadChildren: () => import('./usuarios/usuarios.module')
+        .then(mres => mres.UsuariosModule)
     },
     {
       path: 'areas',
