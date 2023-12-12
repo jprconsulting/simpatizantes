@@ -15,20 +15,22 @@ export class CardPageVisitsComponent implements OnInit {
   UsuarioForm: FormGroup;
   isUpdating: boolean = false;
   formData: any;
+  toggleValue = true;
   constructor(
     private usuariosService: UsuariosService,
     private formBuilder: FormBuilder,
     private mensajeService: MensajeService,
     ) {
       this.UsuarioForm = this.formBuilder.group({
-        id: [''],
+        id: [null],
         nombre: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]],
         apellidoPaterno: ['',Validators.required],
         apellidoMaterno: ['',Validators.required],
         password: ['',Validators.required],
         correo: ['', [Validators.required, Validators.minLength(10)]],
-        rolId: ['',Validators.required],
-        Estatus: [false, [Validators.required]],
+        estatus: ['', [Validators.required]],
+        RolId: ['',Validators.required],
+
       });
 
     }
@@ -62,15 +64,6 @@ export class CardPageVisitsComponent implements OnInit {
     if (estatusControl) {
       estatusControl.setValue(estatusControl.value === 1 ? 0 : 1);
     }
-  }
-
-  obtenerRoles() {
-    this.usuariosService.getRoles().subscribe(
-      (roles: Roles[]) => {
-        console.log('Datos:', roles);
-        this.usuarios = this.usuarios;
-      }
-    );
   }
 
   obtenerUsuarios(): void {
@@ -110,7 +103,7 @@ export class CardPageVisitsComponent implements OnInit {
       () => {
         this.usuariosService.deleteUsuario(id).subscribe({
           next: () => {
-            this.mensajeService.mensajeExito('Programa social borrado correctamente');
+            this.mensajeService.mensajeExito('Usuario borrado correctamente');
             this.actualizarTabla();
           },
           error: (error) => this.mensajeService.mensajeError(error)
@@ -127,7 +120,7 @@ export class CardPageVisitsComponent implements OnInit {
     this.usuariosService.postUsuario(usuarioFormValue).subscribe({
       next: () => {
         this.ResetForm();
-        this.mensajeService.mensajeExito("usuario agregado Exitosamente");
+        this.mensajeService.mensajeExito("Usuario agregado Exitosamente");
         this.actualizarTabla();
         this.closeModal();
       },
@@ -158,13 +151,14 @@ export class CardPageVisitsComponent implements OnInit {
     this.isUpdating = true;
     this.idToUpdate2 = usuarios.id;
     this.UsuarioForm.patchValue({
-      Id: usuarios.id,
-      Nombre: usuarios.nombre,
-      Apellidopaterno: usuarios.apellidoPaterno,
-      Apellidomaterno: usuarios.apellidoMaterno,
-      Correo: usuarios.correo,
-      Contraseña: usuarios.password,
-      rolId: usuarios.RolId,
+      id: usuarios.id,
+      nombre: usuarios.nombre,
+      apellidoPaterno: usuarios.apellidoPaterno,
+      apellidoMaterno: usuarios.apellidoMaterno,
+      correo: usuarios.correo,
+      password: usuarios.password,
+      estatus: usuarios.estatus,
+      RolId: usuarios.RolId,
     });
     this.formData = this.UsuarioForm.value;
     console.log(this.UsuarioForm.value);

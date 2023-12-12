@@ -52,7 +52,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
         CardBarPrograsmasocialComponent,
         CardLineBeneficiariosComponent,
         CardBarEvidenciaComponent,
-        
+
 
 
     ],
