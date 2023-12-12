@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 import { PanelModule } from './pages/panel/panel.module';
 import { NgChartsModule } from 'ng2-charts';
 import { CardBienvenidaComponent } from '../shared/components/cards/card-bienvenida/card-bienvenida.component';
-{{
-  }}
+{
+  }
 
 @NgModule({
   declarations: [
