@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BeneficiarioService } from 'src/app/pages/core/services/Beneficiario.service';
 import { AreasadscripcionService } from 'src/app/pages/core/services/areasadscripcion.service';
 import { ProgramaService } from 'src/app/pages/core/services/programasocial.service';
@@ -17,13 +17,23 @@ export class CardBarEvidenciaComponent {
   isUpdating: boolean = false;
   programaSeleccionado: string = '';
   EvidenciaForm!: FormGroup;
-  filteredBeneficiarios: any[] = [];
+  filteredArea: any[] = [];
   prograsmasocial: Prograsmasocial [] = [];
   areasadscripcion: Areasadscripcion[] = [];
+  programaSocialSeleccionado!: number;
+  areasadscripcionSeleccionado!: number;
+  beneficiarios: any[] = []; 
+  programasPorArea: Prograsmasocial[] = [];
+  beneficiario: Beneficiario [] = [];
+  beneficiariosPorprogramas: Beneficiario [] = [];
+  filteredBeneficiarios: Beneficiario[] = [];
+  searchTerm: FormControl = new FormControl();
+
   ngOnInit() {
     this.obtenerBeneficiarios();
     this.obtenerProgramas();
     this.obtenerAreas();
+    this.customLabel(this.beneficiarios);
   }
   openModal(): void {
     this.showModal = true;
@@ -75,13 +85,13 @@ obtenerBeneficiarios() {
     (beneficiarios: Beneficiario[]) => {
       console.log('Datos de beneficiarios recibidos:', beneficiarios);
       this.beneficiarios = beneficiarios;
+      this.filteredBeneficiarios = beneficiarios; // Inicializar con la lista completa
     },
     (error: any) => {
       console.error('Error al obtener beneficiarios:', error);
     }
   );
 }
-
 onFileChange(event: Event) {
   const inputElement = event.target as HTMLInputElement;
 
@@ -100,18 +110,7 @@ onFileChange(event: Event) {
 }
 // En tu componente
 
-beneficiarios: any[] = []; // Tu array original de beneficiarios
-filtroBeneficiario = this.beneficiarios;
-// Lógica para aplicar el filtro
-aplicarFiltro(): void {
-  const filtro = this.EvidenciaForm.get('Beneficiario')?.value.toLowerCase();
 
-  this.filteredBeneficiarios = this.beneficiarios.filter(beneficiario =>
-    beneficiario.nombres.toLowerCase().includes(filtro) ||
-    beneficiario.apellidoPaterno.toLowerCase().includes(filtro) ||
-    beneficiario.apellidoMaterno.toLowerCase().includes(filtro)
-  );
-}
 get concatenatedLabel() {
   const beneficiario = this.EvidenciaForm.get('Beneficiario')?.value;
   return beneficiario ? `${beneficiario.nombres} ${beneficiario.apellidoPaterno}` : '';
@@ -120,14 +119,16 @@ get concatenatedLabel() {
 obtenerProgramas() {
   this.programaService.getPrograma().subscribe(
     (prograsmasocial: Prograsmasocial[]) => {
-      console.log('Datos:', prograsmasocial); 
+      console.log('Datos:', prograsmasocial);
       this.prograsmasocial = prograsmasocial;
     }
   );
 }
+
 obtenerAreas(): void {
   this.areasadscripcionService.getAreasadscripcion().subscribe(
     (areasadscripcion) => {
+      console.log('Datos2:', areasadscripcion);
       this.areasadscripcion = areasadscripcion;
     },
     (error) => {
@@ -135,12 +136,51 @@ obtenerAreas(): void {
     }
   );
 }
-filtrarProgramaSocial(event: any) {
-  // Obtén el valor seleccionado en el select
-  this.programaSeleccionado = event.target.value;
 
-  // Puedes realizar acciones adicionales aquí, como enviar el valor a un servidor o mostrar resultados en la página
-  console.log('Programa social seleccionado:', this.programaSeleccionado);
+aplicarFiltro() {
+  // Realizar el filtrado de beneficiarios según los criterios seleccionados
+  this.filteredBeneficiarios = this.beneficiarios.filter(beneficiario => {
+    return (
+      (!this.programaSeleccionado || beneficiario.programa === this.programaSeleccionado) &&
+      (!this.areasadscripcionSeleccionado || beneficiario.area === this.areasadscripcionSeleccionado)
+    );
+  });
 }
 
+
+  filtrarProgramaSocial(event: any, tipo: string) {
+    this.programaSocialSeleccionado = Number(event.target.value);
+    // Filtra los beneficiarios basándose en el programa social seleccionado
+    this.beneficiariosPorprogramas = this.beneficiarios.filter(beneficiario => beneficiario.programaSocialId === this.programaSocialSeleccionado);
+  }
+  
+filtrarArea(event: any, tipo: string) {
+  this.areasadscripcionSeleccionado = Number(event.target.value);
+  this.programasPorArea = this.prograsmasocial.filter(programa => programa.areaAdscripcionId == this.areasadscripcionSeleccionado);
 }
+filterBeneficiarios(searchTerm: string): Beneficiario[] {
+  return this.beneficiarios.filter(beneficiario =>
+    beneficiario.nombres.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    beneficiario.apellidoPaterno.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    beneficiario.apellidoMaterno.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+}
+onBeneficiarioChange(event: any): void {
+  // Obtén el beneficiario seleccionado del evento
+  const beneficiarioSeleccionado = event;
+
+  // Puedes realizar acciones adicionales aquí, como mostrar información sobre el beneficiario seleccionado
+  console.log('Beneficiario seleccionado:', beneficiarioSeleccionado);
+}
+
+customLabel(beneficiarios: any): string {
+  const label = `${beneficiarios.nombres} ${beneficiarios.apellidoPaterno} ${beneficiarios.apellidoMaterno}`;
+  console.log('Etiqueta personalizada:', label);
+  return label;
+}
+}
+
+
+
+
+

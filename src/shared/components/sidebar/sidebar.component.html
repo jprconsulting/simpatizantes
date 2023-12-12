@@ -152,7 +152,17 @@
               "></i> Evidencias
                     </a>
                 </li>
-
+                <li class="items-center">
+                  <a [routerLink]="['nube-palabras']" class="text-xs uppercase py-3 font-bold block" routerLinkActive #adminMaps="routerLinkActive" [ngClass]="
+            adminMaps.isActive
+              ? 'text-purple-900 hover:text-purple-900'
+              : 'text-blueGray-700 hover:text-blueGray-500'
+          ">
+                      <i class="fas fa-map-marked mr-2 text-sm" [ngClass]="
+              adminMaps.isActive ? 'opacity-75' : 'text-blueGray-300'
+            "></i> Nube de palabras
+                  </a>
+              </li>
 
             </ul>
         </div>

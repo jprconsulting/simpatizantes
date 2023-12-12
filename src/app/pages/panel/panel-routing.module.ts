@@ -55,6 +55,11 @@ const routes: Routes = [{
       loadChildren:() => import("./mapa-programas-sociales/mapa-programas-sociales.module")
       .then(i => i.MapaProgramasSocialesModule)
     },
+    {
+      path: 'nube-palabras',
+      loadChildren:() => import("./nube-palabras/nube-palabras-routing.module")
+      .then(i => i.NubePalabrasRoutingModule)
+    }
 
   ]
 }];

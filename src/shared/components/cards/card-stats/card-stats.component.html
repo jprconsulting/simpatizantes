@@ -1,35 +1,28 @@
 <div
-  class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg"
+  class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0"
 >
-  <div class="flex-auto p-4">
-    <div class="flex flex-wrap">
-      <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-        <h5 class="text-blueGray-400 uppercase font-bold text-xs">
-          {{ statSubtitle }}
-        </h5>
-        <span class="font-semibold text-xl text-blueGray-700">
-          {{ statTitle }}
-        </span>
-      </div>
-      <div class="relative w-auto pl-4 flex-initial">
-        <div
-          class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full"
-          [ngClass]="[statIconColor]"
-        >
-          <i [ngClass]="statIconName"></i>
+  <div class="rounded-t bg-white mb-0 px-6 py-6">
+    <div class="text-center flex justify-between">
+      <h6 class="text-blueGray-700 text-xl font-bold">Nube de palabras</h6>
+
+    </div>
+  </div>
+  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+    <form>
+
+
+      <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+
+      </h6>
+      <div class="flex flex-wrap">
+        <div class="w-full lg:w-12/12 px-4">
+          <div class="relative w-full mb-3">
+            <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+<div id="container"></div>
+          </div>
         </div>
       </div>
-    </div>
-    <p class="text-sm text-blueGray-400 mt-4">
-      <span class="mr-2" [ngClass]="statPercentColor">
-        <i
-          [ngClass]="
-            statArrow === 'up' ? 'fas fa-arrow-up' : 'fas fa-arrow-down'
-          "
-        ></i>
-        {{ statPercent }}%
-      </span>
-      <span class="whitespace-nowrap">{{ statDescripiron }}</span>
-    </p>
+    </form>
   </div>
 </div>

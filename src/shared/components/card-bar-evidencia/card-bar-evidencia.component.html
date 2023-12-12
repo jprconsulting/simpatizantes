@@ -20,15 +20,15 @@
   
           </div><br><br>
           <!-- modal -->
-          <div class="modal fixed inset-0  flex" *ngIf="showModal">
-            <div class="flex items-center justify-center w-full">
+          <div class="modal fixed inset-0 flex" *ngIf="showModal">
+            <div class="flex items-center justify-center w-full h-full">
               <div class="modal-overlay absolute w-full h-full bg-gray-800 opacity-50"></div>
-              <div class="modal-container bg-white w-6/12 items-center mx-auto rounded shadow-lg z-50 overflow-y-auto">
+              <div class="modal-container bg-white w-6/12 mx-auto my-auto rounded shadow-lg z-50 overflow-y-auto max-h-full top-1/4 left-1/4">
                 <!-- Add your modal content here -->
                 <div  class=" modal-content py-4 text-left px-6">
                   <div class="flex justify-between items-center pb-3">
                     <div>
-                      <p class="text-2xl font-bold -mr-56">EVIDENCIA</p>
+                      <p class="text-2xl font-bold -mr-56">Evidencia</p>
                     </div>
                     <div></div>
                     <div>
@@ -44,37 +44,48 @@
                   <!-- fomulario -->
                   <div >
                       <form [formGroup]="EvidenciaForm" (ngSubmit)="submit()">
+                        <!-- Primer select -->
                         <div>
-                          <label for="programaSocialSelect">Selecciona un programa social:</label>
-                          <select id="programaSocialSelect" (change)="filtrarProgramaSocial($event)">
-                            <option *ngFor="let programa of prograsmasocial" [value]="programa.id">{{ programa.nombre }}</option>
+                          <label class="lavel" for="areasadscripcionSelect">Selecciona un área de adscripción:</label>
+                          <select class="select" id="areasadscripcionSelect" (change)="filtrarArea($event, 'areasadscripcion')">
+                            <option value="">Selecciona un valor</option>
+                            <option *ngFor="let area of areasadscripcion" [value]="area.id">{{ area.nombre }}</option>
                           </select>
-                          <div id="resultadosFiltro">{{ programaSeleccionado }}</div>
                         </div>
-
                         
                         <div>
-                          <label for="Beneficiario" class="lavel">BENEFICIARIO*:</label>
+                          <label class="lavel" for="programaSocialSelect">Selecciona un programa social:</label>
+                          <select class="select" *ngIf="programasPorArea && programasPorArea.length > 0" id="programaSocialSelect" (change)="filtrarProgramaSocial($event, 'programaSocial')">
+                            <option value="">Selecciona un valor</option>
+                            <option *ngFor="let programa of programasPorArea" [value]="programa.id">{{ programa.nombre }}</option>
+                          </select>
+                          <div *ngIf="!(programasPorArea && programasPorArea.length > 0)">
+                            No hay programas disponibles en esta área.
+                          </div>
+                        </div>
+
+                        <div>
+                          <label for="Beneficiario" class="lavel">Beneficiario:</label>
                           <ng-select
-                          [items]="filteredBeneficiarios"
-                          bindLabel="nombres"
-                          bindValue="id"
-                          formControlName="Beneficiario"
-                          [searchable]="true"
-                          [ngClass]="{'is-invalid': EvidenciaForm.get('Beneficiario')?.touched && EvidenciaForm.get('Beneficiario')?.invalid}"
-                          (input)="aplicarFiltro()"
-                        ></ng-select>                        
+                            class="select"
+                            [items]="beneficiariosPorprogramas"
+                            bindLabel="nombres"
+                            bindValue="id"
+                            formControlName="Beneficiario"
+                            [searchable]="true"
+                            [ngClass]="{'is-invalid': EvidenciaForm.get('Beneficiario')?.touched && EvidenciaForm.get('Beneficiario')?.invalid}"
+                            (change)="filterBeneficiarios($event)"
+                          ></ng-select>
                           <div *ngIf="EvidenciaForm.get('Beneficiario')?.touched" class="error-message">
                             <div *ngIf="EvidenciaForm.get('Beneficiario')?.hasError('required')">
                               El beneficiario es requerido
                             </div>
                           </div>
                         </div>
-                        
                             <div>
                               <!-- Vista previa de la imagen -->
                               <img class="img" *ngIf="EvidenciaForm.get('Foto')?.value" [src]="EvidenciaForm.get('Foto')?.value" width="50%" height="50%" alt="Vista previa de la imagen">
-                              <label for="Foto" class="lavel">EVIDENCIA FOTOGRAFICA*:</label>
+                              <label for="Foto" class="lavel">Evidencia fotografica*:</label>
                                 <input class="input" type="file" (change)="onFileChange($event)" formControlName="Foto">
                                 <div *ngIf="EvidenciaForm.get('Foto')?.touched" class="error-message">
                                     <div *ngIf="EvidenciaForm.get('Foto')?.hasError('required')">
@@ -83,7 +94,7 @@
                                 </div>  
                             </div>
                             <div>
-                                <label for="Descripcion" class="lavel">DESCRIPCION*:</label>
+                                <label for="Descripcion" class="lavel">Descripcion*:</label>
                                 <textarea id="Descripcion" name="Descripcion" rows="2" class="custom-textarea" formControlName="Descripcion"></textarea>                                       
                                 <div *ngIf="EvidenciaForm.get('Descripcion')?.touched" class="error-message">
                                     <div *ngIf="EvidenciaForm.get('Descripcion')?.hasError('required')">
@@ -96,7 +107,7 @@
                             </div>
                             <br>      
                             
-                            TODOS LOS CAMPOS MARCADOS CON * SON REQUERIDOS
+                            Todos los campos marcados con * son requeridos
                             <div class="flex justify-end">
                               <button type="submit" class="bg-purple-900 text-white py-2 px-4 rounded-md hover:bg-red-950" >
                                 {{ isUpdating ? "ACTUALIZAR " : "AGREGAR " }}
