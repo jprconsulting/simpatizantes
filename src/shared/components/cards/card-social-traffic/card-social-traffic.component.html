@@ -24,10 +24,10 @@
                     </div>
                 </div><br><br>
                 <!-- modal -->
-                <div class="modal fixed inset-0  flex" *ngIf="showModal">
-                    <div class="flex items-center justify-center w-full">
+                <div class="modal fixed inset-0 flex" *ngIf="showModal">
+                    <div class="flex items-center justify-center w-full h-full">
                         <div class="modal-overlay absolute w-full h-full bg-gray-800 opacity-50"></div>
-                        <div class="modal-container bg-white w-6/12 items-center mx-auto rounded shadow-lg z-50 overflow-y-auto">
+                        <div class="modal-container bg-white w-6/12 mx-auto my-auto rounded shadow-lg z-50 overflow-y-auto max-h-full top-1/4 left-1/4">
                             <!-- Add your modal content here -->
                             <div class=" modal-content py-4 text-left px-6">
                                 <div class="flex justify-between items-center pb-3">
@@ -117,20 +117,13 @@
                                         <br>
                                         <div class="grid grid-cols-2 gap-4">
                                             <div>
-                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="domicilio">
-                                                  Domicilio:
-                                              </label>
-                                                <input required id="domicilio" type="text" formControlName="domicilio" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value=""
-                                                />
-                                                <div *ngIf="SocialForm.get('domicilio')?.touched" class="error-message">
-                                                    <div *ngIf="SocialForm.get('domicilio')?.hasError('required')">
-                                                        El domicilio es obligatorio
-                                                    </div>
-                                                    <div *ngIf="SocialForm.get('domicilio')?.hasError('minlength')">
-                                                        El domicilio debe tener al menos 3 caracteres
-                                                    </div>
-                                                    <div *ngIf="SocialForm.get('domicilio')?.hasError('pattern')">
-                                                        El nombre no puede tener números ni signos
+                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="curp">
+                                              CURP:
+                                          </label>
+                                                <input required id="curp" type="text" formControlName="curp" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="" />
+                                                <div *ngIf="SocialForm.get('curp')?.touched" class="error-message">
+                                                    <div *ngIf="SocialForm.get('curp')?.hasError('required')">
+                                                        El CURP es obligatorio
                                                     </div>
                                                 </div>
                                             </div>
@@ -147,55 +140,27 @@
                                         </div>
                                         <br>
                                         <div class="grid grid-cols-2 gap-4">
-                                            <div>
-                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="curp">
-                                                  CURP:
-                                              </label>
-                                                <input required id="curp" type="text" formControlName="curp" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="" />
-                                                <div *ngIf="SocialForm.get('curp')?.touched" class="error-message">
-                                                    <div *ngIf="SocialForm.get('curp')?.hasError('required')">
-                                                        El CURP es obligatorio
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="latitud">
-                                                  Latitud:
-                                              </label>
-                                                <input required id="latitud" type="text" formControlName="latitud" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value=""
-                                                />
-                                                <div *ngIf="SocialForm.get('latitud')?.touched" class="error-message">
-                                                    <div *ngIf="SocialForm.get('latitud')?.hasError('required')">
-                                                        La latitud es obligatoria
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="grid grid-cols-2 gap-4">
-                                            <div>
-                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="longitud">
-                                                  Longitud:
-                                              </label>
-                                                <input required id="longitud" type="text" formControlName="longitud" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value=""
-                                                />
-                                                <div *ngIf="SocialForm.get('longitud')?.touched" class="error-message">
-                                                    <div *ngIf="SocialForm.get('longitud')?.hasError('required')">
-                                                        La longitud es obligatoria
-                                                    </div>
-                                                </div>
+                                            <div class="relative w-full mb-3">
+                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="programaSocialId">
+                                      Programa Social:
+                                  </label>
+                                                <select formControlName="programaSocialId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="programaSocialId">
+                                      <option *ngFor="let option of programasOptions" [value]="option.id">{{ option.label }}</option>
+                                  </select>
                                             </div>
                                             <div class="relative w-full mb-3">
                                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="municipio">
-                                                Municipio*:
-                                            </label>
+                                              Municipio*:
+                                          </label>
                                                 <select formControlName="municipioId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="municipioId">
-                                                <option *ngFor="let option of municipiosOptions" [value]="option.id">{{ option.label }}</option>
-                                            </select>
+                                              <option *ngFor="let option of municipiosOptions" [value]="option.id">{{ option.label }}</option>
+                                          </select>
                                             </div>
                                         </div>
                                         <br>
+                                        <br>
                                         <div class="grid grid-cols-2 gap-4">
+
                                             <div class="w-full lg:w-6/12 px-4">
                                                 <div>
                                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="estatus">
@@ -208,40 +173,30 @@
                                               </label>
                                                 </div>
                                             </div>
-                                            <div class="w-full lg:w-6/12 px-4">
-                                                <div class="relative w-full mb-3">
-                                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" formControlName="ubicacion">
-                                                      Ubicar en el mapa*:
-                                                  </label>
+                                        </div>
+                                        <br>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" formControlName="domicilio">
+                                                  Ubicar en el mapa*:
+                                                </label>
                                                     <input id="searchInput" class="controls border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" type="text" placeholder="Enter a location"
-                                                    />
-                                                    <div class="flex flex-wrap">
-                                                        <div class="w-full px-4 mt-4">
-                                                            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-                                                                <div id="map-canvas" class="relative w-full rounded h-600-px" data-lat="19.316818295403003" data-lng="-98.23837658175323"></div>
-                                                            </div>
-                                                        </div>
-                                                        <button type="submit" class="bg-purple-900 text-white py-2 px-4 rounded-md hover:bg-red-950" (click)="activarMapa()">
-                                                          Dirección
-                                                        </button>
+                                                        (input)="map()" />
+                                                </div>
+                                                <br>
+                                                <div class="col-md-9">
+                                                    <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+                                                        <div id="map-canvas" class="relative w-full rounded h-600-px" data-lat="19.316818295403003" data-lng="-98.23837658175323"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <br>
-                                        <div class="relative w-full mb-3">
-                                            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="programaSocialId">
-                                          Programa Social:
-                                      </label>
-                                            <select formControlName="programaSocialId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="programaSocialId">
-                                          <option *ngFor="let option of programasOptions" [value]="option.id">{{ option.label }}</option>
-                                      </select>
-                                        </div>
-                                        <br>
                                         <br>
                                         <div class="flex justify-end">
                                             <button type="submit" class="bg-purple-900 text-white py-2 px-4 rounded-md hover:bg-red-950">
-                                      {{ isUpdating ? "ACTUALIZAR " : "AGREGAR " }}AGREGAR
+                                      {{ isUpdating ? "ACTUALIZAR " : "AGREGAR " }}
                                     </button>
 
                                         </div>
