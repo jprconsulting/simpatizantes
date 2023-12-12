@@ -7,6 +7,6 @@ export interface Usuarios
   correo: string;
   password: string;
   nombreRol: string;
-  estatus: boolean;
+  estatus: number;
   RolId: number;
 }

@@ -6,6 +6,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PanelModule } from './pages/panel/panel.module';
+import { FormsModule } from '@angular/forms';
+import { NgChartsModule } from 'ng2-charts';
+import { CardBienvenidaComponent } from '../shared/components/cards/card-bienvenida/card-bienvenida.component';
+{
+  }
 
 @NgModule({
   declarations: [
@@ -16,7 +21,8 @@ import { PanelModule } from './pages/panel/panel.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     PanelModule,
-    HttpClientModule,    
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

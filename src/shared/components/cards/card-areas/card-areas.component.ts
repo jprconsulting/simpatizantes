@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AreasadscripcionService } from "src/app/pages/core/services/areasadscripcion.service";
 import { MensajeService } from "src/app/pages/core/services/mensaje.service";
 import { Areasadscripcion } from "src/app/pages/models/areasadscripcion";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: "app-card-areas",
@@ -14,17 +15,18 @@ export class CardAreasComponent implements OnInit {
   isUpdating: boolean = false;
   AreaForm: FormGroup;
   formData: any;
+  toggleValue = true;
+  filtro: any;
   constructor(
     private areasadscripcionService: AreasadscripcionService,
     private formBuilder: FormBuilder,
     private mensajeService: MensajeService,
     ) {
       this.AreaForm = this.formBuilder.group({
-        id: [''],
+        id: [null],
         nombre: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]],
-        Descripcion: ['',Validators.required],
-        Estatus: [false, [Validators.required]]
-
+        descripcion: ['',Validators.required],
+        estatus: [false, [Validators.required]]
       });
 
     }
@@ -133,22 +135,30 @@ export class CardAreasComponent implements OnInit {
         this.closeModal();
       },
       error: () => {
-        this.mensajeService.mensajeError("Error al agregar usuario");
+        this.mensajeService.mensajeError("Error al agregar área");
       }
     });
   }
 
   setDataModalUpdate(areasadscripcion: Areasadscripcion) {
     this.isUpdating = true;
+
     this.idToUpdate2 = areasadscripcion.id;
     this.AreaForm.patchValue({
       id: areasadscripcion.id,
       nombre: areasadscripcion.nombre,
-      Descripcion: areasadscripcion.descripcion,
-      Estatus: areasadscripcion.estatus,
+      descripcion: areasadscripcion.descripcion,
+      estatus: areasadscripcion.estatus,
     });
     this.formData = this.AreaForm.value;
     console.log(this.AreaForm.value);
   }
 
+  filtrarResultados() {
+    const filtroLowerCase = this.filtro.toLowerCase().trim();
+    return this.areasadscripcion.filter(areas =>
+      areas.nombre.toLowerCase().includes(filtroLowerCase) ||
+      areas.descripcion.toLowerCase().includes(filtroLowerCase)
+    );
+  }
 }
