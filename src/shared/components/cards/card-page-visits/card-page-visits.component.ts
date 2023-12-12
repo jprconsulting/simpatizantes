@@ -4,7 +4,6 @@ import { MensajeService } from "src/app/pages/core/services/mensaje.service";
 import { UsuariosService } from "src/app/pages/core/services/usuario.service";
 import { Roles } from "src/app/pages/models/roles";
 import { Usuarios } from "src/app/pages/models/usuario";
-import * as XLSX from 'xlsx';
 
 
 @Component({
@@ -13,9 +12,6 @@ import * as XLSX from 'xlsx';
   styleUrls: ["./card-page-visits.component.css" ],
 })
 export class CardPageVisitsComponent implements OnInit {
-exportToExcel() {
-throw new Error('Method not implemented.');
-}
   UsuarioForm: FormGroup;
   isUpdating: boolean = false;
   formData: any;
@@ -28,14 +24,14 @@ throw new Error('Method not implemented.');
       this.UsuarioForm = this.formBuilder.group({
         id: [null],
         nombre: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]],
-        apellidoPaterno: ['',Validators.required],
-        apellidoMaterno: ['',Validators.required],
-        password: ['',Validators.required],
-        correo: ['', [Validators.required, Validators.minLength(10)]],
-        estatus: ['', [Validators.required]],
-        RolId: ['',Validators.required],
-
+        apellidoPaterno: ['', Validators.required],
+        apellidoMaterno: ['', Validators.required],
+        password: ['', Validators.required],
+        correo: ['', [Validators.required, Validators.minLength(10), Validators.email]],
+        estatus: ['', Validators.required],
+        RolId: ['', Validators.required],
       });
+
 
     }
 
@@ -60,6 +56,7 @@ throw new Error('Method not implemented.');
   }
   ResetForm() {
     this.UsuarioForm.reset();
+    this.toggleValue = true;
   }
 
   toggleEstatus() {
@@ -166,28 +163,5 @@ throw new Error('Method not implemented.');
     });
     this.formData = this.UsuarioForm.value;
     console.log(this.UsuarioForm.value);
-  }
-  exportarDatosAExcel() {
-    const datosParaExportar = this.usuarios.map(usuarios => {
-      return {
-        'Nombre': usuarios.nombre,
-        'Apellido Paterno': usuarios.apellidoPaterno,
-        'Apellido Materno': usuarios.apellidoMaterno,
-        "Correo":usuarios.correo
-      };
-    });
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(datosParaExportar);
-    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
-    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-    this.guardarArchivoExcel(excelBuffer, 'candidatos.xlsx');
-  }
-  guardarArchivoExcel(buffer: any, nombreArchivo: string) {
-    const data: Blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-    const url: string = window.URL.createObjectURL(data);
-    const a: HTMLAnchorElement = document.createElement('a');
-    a.href = url;
-    a.download = nombreArchivo;
-    a.click();
-    window.URL.revokeObjectURL(url);
   }
 }
