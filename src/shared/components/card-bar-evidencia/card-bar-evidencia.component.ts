@@ -33,6 +33,7 @@ export class CardBarEvidenciaComponent {
     this.obtenerBeneficiarios();
     this.obtenerProgramas();
     this.obtenerAreas();
+    this.customLabel(this.beneficiarios);
   }
   openModal(): void {
     this.showModal = true;
@@ -163,6 +164,19 @@ filterBeneficiarios(searchTerm: string): Beneficiario[] {
     beneficiario.apellidoPaterno.toLowerCase().includes(searchTerm.toLowerCase()) ||
     beneficiario.apellidoMaterno.toLowerCase().includes(searchTerm.toLowerCase())
   );
+}
+onBeneficiarioChange(event: any): void {
+  // Obtén el beneficiario seleccionado del evento
+  const beneficiarioSeleccionado = event;
+
+  // Puedes realizar acciones adicionales aquí, como mostrar información sobre el beneficiario seleccionado
+  console.log('Beneficiario seleccionado:', beneficiarioSeleccionado);
+}
+
+customLabel(beneficiarios: any): string {
+  const label = `${beneficiarios.nombres} ${beneficiarios.apellidoPaterno} ${beneficiarios.apellidoMaterno}`;
+  console.log('Etiqueta personalizada:', label);
+  return label;
 }
 }
 
