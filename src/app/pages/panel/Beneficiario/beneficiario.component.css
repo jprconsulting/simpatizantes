@@ -11,7 +11,7 @@
     color: #4a5568; /* Color de texto gris */
     font-size: 0.875rem; /* Tamaño de fuente */
     font-weight: bold;
-    margin-bottom: 0.5rem; /* Espacio inferior */
+    margin-bottom: 0.5rem; 
 }
 
 .label1{ 
@@ -44,3 +44,14 @@
     color: #e53e3e; /* Rojo oscuro, ajusta el color según tus preferencias */
     font-size: 0.875rem; /* Ajusta el tamaño de fuente según tus preferencias */
 }
+.map-container {
+    position: relative;
+    z-index: 0;
+  }
+  
+  #map-canvas {
+    position: relative;
+    z-index: 1; /* Puedes ajustar este valor según sea necesario */
+  }
+  
+  

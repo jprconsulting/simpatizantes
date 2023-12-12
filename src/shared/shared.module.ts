@@ -26,7 +26,7 @@ import { CardBarPrograsmasocialComponent } from './components/cards/card-bar-pro
 import { ReactiveFormsModule } from '@angular/forms';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { CardBarEvidenciaComponent } from '../shared/components/card-bar-evidencia/card-bar-evidencia.component';
-
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
     declarations: [
@@ -51,7 +51,8 @@ import { CardBarEvidenciaComponent } from '../shared/components/card-bar-evidenc
         ModalComponent,
         CardBarPrograsmasocialComponent,
         CardLineBeneficiariosComponent,
-        CardBarEvidenciaComponent
+        CardBarEvidenciaComponent,
+        
 
 
     ],
@@ -77,7 +78,8 @@ import { CardBarEvidenciaComponent } from '../shared/components/card-bar-evidenc
         UserDropdownComponent,
         ReactiveFormsModule,
         ColorPickerModule,
-        CardBarEvidenciaComponent
+        CardBarEvidenciaComponent,
+
 
 
     ],
@@ -86,7 +88,8 @@ import { CardBarEvidenciaComponent } from '../shared/components/card-bar-evidenc
         RouterModule,
         NgChartsModule,
         ReactiveFormsModule,
-        ColorPickerModule
+        ColorPickerModule,
+        NgSelectModule,
 
     ]
 })

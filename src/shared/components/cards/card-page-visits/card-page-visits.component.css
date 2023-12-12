@@ -4,11 +4,6 @@ body {
   color: #1a202c;
   font-family: 'sans-serif';
 }
-.modal-container {
-  margin-top: 5%; 
-  border-bottom-width: 50px;
-  padding-bottom: 10px;
-}
 
 .container {
   margin-left: auto;
@@ -40,7 +35,7 @@ body {
     color: #1a202c;
     font-size: 0.875rem;
     border-radius: 0.375rem;
-    padding: 0.625rem; 
+    padding: 0.625rem;
     display: block;
     width: 100%;
   }
@@ -88,7 +83,7 @@ body {
   width: 100%;
   border: 1px solid #e2e8f0;
   border-radius: 0.375rem;
-  resize: none; 
+  resize: none;
 }
 
 .color-circle {
@@ -109,7 +104,7 @@ body {
 
 .table-header {
   background-color: #4f0d6b;
-  color: #ffffff; 
+  color: #ffffff;
   height: 32px;
 }
 
@@ -134,15 +129,4 @@ body {
 }
 .custom-table-row:hover {
   background-color: #ddd1dd; /* Cambia el color a tu preferencia */
-}
-button[disabled] {
-  background-color: #ccc; /* Cambia el color del fondo */
-  cursor: not-allowed;    /* Cambia el cursor */
-  /* Otros estilos según tus necesidades */
-}
-
-/* Estilo cuando el formulario es válido */
-button:not([disabled]) { /* Cambia el color del fondo cuando el formulario es válido */
-  cursor: pointer;           /* Cambia el cursor cuando el formulario es válido */
-  /* Otros estilos según tus necesidades */
 }

@@ -10,6 +10,7 @@ import * as XLSX from 'xlsx';
 @Component({
   selector: "app-card-page-visits",
   templateUrl: "./card-page-visits.component.html",
+  styleUrls: ["./card-page-visits.component.css" ],
 })
 export class CardPageVisitsComponent implements OnInit {
 exportToExcel() {
@@ -24,14 +25,14 @@ throw new Error('Method not implemented.');
     private mensajeService: MensajeService,
     ) {
       this.UsuarioForm = this.formBuilder.group({
+        id: [''],
         nombre: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]],
         apellidoPaterno: ['',Validators.required],
         apellidoMaterno: ['',Validators.required],
         password: ['',Validators.required],
         correo: ['', [Validators.required, Validators.minLength(10)]],
         rolId: ['',Validators.required],
-        Estatus: [false, [Validators.required]]
-
+        Estatus: [false, [Validators.required]],
       });
 
     }
@@ -121,11 +122,11 @@ throw new Error('Method not implemented.');
       }
     );
   }
-  agregar() {
 
+
+  agregar() {
     // Copia los valores del formulario
     const usuarioFormValue = { ...this.UsuarioForm.value };
-
 
     this.usuariosService.postUsuario(usuarioFormValue).subscribe({
       next: () => {
@@ -161,6 +162,7 @@ throw new Error('Method not implemented.');
     this.isUpdating = true;
     this.idToUpdate2 = usuarios.id;
     this.UsuarioForm.patchValue({
+      Id: usuarios.id,
       Nombre: usuarios.nombre,
       Apellidopaterno: usuarios.apellidoPaterno,
       Apellidomaterno: usuarios.apellidoMaterno,

@@ -142,3 +142,9 @@ body {
   margin: auto;
   padding-top: 20px;
 }
+
+/* card-bar-evidencia.component.scss */
+
+:host ::ng-deep .ng-dropdown-panel {
+  background-color: white;
+}

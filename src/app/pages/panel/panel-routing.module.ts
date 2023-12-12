@@ -25,9 +25,9 @@ const routes: Routes = [{
         .then(mrec => mrec.MapsModule)
     },
     {
-      path: 'settings',
-      loadChildren: () => import('./settings/settings.module')
-        .then(mres => mres.SettingsModule)
+      path: 'usuarios',
+      loadChildren: () => import('./usuarios/usuarios.module')
+        .then(mres => mres.UsuariosModule)
     },
     {
       path: 'areas',
@@ -36,8 +36,8 @@ const routes: Routes = [{
     },
 
     {
-      path: 'Beneficiario',
-      loadChildren:() => import("./Beneficiario/beneficiario.module")
+      path: 'beneficiario',
+      loadChildren:() => import("./beneficiario/beneficiario.module")
       .then(c => c.BeneficiarioModule)
     },
     {
@@ -49,6 +49,11 @@ const routes: Routes = [{
       path: 'evidencias',
       loadChildren:() => import("./evidencia/evidencia.module")
       .then(c => c.EvidenciaModule)
+    },
+    {
+      path: 'mapa-programas-sociales',
+      loadChildren:() => import("./mapa-programas-sociales/mapa-programas-sociales.module")
+      .then(i => i.MapaProgramasSocialesModule)
     },
 
   ]

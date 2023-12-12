@@ -1,30 +1,19 @@
 <div class="flex flex-wrap">
-  <div class="w-full xl:w-12/12 mb-12 xl:mb-0 px-4">
+  <div class="w-full xl:w-12/12 mb-12 xl:mb-0 px-4" style="z-index: 2;">
     <app-card-social-traffic></app-card-social-traffic>
-
-  </div>
-</div>
-
-<div class="w-full lg:w-6/12 px-4">
-  <div class="relative w-full mb-3">
-      <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password">
-Ubicar en el mapa*:
-</label>
-      <input id="searchInput" class="controls border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" type="text" placeholder="Enter a location"
-      />
   </div>
 </div>
 
 <div class="flex flex-wrap">
-  <div class="w-full px-4">
+  <div class="w-full px-4 map-container">
     <div
       class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
     >
       <div
         id="map-canvas"
-        class="relative w-full rounded h-600-px"
-        data-lat="19.316818295403003"
-        data-lng="-98.23837658175323"
+        class="relative w-full rounded h-400-px md:h-600-px lg:h-800-px"
+        data-lat="19.34889526616767"
+        data-lng="-98.19011296839722"
       ></div>
     </div>
   </div>
