@@ -224,17 +224,14 @@ export class CardSocialTrafficComponent{
   }
 
   map() {
-    let selectedLat: number | undefined;
-    let selectedLng: number | undefined;
-
     const mapElement = document.getElementById("map-canvas");
     if (!mapElement) {
       console.error("El elemento del mapa no fue encontrado");
       return;
     }
 
-    let lat = mapElement.getAttribute("data-lat");
-    let lng = mapElement.getAttribute("data-lng");
+    const lat = mapElement.getAttribute("data-lat");
+    const lng = mapElement.getAttribute("data-lng");
 
     if (!lat || !lng) {
       console.error("Los atributos de latitud y/o longitud no están presentes");
@@ -257,11 +254,18 @@ export class CardSocialTrafficComponent{
     const autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
 
-    autocomplete.addListener("place_changed", function () {
+    autocomplete.addListener("place_changed", () => {
       const place = autocomplete.getPlace();
       if (!place.geometry) {
         window.alert("Autocomplete's returned place contains no geometry");
         return;
+      }
+
+      if (place.formatted_address) {
+        // Actualizar el valor del campo 'domicilio' con la dirección obtenida del mapa
+        this.SocialForm.patchValue({
+          domicilio: place.formatted_address
+        });
       }
 
       const selectedLat = place.geometry.location.lat();
@@ -290,13 +294,14 @@ export class CardSocialTrafficComponent{
         content: contentString,
       });
 
-      google.maps.event.addListener(marker, "click", function () {
+      google.maps.event.addListener(marker, "click", () => {
         infowindow.open(map, marker);
       });
-    });
-    this.SocialForm.patchValue({
-      longitud: selectedLng,
-      latitud: selectedLat
+
+      this.SocialForm.patchValue({
+        longitud: selectedLng,
+        latitud: selectedLat
+      });
     });
   }
 
@@ -389,4 +394,6 @@ mapa2(): void {
   });
 }
 }
+
+
 }
