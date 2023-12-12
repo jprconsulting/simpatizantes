@@ -4,6 +4,7 @@ import { MensajeService } from "src/app/pages/core/services/mensaje.service";
 import { UsuariosService } from "src/app/pages/core/services/usuario.service";
 import { Roles } from "src/app/pages/models/roles";
 import { Usuarios } from "src/app/pages/models/usuario";
+import * as XLSX from 'xlsx';
 
 
 @Component({
