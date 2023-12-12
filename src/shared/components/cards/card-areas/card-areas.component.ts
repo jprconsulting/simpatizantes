@@ -16,7 +16,7 @@ export class CardAreasComponent implements OnInit {
   AreaForm: FormGroup;
   formData: any;
   toggleValue = true;
-  filtro: any;
+  buscar: string = '';
   constructor(
     private areasadscripcionService: AreasadscripcionService,
     private formBuilder: FormBuilder,
@@ -155,7 +155,7 @@ export class CardAreasComponent implements OnInit {
   }
 
   filtrarResultados() {
-    const filtroLowerCase = this.filtro.toLowerCase().trim();
+    const filtroLowerCase = this.buscar.toLowerCase().trim();
     return this.areasadscripcion.filter(areas =>
       areas.nombre.toLowerCase().includes(filtroLowerCase) ||
       areas.descripcion.toLowerCase().includes(filtroLowerCase)
