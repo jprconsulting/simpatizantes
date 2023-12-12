@@ -25,7 +25,7 @@ export class CardAreasComponent implements OnInit {
       this.AreaForm = this.formBuilder.group({
         id: [null],
         nombre: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]],
-        descripcion: ['',Validators.required],
+        descripcion: ['',[Validators.required, Validators.minLength(10), Validators.pattern('^[a-zA-Z ]+$')]],
         estatus: [false, [Validators.required]]
       });
 
@@ -36,6 +36,7 @@ export class CardAreasComponent implements OnInit {
 
   openModal(): void {
     this.showModal = true;
+    this.toggleValue = true;
     if (!this.isUpdating) {
       // Restablecer el formulario si no está en modo de actualización
       this.ResetForm();
@@ -123,10 +124,10 @@ export class CardAreasComponent implements OnInit {
   }
 
   agregar() {
-    // Copia los valores del formulario
+    if (this.AreaForm.valid) {
     const usuarioFormValue = { ...this.AreaForm.value };
     console.log('formulario',usuarioFormValue);
-
+    delete usuarioFormValue.id;
     this.areasadscripcionService.postArea(usuarioFormValue).subscribe({
       next: () => {
         this.ResetForm();
@@ -138,6 +139,8 @@ export class CardAreasComponent implements OnInit {
         this.mensajeService.mensajeError("Error al agregar área");
       }
     });
+  }
+  this.mensajeService.mensajeError("Error al agregar área");
   }
 
   setDataModalUpdate(areasadscripcion: Areasadscripcion) {

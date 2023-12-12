@@ -26,10 +26,10 @@ export class CardPageVisitsComponent implements OnInit {
       this.UsuarioForm = this.formBuilder.group({
         id: [null],
         nombre: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]],
-        apellidoPaterno: ['', Validators.required],
-        apellidoMaterno: ['', Validators.required],
-        password: ['', Validators.required],
-        correo: ['', [Validators.required, Validators.minLength(10), Validators.email]],
+        apellidoPaterno: ['',  [Validators.required, Validators.minLength(4), Validators.pattern('^[a-zA-Z ]+$')]],
+        apellidoMaterno: ['',  [Validators.required, Validators.minLength(4), Validators.pattern('^[a-zA-Z ]+$')]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        correo: ['', [Validators.required, Validators.email]],
         estatus: ['', Validators.required],
         RolId: ['', Validators.required],
       });
@@ -42,6 +42,7 @@ export class CardPageVisitsComponent implements OnInit {
 
   openModal(): void {
     this.showModal = true;
+    this.toggleValue = true;
     if (!this.isUpdating) {
       // Restablecer el formulario si no está en modo de actualización
       this.ResetForm();
@@ -51,6 +52,7 @@ export class CardPageVisitsComponent implements OnInit {
   closeModal(): void {
     this.showModal = false;
     this.isUpdating = false;
+    this.toggleValue = true;
   }
 
   ngOnInit(): void {
@@ -117,9 +119,9 @@ export class CardPageVisitsComponent implements OnInit {
 
 
   agregar() {
-    // Copia los valores del formulario
+    if (this.UsuarioForm.valid) {
     const usuarioFormValue = { ...this.UsuarioForm.value };
-
+    delete usuarioFormValue.id;
     this.usuariosService.postUsuario(usuarioFormValue).subscribe({
       next: () => {
         this.ResetForm();
@@ -132,6 +134,9 @@ export class CardPageVisitsComponent implements OnInit {
       }
     });
   }
+    this.mensajeService.mensajeError("Error al agregar usuario");
+  }
+  
 
   submit() {
     if (this.isUpdating) {
