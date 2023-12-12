@@ -4,6 +4,7 @@ import { AreasadscripcionService } from "src/app/pages/core/services/areasadscri
 import { MensajeService } from "src/app/pages/core/services/mensaje.service";
 import { Areasadscripcion } from "src/app/pages/models/areasadscripcion";
 import { FormsModule } from '@angular/forms';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: "app-card-areas",
@@ -160,5 +161,39 @@ export class CardAreasComponent implements OnInit {
       areas.nombre.toLowerCase().includes(filtroLowerCase) ||
       areas.descripcion.toLowerCase().includes(filtroLowerCase)
     );
+    
+    }
+    exportarDatosAExcel() {
+      if (this.areasadscripcion.length === 0) {
+        console.warn('La lista de usuarios está vacía. No se puede exportar.');
+        return;
+      }
+  
+      const datosParaExportar = this.areasadscripcion.map(areasadscripcion => {
+        return {
+          'ID': areasadscripcion.id,
+          'Nombre': areasadscripcion.nombre,
+          'Descripcion': areasadscripcion.descripcion,
+          'Estatus': areasadscripcion.estatus,
+          
+        };
+      });
+  
+      const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(datosParaExportar);
+      const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+      const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+  
+      this.guardarArchivoExcel(excelBuffer, 'areas.xlsx');
+    }
+  
+    guardarArchivoExcel(buffer: any, nombreArchivo: string) {
+      const data: Blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      const url: string = window.URL.createObjectURL(data);
+      const a: HTMLAnchorElement = document.createElement('a');
+      a.href = url;
+      a.download = nombreArchivo;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }
   }
-}
+
