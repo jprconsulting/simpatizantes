@@ -44,32 +44,55 @@
                   <!-- fomulario -->
                   <div >
                       <form [formGroup]="EvidenciaForm" (ngSubmit)="submit()">
+                        <!-- Primer select -->
+                        <div>
+                          <label for="areasadscripcionSelect">Selecciona un área de adscripción:</label>
+                          <select id="areasadscripcionSelect" (change)="filtrarArea($event, 'areasadscripcion')">
+                            <option value="">Selecciona un valor</option>
+                            <option *ngFor="let area of areasadscripcion" [value]="area.id">{{ area.nombre }}</option>
+                          </select>
+                        </div>
+                        
                         <div>
                           <label for="programaSocialSelect">Selecciona un programa social:</label>
-                          <select id="programaSocialSelect" (change)="filtrarProgramaSocial($event)">
-                            <option *ngFor="let programa of prograsmasocial" [value]="programa.id">{{ programa.nombre }}</option>
+                          <select *ngIf="programasPorArea && programasPorArea.length > 0" id="programaSocialSelect" (change)="filtrarProgramaSocial($event, 'programaSocial')">
+                            <option value="">Selecciona un valor</option>
+                            <option *ngFor="let programa of programasPorArea" [value]="programa.id">{{ programa.nombre }}</option>
                           </select>
-                          <div id="resultadosFiltro">{{ programaSeleccionado }}</div>
+                          <div *ngIf="!(programasPorArea && programasPorArea.length > 0)">
+                            No hay programas disponibles en esta área.
+                          </div>
                         </div>
-
+                        
+                        <div *ngIf="beneficiariosPorprogramas && beneficiariosPorprogramas.length > 0">
+                          <h3>Beneficiarios del programa social seleccionado:</h3>
+                          <ul>
+                            <li *ngFor="let beneficiario of beneficiariosPorprogramas">{{ beneficiario.nombres }} {{ beneficiario.apellidoPaterno }} {{ beneficiario.apellidoMaterno }}</li>
+                          </ul>
+                        </div>
+                        
+                        <div *ngIf="!(beneficiariosPorprogramas && beneficiariosPorprogramas.length > 0)">
+                          No hay beneficiarios disponibles en el programa social seleccionado.
+                        </div>
                         
                         <div>
                           <label for="Beneficiario" class="lavel">BENEFICIARIO*:</label>
                           <ng-select
-                          [items]="filteredBeneficiarios"
-                          bindLabel="nombres"
-                          bindValue="id"
-                          formControlName="Beneficiario"
-                          [searchable]="true"
-                          [ngClass]="{'is-invalid': EvidenciaForm.get('Beneficiario')?.touched && EvidenciaForm.get('Beneficiario')?.invalid}"
-                          (input)="aplicarFiltro()"
-                        ></ng-select>                        
+                            class="input"
+                            [items]="filteredBeneficiarios"
+                            bindLabel="nombres"
+                            bindValue="id"
+                            formControlName="Beneficiario"
+                            [searchable]="true"
+                            [ngClass]="{'is-invalid': EvidenciaForm.get('Beneficiario')?.touched && EvidenciaForm.get('Beneficiario')?.invalid}"
+                          ></ng-select>
                           <div *ngIf="EvidenciaForm.get('Beneficiario')?.touched" class="error-message">
                             <div *ngIf="EvidenciaForm.get('Beneficiario')?.hasError('required')">
                               El beneficiario es requerido
                             </div>
                           </div>
                         </div>
+                        
                         
                             <div>
                               <!-- Vista previa de la imagen -->
