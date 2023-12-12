@@ -72,6 +72,7 @@ export class CardBarPrograsmasocialComponent implements OnInit {
   ResetForm() {
     this.SocialForm.reset();
     this.color = '';
+    this.toggleValue = true;
   }
 
   agregar() {
