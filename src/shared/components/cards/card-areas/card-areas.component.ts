@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AreasadscripcionService } from "src/app/pages/core/services/areasadscripcion.service";
 import { MensajeService } from "src/app/pages/core/services/mensaje.service";
 import { Areasadscripcion } from "src/app/pages/models/areasadscripcion";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: "app-card-areas",
