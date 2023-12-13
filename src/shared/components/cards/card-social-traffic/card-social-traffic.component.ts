@@ -7,6 +7,7 @@ import { ProgramaService } from "src/app/pages/core/services/programasocial.serv
 import { Beneficiario } from "src/app/pages/models/beneficiario";
 import { Municipios } from "src/app/pages/models/municipios";
 import { Prograsmasocial } from "src/app/pages/models/programasocial";
+import * as XLSX from 'xlsx';
 declare const google: any;
 @Component({
   selector: "app-card-social-traffic",
@@ -28,6 +29,7 @@ export class CardSocialTrafficComponent{
   municipiosOptions: {id: number, nombre: string, label: string }[] = [];
   programasOptions: {id: number, nombre: string, label: string }[] = [];
   formData: any;
+  toggleValue = true;
 
   constructor(
     private programaService: ProgramaService,
@@ -63,6 +65,7 @@ export class CardSocialTrafficComponent{
   }
   openModal(): void {
     this.showModal = true;
+    this.toggleValue = true;
   }
 
   closeModal(): void {
@@ -131,6 +134,7 @@ export class CardSocialTrafficComponent{
 
   ResetForm() {
     this.SocialForm.reset();
+    this.toggleValue = true;
   }
 
   actualizarTabla() {
@@ -394,6 +398,48 @@ mapa2(): void {
   });
 }
 }
+exportarDatosAExcel() {
+  if (this.beneficiarios.length === 0) {
+    console.warn('La lista de usuarios está vacía. No se puede exportar.');
+    return;
+  }
 
+  const datosParaExportar = this.beneficiarios.map(beneficiarios => {
+    return {
+      'ID': beneficiarios.nombres,
+      'ApellidoPaterno': beneficiarios.apellidoPaterno,
+      'Apellido Materno': beneficiarios.apellidoMaterno,
+      'FechaNacimiento': beneficiarios.fechaNacimiento,
+      'Curp': beneficiarios.curp,
+      'Sexo': beneficiarios.sexo,
+      'Domicilio': beneficiarios.domicilio,
+      'Estatus': beneficiarios.estatus,
+    };
+  });
+
+  const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(datosParaExportar);
+  const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+  const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+  this.guardarArchivoExcel(excelBuffer, 'beneficiarios.xlsx');
+}
+
+guardarArchivoExcel(buffer: any, nombreArchivo: string) {
+  const data: Blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  const url: string = window.URL.createObjectURL(data);
+  const a: HTMLAnchorElement = document.createElement('a');
+  a.href = url;
+  a.download = nombreArchivo;
+  a.click();
+  window.URL.revokeObjectURL(url);
+}
+
+toggleEstatus() {
+  const estatusControl = this.SocialForm.get('Estatus');
+
+  if (estatusControl) {
+    estatusControl.setValue(estatusControl.value === 1 ? 0 : 1);
+  }
+}
 
 }
