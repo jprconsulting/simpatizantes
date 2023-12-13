@@ -75,6 +75,7 @@ export class CardSocialTrafficComponent{
     this.obtenerMunicipios();
     this.obtenerBeneficiarios();
     this.ObtenerProgramas();
+    this.map();
   }
 
   obtenerBeneficiarios() {

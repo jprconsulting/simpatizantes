@@ -104,17 +104,12 @@
                                         <br>
                                         <div class="grid grid-cols-2 gap-4">
                                             <div class="col-span-1">
-                                                <div class="relative w-full mb-3">
-                                                    <label class="lavel" htmlFor="grid-password">
-                                                    ESTATUS*
-                                                    </label>
-                                                    <label class="relative inline-flex items-center cursor-pointer">
-                                                    <input [(ngModel)]="toggleValue" type="checkbox" value="true" class="sr-only peer" formControlName="estatus" >
-                                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500"></div>
-                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
-                                                    </label>
-                                                    <div *ngIf="SocialForm.get('Estatus')?.touched" class="error-message">
-                                                        <div *ngIf="SocialForm.get('Estatus')?.hasError('required')">El estatus es obligatorio</div>
+                                                <div class="col-span-2">
+                                                    <div class="relative w-full mb-3">
+                                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="programaSocialId">Programa Social:</label>
+                                                        <select formControlName="programaSocialId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    <option *ngFor="let option of programasOptions" [value]="option.id">{{ option.label }}</option>
+                                                </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -126,16 +121,20 @@
                                                   </select>
                                                 </div>
                                             </div>
-                                            <div class="col-span-2">
-                                                <div class="relative w-full mb-3">
-                                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="programaSocialId">Programa Social:</label>
-                                                    <select formControlName="programaSocialId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                    <option *ngFor="let option of programasOptions" [value]="option.id">{{ option.label }}</option>
-                                                </select>
-                                                </div>
+                                        </div>
+                                        <div class="relative w-full mb-3">
+                                            <label class="lavel" htmlFor="grid-password">
+                                          ESTATUS*
+                                          </label>
+                                            <label class="relative inline-flex items-center cursor-pointer">
+                                          <input [(ngModel)]="toggleValue" type="checkbox" value="true" class="sr-only peer" formControlName="estatus" >
+                                          <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500"></div>
+                                          <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                          </label>
+                                            <div *ngIf="SocialForm.get('Estatus')?.touched" class="error-message">
+                                                <div *ngIf="SocialForm.get('Estatus')?.hasError('required')">El estatus es obligatorio</div>
                                             </div>
                                         </div>
-                                        <br>
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-md-3">
