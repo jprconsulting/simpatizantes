@@ -99,26 +99,27 @@ body {
   margin-right: 8px;
 }
 .color-bubble {
-  width: 30px; /* Ajusta el tamaño según tus preferencias */
-  height: 30px; /* Ajusta el tamaño según tus preferencias */
+  width: 30px; 
+  height: 30px; 
   border-radius: 50%;
-  margin-left: 10px; /* Ajusta el margen según tus preferencias */
+  margin-left: 10px;
   display: inline-block;
-  border: 2px solid white; /* Añade un borde blanco para mayor visibilidad */
+  border: 2px solid white; 
 }
 
+/*Aqui inician el estilo de las tablas */
 .table-header {
   background-color: #4f0d6b;
   color: #ffffff; 
   height: 32px;
 }
 
-/* Table Cells */
+
 .table-cell {
-  padding: 0.75rem; /* Padding for cells */
-  text-align: left; /* Text alignment */
-  font-size: 0.75rem; /* Font size */
-  white-space: nowrap; /* Prevent text wrapping */
+  padding: 0.75rem; 
+  text-align: left;
+  font-size: 0.75rem;
+  white-space: nowrap; 
 }
 .custom-table-header {
   border-t: 0;
@@ -130,19 +131,25 @@ body {
 }
 
 .custom-table-row {
-  border-bottom: 1px solid #d2c9d8; /* Cambia el color a tu preferencia */
+  border-bottom: 1px solid #d2c9d8;
 }
 .custom-table-row:hover {
-  background-color: #ddd1dd; /* Cambia el color a tu preferencia */
-}
-button[disabled] {
-  background-color: #ccc; /* Cambia el color del fondo */
-  cursor: not-allowed;    /* Cambia el cursor */
-  /* Otros estilos según tus necesidades */
+  background-color: #ddd1dd;
 }
 
-/* Estilo cuando el formulario es válido */
-button:not([disabled]) { /* Cambia el color del fondo cuando el formulario es válido */
-  cursor: pointer;           /* Cambia el cursor cuando el formulario es válido */
-  /* Otros estilos según tus necesidades */
+.custom-th {
+  border-top: 0;
+  padding-left: 6px;
+  vertical-align: middle;
+  border-left: 0;
+  height: 42px;
+  border-right: 0;
+  font-size: 0.90rem; 
+  white-space: nowrap;
+  padding: 4px;
+  text-align: center;
+}
+
+.custom-tr {
+  height: 55px;
 }

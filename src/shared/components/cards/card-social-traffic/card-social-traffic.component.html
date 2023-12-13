@@ -48,129 +48,90 @@
                                 <!-- fomulario -->
                                 <div>
                                     <form [formGroup]="SocialForm" (ngSubmit)="submit()">
-                                        <div class="grid grid-cols-2 gap-4">
+                                        <div class="grid grid-cols-3 gap-4">
                                             <div>
-                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="nombre">
-                                                Nombre(s)*:
-                                            </label>
+                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="nombre">Nombre(s)*:</label>
                                                 <input required id="nombres" type="text" formControlName="nombres" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value=""
                                                 />
                                                 <div *ngIf="SocialForm.get('Nombre')?.touched" class="error-message">
-                                                    <div *ngIf="SocialForm.get('Nombre')?.hasError('required')">
-                                                        El nombre es obligatorio
-                                                    </div>
-                                                    <div *ngIf="SocialForm.get('Nombre')?.hasError('minlength')">
-                                                        El nombre debe tener al menos 3 caracteres
-                                                    </div>
-                                                    <div *ngIf="SocialForm.get('Nombre')?.hasError('pattern')">
-                                                        El nombre no puede tener números ni signos
-                                                    </div>
+                                                    <div *ngIf="SocialForm.get('Nombre')?.hasError('required')">El nombre es obligatorio</div>
+                                                    <div *ngIf="SocialForm.get('Nombre')?.hasError('minlength')">El nombre debe tener al menos 3 caracteres</div>
+                                                    <div *ngIf="SocialForm.get('Nombre')?.hasError('pattern')">El nombre no puede tener números ni signos</div>
                                                 </div>
                                             </div>
                                             <div>
-                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="apellidoPaterno">
-                                                Apellido paterno:
-                                            </label>
+                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="apellidoPaterno">Apellido paterno:</label>
                                                 <input required id="apellidoPaterno" type="text" formControlName="apellidoPaterno" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                     value="" />
                                                 <div *ngIf="SocialForm.get('apellidoPaterno')?.touched" class="error-message">
-                                                    <div *ngIf="SocialForm.get('apellidoPaterno')?.hasError('required')">
-                                                        El apellido paterno es obligatorio
-                                                    </div>
-                                                    <div *ngIf="SocialForm.get('apellidoPaterno')?.hasError('minlength')">
-                                                        El apellido paterno debe tener al menos 4 caracteres
-                                                    </div>
-                                                    <div *ngIf="SocialForm.get('apellidoPaterno')?.hasError('pattern')">
-                                                        El apellido paterno no puede tener números ni signos
-                                                    </div>
+                                                    <div *ngIf="SocialForm.get('apellidoPaterno')?.hasError('required')">El apellido paterno es obligatorio</div>
+                                                    <div *ngIf="SocialForm.get('apellidoPaterno')?.hasError('minlength')">El apellido paterno debe tener al menos 4 caracteres</div>
+                                                    <div *ngIf="SocialForm.get('apellidoPaterno')?.hasError('pattern')">El apellido paterno no puede tener números ni signos</div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <br>
-                                        <div class="grid grid-cols-2 gap-4">
                                             <div>
-                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="apellidoMaterno">
-                                                  Apellido materno:
-                                              </label>
+                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="apellidoMaterno">Apellido materno:</label>
                                                 <input required id="apellidoMaterno" type="text" formControlName="apellidoMaterno" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                     value="" />
                                                 <div *ngIf="SocialForm.get('apellidoMaterno')?.touched" class="error-message">
-                                                    <div *ngIf="SocialForm.get('apellidoMaterno')?.hasError('required')">
-                                                        El apellido materno es obligatorio
-                                                    </div>
-                                                    <div *ngIf="SocialForm.get('apellidoMaterno')?.hasError('minlength')">
-                                                        El apellido materno debe tener al menos 3 caracteres
-                                                    </div>
-                                                    <div *ngIf="SocialForm.get('apellidoMaterno')?.hasError('pattern')">
-                                                        El apellido materno no puede tener números ni signos
-                                                    </div>
+                                                    <div *ngIf="SocialForm.get('apellidoMaterno')?.hasError('required')">El apellido materno es obligatorio</div>
+                                                    <div *ngIf="SocialForm.get('apellidoMaterno')?.hasError('minlength')">El apellido materno debe tener al menos 3 caracteres</div>
+                                                    <div *ngIf="SocialForm.get('apellidoMaterno')?.hasError('pattern')">El apellido materno no puede tener números ni signos</div>
                                                 </div>
-                                            </div>
-                                            <div>
-                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="fechaNacimiento">
-                                                  Fecha de nacimiento*:
-                                              </label>
-                                                <input type="date" formControlName="fechaNacimiento" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" formControlName="fechaNacimiento"
-                                                />
                                             </div>
                                         </div>
                                         <br>
-                                        <div class="grid grid-cols-2 gap-4">
+                                        <div class="grid grid-cols-3 gap-4">
                                             <div>
-                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="curp">
-                                              CURP:
-                                          </label>
+                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="fechaNacimiento">Fecha de nacimiento*:</label>
+                                                <input type="date" formControlName="fechaNacimiento" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" />
+                                            </div>
+                                            <div>
+                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="curp">CURP:</label>
                                                 <input required id="curp" type="text" formControlName="curp" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="" />
                                                 <div *ngIf="SocialForm.get('curp')?.touched" class="error-message">
-                                                    <div *ngIf="SocialForm.get('curp')?.hasError('required')">
-                                                        El CURP es obligatorio
-                                                    </div>
+                                                    <div *ngIf="SocialForm.get('curp')?.hasError('required')">El CURP es obligatorio</div>
                                                 </div>
                                             </div>
                                             <div>
-                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="sexo">
-                                                  Género:
-                                              </label>
-                                                <select formControlName="sexo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="sexo">
+                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="sexo">Género:</label>
+                                                <select formControlName="sexo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                   <option value="1">Masculino</option>
                                                   <option value="2">Femenino</option>
                                               </select>
                                             </div>
-
                                         </div>
                                         <br>
                                         <div class="grid grid-cols-2 gap-4">
-                                            <div class="relative w-full mb-3">
-                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="programaSocialId">
-                                      Programa Social:
-                                  </label>
-                                                <select formControlName="programaSocialId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="programaSocialId">
-                                      <option *ngFor="let option of programasOptions" [value]="option.id">{{ option.label }}</option>
-                                  </select>
-                                            </div>
-                                            <div class="relative w-full mb-3">
-                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="municipio">
-                                              Municipio*:
-                                          </label>
-                                                <select formControlName="municipioId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="municipioId">
-                                              <option *ngFor="let option of municipiosOptions" [value]="option.id">{{ option.label }}</option>
-                                          </select>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <br>
-                                        <div class="grid grid-cols-2 gap-4">
-
-                                            <div class="w-full lg:w-6/12 px-4">
-                                                <div>
-                                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="estatus">
-                                                  Estatus:
-                                              </label>
+                                            <div class="col-span-1">
+                                                <div class="relative w-full mb-3">
+                                                    <label class="lavel" htmlFor="grid-password">
+                                                    ESTATUS*
+                                                    </label>
                                                     <label class="relative inline-flex items-center cursor-pointer">
-                                                  <input type="checkbox" value="" class="sr-only peer">
-                                                  <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                                  <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
-                                              </label>
+                                                    <input [(ngModel)]="toggleValue" type="checkbox" value="true" class="sr-only peer" formControlName="estatus" >
+                                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500"></div>
+                                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                                    </label>
+                                                    <div *ngIf="SocialForm.get('Estatus')?.touched" class="error-message">
+                                                        <div *ngIf="SocialForm.get('Estatus')?.hasError('required')">El estatus es obligatorio</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-span-1">
+                                                <div class="relative w-full mb-3">
+                                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="municipio">Municipio*:</label>
+                                                    <select formControlName="municipioId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                      <option *ngFor="let option of municipiosOptions" [value]="option.id">{{ option.label }}</option>
+                                                  </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-span-2">
+                                                <div class="relative w-full mb-3">
+                                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="programaSocialId">Programa Social:</label>
+                                                    <select formControlName="programaSocialId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    <option *ngFor="let option of programasOptions" [value]="option.id">{{ option.label }}</option>
+                                                </select>
                                                 </div>
                                             </div>
                                         </div>

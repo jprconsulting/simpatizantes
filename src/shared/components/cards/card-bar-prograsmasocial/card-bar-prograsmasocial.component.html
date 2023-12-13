@@ -134,65 +134,22 @@
 </div>
 <div class="block w-full overflow-x-auto">
     <table class="items-center w-full bg-transparent border-collapse">
-      <thead>
+      <thead class="table-header">
         <tr>
-          <th class="table-header">
-            #
-          </th>
-          
-          <th class="table-header">
-            Nombre
-          </th>
-          <th class="table-header">
-            Color
-          </th>
-          <th
-          class="table-header"
-          >
-          Estatus
-          </th>
-          <th
-          class="table-header"
-        >
-        Acrónimo
-        </th>
-          <th
-          class="table-header"
-          >
-            Acciones
-          </th>
+          <th>Nombre</th>
+          <th>Color</th>
+          <th>Estatus</th>
+          <th>Acrónimo</th>
+          <th>Acciones</th>
         </tr>
       </thead>
-      <tbody>
-        <tr *ngFor="let programa of prograsmasocial; let i = index"  [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
-          <th
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold"
-          >
-          {{ programa.id }}
-          </th>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-          >
-          {{ programa.nombre }}
-          </td>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-          >
-          <div class="color-circle" [style.backgroundColor]="programa.color"></div>
-          </td>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-          >
-          {{ programa.estatus ? 'Activo' : 'Inactivo' }}
-          </td>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-          >
-          {{ programa.acronimo }}
-          </td>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-          >
+      <tbody class="custom-th">
+        <tr class="custom-tr" *ngFor="let programa of prograsmasocial; let i = index"  [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
+          <td>{{ programa.nombre }}</td>
+          <td><div class="color-circle" [style.backgroundColor]="programa.color"></div></td>
+          <td>{{ programa.estatus ? 'Activo' : 'Inactivo' }}</td>
+          <td>{{ programa.acronimo }}</td>
+          <td>
           <button (click)="borrar(programa.id, programa.nombre)">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
