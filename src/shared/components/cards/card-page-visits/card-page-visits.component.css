@@ -1,4 +1,6 @@
 
+
+
 body {
   background-color: #f7fafc;
   color: #1a202c;
@@ -130,3 +132,10 @@ body {
 .custom-table-row:hover {
   background-color: #ddd1dd; /* Cambia el color a tu preferencia */
 }
+.error-message {
+  color: #e53e3e;
+  font-size: 0.875rem;
+}
+
+
+

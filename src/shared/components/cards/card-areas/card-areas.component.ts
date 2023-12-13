@@ -4,6 +4,7 @@ import { AreasadscripcionService } from "src/app/pages/core/services/areasadscri
 import { MensajeService } from "src/app/pages/core/services/mensaje.service";
 import { Areasadscripcion } from "src/app/pages/models/areasadscripcion";
 import { FormsModule } from '@angular/forms';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: "app-card-areas",
@@ -25,7 +26,7 @@ export class CardAreasComponent implements OnInit {
       this.AreaForm = this.formBuilder.group({
         id: [null],
         nombre: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]],
-        descripcion: ['',Validators.required],
+        descripcion: ['',[Validators.required, Validators.minLength(10), Validators.pattern('^[a-zA-Z ]+$')]],
         estatus: [false, [Validators.required]]
       });
 
@@ -36,6 +37,7 @@ export class CardAreasComponent implements OnInit {
 
   openModal(): void {
     this.showModal = true;
+    this.toggleValue = true;
     if (!this.isUpdating) {
       // Restablecer el formulario si no está en modo de actualización
       this.ResetForm();
@@ -123,10 +125,10 @@ export class CardAreasComponent implements OnInit {
   }
 
   agregar() {
-    // Copia los valores del formulario
+    if (this.AreaForm.valid) {
     const usuarioFormValue = { ...this.AreaForm.value };
     console.log('formulario',usuarioFormValue);
-
+    delete usuarioFormValue.id;
     this.areasadscripcionService.postArea(usuarioFormValue).subscribe({
       next: () => {
         this.ResetForm();
@@ -138,6 +140,8 @@ export class CardAreasComponent implements OnInit {
         this.mensajeService.mensajeError("Error al agregar área");
       }
     });
+  }
+  this.mensajeService.mensajeError("Error al agregar área");
   }
 
   setDataModalUpdate(areasadscripcion: Areasadscripcion) {
@@ -160,5 +164,39 @@ export class CardAreasComponent implements OnInit {
       areas.nombre.toLowerCase().includes(filtroLowerCase) ||
       areas.descripcion.toLowerCase().includes(filtroLowerCase)
     );
+    
+    }
+    exportarDatosAExcel() {
+      if (this.areasadscripcion.length === 0) {
+        console.warn('La lista de usuarios está vacía. No se puede exportar.');
+        return;
+      }
+  
+      const datosParaExportar = this.areasadscripcion.map(areasadscripcion => {
+        return {
+          'ID': areasadscripcion.id,
+          'Nombre': areasadscripcion.nombre,
+          'Descripcion': areasadscripcion.descripcion,
+          'Estatus': areasadscripcion.estatus,
+          
+        };
+      });
+  
+      const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(datosParaExportar);
+      const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+      const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+  
+      this.guardarArchivoExcel(excelBuffer, 'areas.xlsx');
+    }
+  
+    guardarArchivoExcel(buffer: any, nombreArchivo: string) {
+      const data: Blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      const url: string = window.URL.createObjectURL(data);
+      const a: HTMLAnchorElement = document.createElement('a');
+      a.href = url;
+      a.download = nombreArchivo;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }
   }
-}
+

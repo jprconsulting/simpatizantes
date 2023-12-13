@@ -49,6 +49,7 @@ export class CardBarPrograsmasocialComponent implements OnInit {
 
   openModal(): void {
     this.showModal = true;
+    this.toggleValue = true;
     if (!this.isUpdating) {
       // Restablecer el formulario si no está en modo de actualización
       this.ResetForm();
