@@ -65,10 +65,12 @@ export class CardSocialTrafficComponent{
   openModal(): void {
     this.showModal = true;
     this.toggleValue = true;
+    this.ResetForm();
   }
 
   closeModal(): void {
     this.showModal = false;
+    this.ResetForm();
   }
   ngOnInit() {
     this.obtenerMunicipios();

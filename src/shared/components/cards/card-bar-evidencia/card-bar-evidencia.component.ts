@@ -33,7 +33,6 @@ export class CardBarEvidenciaComponent {
     this.obtenerBeneficiarios();
     this.obtenerProgramas();
     this.obtenerAreas();
-    this.customLabel(this.beneficiarios);
   }
   openModal(): void {
     this.showModal = true;
@@ -51,10 +50,15 @@ export class CardBarEvidenciaComponent {
   closeModal(): void {
     this.showModal = false;
     this.isUpdating = false;
+    const fotoControl = this.EvidenciaForm.get('Foto');
+  if (fotoControl) {
+    fotoControl.setValue(null);
+  }
+  this.ResetForm();
  
   }
   ResetForm() {
-    //this.SocialForm.reset();
+    this.EvidenciaForm.reset();
   }
   submit() {
     if (this.isUpdating) {
@@ -173,11 +177,6 @@ onBeneficiarioChange(event: any): void {
   console.log('Beneficiario seleccionado:', beneficiarioSeleccionado);
 }
 
-customLabel(beneficiarios: any): string {
-  const label = `${beneficiarios.nombres} ${beneficiarios.apellidoPaterno} ${beneficiarios.apellidoMaterno}`;
-  console.log('Etiqueta personalizada:', label);
-  return label;
-}
 }
 
 
