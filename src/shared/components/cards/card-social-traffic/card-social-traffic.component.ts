@@ -28,6 +28,7 @@ export class CardSocialTrafficComponent{
   municipiosOptions: {id: number, nombre: string, label: string }[] = [];
   programasOptions: {id: number, nombre: string, label: string }[] = [];
   formData: any;
+  toggleValue = true;
 
   constructor(
     private programaService: ProgramaService,
@@ -63,6 +64,7 @@ export class CardSocialTrafficComponent{
   }
   openModal(): void {
     this.showModal = true;
+    this.toggleValue = true;
   }
 
   closeModal(): void {
@@ -131,6 +133,7 @@ export class CardSocialTrafficComponent{
 
   ResetForm() {
     this.SocialForm.reset();
+    this.toggleValue = true;
   }
 
   actualizarTabla() {
@@ -395,5 +398,12 @@ mapa2(): void {
 }
 }
 
+toggleEstatus() {
+  const estatusControl = this.SocialForm.get('Estatus');
+
+  if (estatusControl) {
+    estatusControl.setValue(estatusControl.value === 1 ? 0 : 1);
+  }
+}
 
 }
