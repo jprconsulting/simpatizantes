@@ -186,7 +186,7 @@ export class CardAreasComponent implements OnInit {
       const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
       const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
   
-      this.guardarArchivoExcel(excelBuffer, 'areas.xlsx');
+      this.guardarArchivoExcel(excelBuffer, 'areas_adscripcion.xlsx');
     }
   
     guardarArchivoExcel(buffer: any, nombreArchivo: string) {

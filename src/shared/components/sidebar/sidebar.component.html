@@ -163,6 +163,17 @@
             "></i> Nube de palabras
                   </a>
               </li>
+              <li class="items-center">
+                <a [routerLink]="['mapaben']" class="text-xs uppercase py-3 font-bold block" routerLinkActive  #mapaben="routerLinkActive" [ngClass]="
+          mapaben.isActive
+            ? 'text-purple-900 hover:text-purple-900'
+            : 'text-blueGray-700 hover:text-blueGray-500'
+        ">
+                    <i class="fas fa-map-marked mr-2 text-sm" [ngClass]="
+            mapaben.isActive ? 'opacity-75' : 'text-blueGray-300'
+          "></i> Mapa Beneficiario
+                </a>
+            </li>
 
             </ul>
         </div>

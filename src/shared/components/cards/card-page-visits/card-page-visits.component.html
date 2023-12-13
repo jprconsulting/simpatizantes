@@ -35,7 +35,7 @@
                           <div class=" modal-content py-4 text-left px-6">
                               <div class="flex justify-between items-center pb-3">
                                   <div>
-                                      <p class="text-2xl font-bold -mr-56">REGISTRAR USUARIO</p>
+                                      <p class="text-2xl font-bold -mr-56">Registrar usuario</p>
                                   </div>
                                   <div></div>
                                   <div>
@@ -54,7 +54,7 @@
                                       <div class="flex flex-wrap">
                                           <div class="w-full lg:w-6/12 px-4">
                                               <div class="relative w-full mb-6">
-                                                  <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password">
+                                                  <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password">
                                 Nombre
                               </label>
                                                   <input formControlName="nombre" required id="nombre" type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value=""
@@ -76,7 +76,7 @@
             <div class="w-full lg:w-6/12 px-4">
               <div class="relative w-full mb-3">
                 <label
-                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  class="block text-blueGray-600 text-xs font-bold mb-2"
                   htmlFor="grid-password"
                 >
                   Apellido paterno
@@ -105,7 +105,7 @@
             <div class="w-full lg:w-6/12 px-4">
               <div class="relative w-full mb-3">
                 <label
-                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  class="block text-blueGray-600 text-xs font-bold mb-2"
                   htmlFor="grid-password"
                 >
                   Apellido materno
@@ -134,7 +134,7 @@
             <div class="w-full lg:w-6/12 px-4">
               <div class="relative w-full mb-3">
                 <label
-                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  class="block text-blueGray-600 text-xs font-bold mb-2"
                   htmlFor="grid-password"
                 >
                   Correo
@@ -161,7 +161,7 @@
             <div class="w-full lg:w-6/12 px-4">
               <div class="relative w-full mb-3">
                 <label
-                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  class="block text-blueGray-600 text-xs font-bold mb-2"
                   htmlFor="grid-password"
                 >
                   Contraseña
@@ -187,7 +187,7 @@
             <div class="w-full lg:w-6/12 px-4">
               <div class="relative w-full mb-3">
                   <label class="lavel" htmlFor="grid-password">
-                ESTATUS*
+                Estatus*
                 </label>
                                   <label class="relative inline-flex items-center cursor-pointer">
                 <input [(ngModel)]="toggleValue" type="checkbox" value="true" class="sr-only peer" formControlName="estatus" required>
@@ -205,7 +205,7 @@
             <div class="w-full lg:w-6/12 px-4">
               <div class="relative w-full mb-3">
                 <label
-                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  class="block text-blueGray-600 text-xs font-bold mb-2"
                   htmlFor="grid-password"
                 >
                   Rol
@@ -243,22 +243,23 @@
 
       </div>
       <br><br>
-      <div class="block w-full overflow-x-auto">
+      <div class="block w-full overflow-x-auto"> 
           <!-- Projects table -->
-          <table  class="items-center w-full bg-transparent border-collapse mx-auto">
-              <thead>
+          <table class="items-center w-full bg-transparent border-collapse">
+            <thead class="table-header">
                   <tr>
-                      <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nombre</th>
-                      <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Apellido Paterno</th>
-                      <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Apellido Materno</th>
-                      <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Correo</th>
-                      <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rol</th>
-                      <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Estatus</th>
-                      <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Acciones</th>
+                      <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Nombre</th>
+                      <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Apellido Paterno</th>
+                      <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Apellido Materno</th>
+                      <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Correo</th>
+                      <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Rol</th>
+                      <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Estatus</th>
+                      <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Acciones</th>
                   </tr>
               </thead>
-              <tbody>
-                  <tr *ngFor="let usuario of usuarios">
+              <tbody class="custom-th">
+      
+                <tr class="custom-tr" *ngFor="let usuario of usuarios; let i = index" [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
                       <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold">{{ usuario.nombre }}</td>
                       <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold">{{ usuario.apellidoPaterno }}</td>
                       <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold">{{ usuario.apellidoMaterno }}</td>

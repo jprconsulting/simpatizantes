@@ -59,6 +59,11 @@ const routes: Routes = [{
       path: 'nube-palabras',
       loadChildren:() => import("./nube-palabras/nube-palabras-routing.module")
       .then(i => i.NubePalabrasRoutingModule)
+    },
+    {
+      path: 'mapaben',
+      loadChildren:() => import("./mapaben/mapaben-routing.module")
+      .then(i => i.MapabenRoutingModule)
     }
 
   ]
