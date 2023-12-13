@@ -10,4 +10,6 @@ export class CardLineBeneficiariosComponent implements OnInit {
 
   ngOnInit() { }
 
+  
+
 }
