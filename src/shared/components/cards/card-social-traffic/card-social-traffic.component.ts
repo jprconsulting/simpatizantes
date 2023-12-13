@@ -7,6 +7,7 @@ import { ProgramaService } from "src/app/pages/core/services/programasocial.serv
 import { Beneficiario } from "src/app/pages/models/beneficiario";
 import { Municipios } from "src/app/pages/models/municipios";
 import { Prograsmasocial } from "src/app/pages/models/programasocial";
+import * as XLSX from 'xlsx';
 declare const google: any;
 @Component({
   selector: "app-card-social-traffic",
@@ -76,6 +77,7 @@ export class CardSocialTrafficComponent{
     this.obtenerMunicipios();
     this.obtenerBeneficiarios();
     this.ObtenerProgramas();
+    this.map();
   }
 
   obtenerBeneficiarios() {
@@ -398,6 +400,41 @@ mapa2(): void {
     infowindow.open(infoWindowOpenOptions, marker1);
   });
 }
+}
+exportarDatosAExcel() {
+  if (this.beneficiarios.length === 0) {
+    console.warn('La lista de usuarios está vacía. No se puede exportar.');
+    return;
+  }
+
+  const datosParaExportar = this.beneficiarios.map(beneficiarios => {
+    return {
+      'ID': beneficiarios.nombres,
+      'ApellidoPaterno': beneficiarios.apellidoPaterno,
+      'Apellido Materno': beneficiarios.apellidoMaterno,
+      'FechaNacimiento': beneficiarios.fechaNacimiento,
+      'Curp': beneficiarios.curp,
+      'Sexo': beneficiarios.sexo,
+      'Domicilio': beneficiarios.domicilio,
+      'Estatus': beneficiarios.estatus,
+    };
+  });
+
+  const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(datosParaExportar);
+  const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+  const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+  this.guardarArchivoExcel(excelBuffer, 'beneficiarios.xlsx');
+}
+
+guardarArchivoExcel(buffer: any, nombreArchivo: string) {
+  const data: Blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  const url: string = window.URL.createObjectURL(data);
+  const a: HTMLAnchorElement = document.createElement('a');
+  a.href = url;
+  a.download = nombreArchivo;
+  a.click();
+  window.URL.revokeObjectURL(url);
 }
 
 toggleEstatus() {
