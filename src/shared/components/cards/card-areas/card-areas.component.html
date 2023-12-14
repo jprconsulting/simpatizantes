@@ -140,7 +140,7 @@
           <!-- Projects table -->
           <table class="items-center w-full bg-transparent border-collapse"> 
             <thead class="table-header">
-                  <tr class="text-center ">
+                  <tr style="font-size: .3cm;" class="text-center ">
                       <th class="text-center" class="table-header"> Nombre </th>
                       <th class="text-center" class="table-header"> Descripción </th>
                       <th class="table-header"> Estatus </th>
@@ -149,9 +149,9 @@
               </thead>
               <tbody class="custom-th">
                 <tr class="custom-tr" *ngFor="let areasadscripcion of areasadscripcion; let i = index" [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
-                      <td class="text-center font-normal">{{ areasadscripcion.nombre }}</td> <!--se quito el font-semibold YENNI-->
-                      <td class="text-center font-normal">{{ areasadscripcion.descripcion }}</td> <!--se quito el font-semibold YENNI-->
-                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 no-bold"> <!--se quito el font-semibold YENNI-->
+                      <td style="font-size: .3cm;" class="text-center font-normal">{{ areasadscripcion.nombre }}</td> <!--se quito el font-semibold YENNI-->
+                      <td style="font-size: .3cm;" class="text-center font-normal">{{ areasadscripcion.descripcion }}</td> <!--se quito el font-semibold YENNI-->
+                      <td style="font-size: .3cm;" class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 no-bold"> <!--se quito el font-semibold YENNI-->
                           <ng-container *ngIf="areasadscripcion.estatus; else elseEST">
                               <span class="badge bg-success me-1 text-align: middle;"></span>Activo
                           </ng-container>
@@ -159,7 +159,7 @@
                               <span class="badge bg-danger me-1" text-align: middle;></span> Inactivo
                           </ng-template>
                       </td>
-                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 ">
+                      <td style="font-size: .3cm;" class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 ">
                           <div class="btn-group" role="group" aria-label="Acciones">
                               <button (click)="eliminarArea(areasadscripcion.id)">
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
