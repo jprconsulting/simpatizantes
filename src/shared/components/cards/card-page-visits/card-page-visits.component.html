@@ -51,185 +51,174 @@
                               <!-- fomulario -->
                               <div class="flex mt-8 p-6 bg-white rounded-md justify-items-stretch">
                                   <form [formGroup]="UsuarioForm" (ngSubmit)="submit()">
-                                      <div class="flex flex-wrap">
-                                          <div class="w-full lg:w-6/12 px-4">
-                                              <div class="relative w-full mb-6">
-                                                  <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password">
-                                Nombre
-                              </label>
-                                                  <input formControlName="nombre" required id="nombre" type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value=""
-                                                  />
-                                                  <div *ngIf="UsuarioForm.get('nombre')?.touched" class="error-message">
-                                                    <div *ngIf="UsuarioForm.get('nombre')?.hasError('required')">
-                                                      El nombre es obligatorio
-                                                    </div>
-                                                    <div *ngIf="UsuarioForm.get('nombre')?.hasError('minlength')">
-                                                      El nombre debe tener al menos 3 caracteres
-                                                    </div>
-                                                    <div *ngIf="UsuarioForm.get('nombre')?.hasError('pattern')">
-                                                      El nombre no puede tener números ni signos
-                                                    </div>
+                                    <div class="grid gap-x-8 gap-y-4 grid-cols-3">
+                                      <div>
+                                              <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password">
+                                                Nombre
+                                              </label>
+                                              <input formControlName="nombre" required id="nombre" type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value=""
+                                              />
+                                              <div *ngIf="UsuarioForm.get('nombre')?.touched" class="error-message">
+                                                <div *ngIf="UsuarioForm.get('nombre')?.hasError('required')">
+                                                  El nombre es obligatorio
                                                 </div>
+                                                <div *ngIf="UsuarioForm.get('nombre')?.hasError('minlength')">
+                                                  El nombre debe tener al menos 3 caracteres
+                                                </div>
+                                                <div *ngIf="UsuarioForm.get('nombre')?.hasError('pattern')">
+                                                  El nombre no puede tener números ni signos
+                                                </div>
+                                              </div>
+                                      </div>
+                                      <div>
+                                            <label
+                                              class="block text-blueGray-600 text-xs font-bold mb-2"
+                                              htmlFor="grid-password"
+                                            >
+                                              Apellido paterno
+                                            </label>
+                                            <input
+                                            formControlName="apellidoPaterno"
+                                              required
+                                              id="apellido-paterno"
+                                              type="text"
+                                              class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                              value=""
+                                            />
+                                            <div *ngIf="UsuarioForm.get('apellidoPaterno')?.touched" class="error-message">
+                                              <div *ngIf="UsuarioForm.get('apellidoPaterno')?.hasError('required')">
+                                                El apellido paterno es obligatorio
+                                              </div>
+                                              <div *ngIf="UsuarioForm.get('apellidoPaterno')?.hasError('minlength')">
+                                                El apellido paterno debe tener al menos 4 caracteres
+                                              </div>
+                                              <div *ngIf="UsuarioForm.get('apellidoPaterno')?.hasError('pattern')">
+                                                El apellido paterno no puede tener números ni signos
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div>
+                                            <label
+                                              class="block text-blueGray-600 text-xs font-bold mb-2"
+                                              htmlFor="grid-password"
+                                            >
+                                              Apellido materno
+                                            </label>
+                                            <input
+                                            formControlName="apellidoMaterno"
+                                              required
+                                              id="apellido-materno"
+                                              type="text"
+                                              class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                              value=""
+                                            />
+                                            <div *ngIf="UsuarioForm.get('apellidoMaterno')?.touched" class="error-message">
+                                              <div *ngIf="UsuarioForm.get('apellidoMaterno')?.hasError('required')">
+                                                El apellido materno es obligatorio
+                                              </div>
+                                              <div *ngIf="UsuarioForm.get('apellidoMaterno')?.hasError('minlength')">
+                                                El apellido materno debe tener al menos 4 caracteres
+                                              </div>
+                                              <div *ngIf="UsuarioForm.get('apellidoMaterno')?.hasError('pattern')">
+                                                El apellido materno no puede tener números ni signos
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div>
+                                            <label
+                                              class="block text-blueGray-600 text-xs font-bold mb-2"
+                                              htmlFor="grid-password"
+                                            >
+                                              Correo
+                                            </label>
+                                            <input
+                                            formControlName="correo"
+                                              required
+                                              id="correo"
+                                              type="email"
+                                              class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                              value=""
+                                            />
+                                            <div *ngIf="UsuarioForm.get('correo')?.touched" class="error-message">
+                                              <div *ngIf="UsuarioForm.get('correo')?.hasError('required')">
+                                                El correo es obligatorio
+                                              </div>
+                                              <div *ngIf="UsuarioForm.get('correo')?.hasError('email')">
+                                                El correo no es valido
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div>
+                                            <label
+                                              class="block text-blueGray-600 text-xs font-bold mb-2"
+                                              htmlFor="grid-password"
+                                            >
+                                              Contraseña
+                                            </label>
+                                            <input
+                                            formControlName="password"
+                                              requirede
+                                              id="password"
+                                              type="password"
+                                              class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                              value=""
+                                            />
+                                            <div *ngIf="UsuarioForm.get('password')?.touched" class="error-message">
+                                              <div *ngIf="UsuarioForm.get('password')?.hasError('required')">
+                                                La contraseña es obligatoria
+                                              </div>
+                                              <div *ngIf="UsuarioForm.get('password')?.hasError('minlength')">
+                                                La contraseña debe tener al menos 8 caracteres
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div>
 
-              </div>
-            </div>
-            <div class="w-full lg:w-6/12 px-4">
-              <div class="relative w-full mb-3">
-                <label
-                  class="block text-blueGray-600 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
-                  Apellido paterno
-                </label>
-                <input
-                formControlName="apellidoPaterno"
-                  required
-                  id="apellido-paterno"
-                  type="text"
-                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  value=""
-                />
-                <div *ngIf="UsuarioForm.get('apellidoPaterno')?.touched" class="error-message">
-                  <div *ngIf="UsuarioForm.get('apellidoPaterno')?.hasError('required')">
-                    El apellido paterno es obligatorio
-                  </div>
-                  <div *ngIf="UsuarioForm.get('apellidoPaterno')?.hasError('minlength')">
-                    El apellido paterno debe tener al menos 4 caracteres
-                  </div>
-                  <div *ngIf="UsuarioForm.get('apellidoPaterno')?.hasError('pattern')">
-                    El apellido paterno no puede tener números ni signos
-                  </div>
-              </div>
-              </div>
-            </div>
-            <div class="w-full lg:w-6/12 px-4">
-              <div class="relative w-full mb-3">
-                <label
-                  class="block text-blueGray-600 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
-                  Apellido materno
-                </label>
-                <input
-                formControlName="apellidoMaterno"
-                  required
-                  id="apellido-materno"
-                  type="text"
-                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  value=""
-                />
-                <div *ngIf="UsuarioForm.get('apellidoMaterno')?.touched" class="error-message">
-                  <div *ngIf="UsuarioForm.get('apellidoMaterno')?.hasError('required')">
-                    El apellido materno es obligatorio
-                  </div>
-                  <div *ngIf="UsuarioForm.get('apellidoMaterno')?.hasError('minlength')">
-                    El apellido materno debe tener al menos 4 caracteres
-                  </div>
-                  <div *ngIf="UsuarioForm.get('apellidoMaterno')?.hasError('pattern')">
-                    El apellido materno no puede tener números ni signos
-                  </div>
-              </div>
-              </div>
-            </div>
-            <div class="w-full lg:w-6/12 px-4">
-              <div class="relative w-full mb-3">
-                <label
-                  class="block text-blueGray-600 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
-                  Correo
-                </label>
-                <input
-                formControlName="correo"
-                  required
-                  id="correo"
-                  type="email"
-                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  value=""
-                />
-                <div *ngIf="UsuarioForm.get('correo')?.touched" class="error-message">
-                  <div *ngIf="UsuarioForm.get('correo')?.hasError('required')">
-                    El correo es obligatorio
-                  </div>
-                  <div *ngIf="UsuarioForm.get('correo')?.hasError('email')">
-                    El correo no es valido
-                  </div>
-              </div>
-              </div>
-            </div>
+                                              <label class="lavel" htmlFor="grid-password">
+                                            Estatus*
+                                            </label>
+                                                              <label class="relative inline-flex items-center cursor-pointer">
+                                            <input [(ngModel)]="toggleValue" type="checkbox" value="true" class="sr-only peer" formControlName="estatus" required>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500"></div>
+                                            <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                            </label>
+                                              <div *ngIf="UsuarioForm.get('estatus')?.touched" class="error-message">
+                                                  <div *ngIf="UsuarioForm.get('estatus')?.hasError('required')">El estatus es obligatorio</div>
+                                              </div>
 
-            <div class="w-full lg:w-6/12 px-4">
-              <div class="relative w-full mb-3">
-                <label
-                  class="block text-blueGray-600 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
-                  Contraseña
-                </label>
-                <input
-                formControlName="password"
-                  requirede
-                  id="password"
-                  type="password"
-                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  value=""
-                />
-                <div *ngIf="UsuarioForm.get('password')?.touched" class="error-message">
-                  <div *ngIf="UsuarioForm.get('password')?.hasError('required')">
-                    La contraseña es obligatoria
-                  </div>
-                  <div *ngIf="UsuarioForm.get('password')?.hasError('minlength')">
-                    La contraseña debe tener al menos 8 caracteres
-                  </div>
-              </div>
-              </div>
-            </div>
-            <div class="w-full lg:w-6/12 px-4">
-              <div class="relative w-full mb-3">
-                  <label class="lavel" htmlFor="grid-password">
-                Estatus*
-                </label>
-                                  <label class="relative inline-flex items-center cursor-pointer">
-                <input [(ngModel)]="toggleValue" type="checkbox" value="true" class="sr-only peer" formControlName="estatus" required>
-                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500"></div>
-                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
-                </label>
-                  <div *ngIf="UsuarioForm.get('estatus')?.touched" class="error-message">
-                      <div *ngIf="UsuarioForm.get('estatus')?.hasError('required')">El estatus es obligatorio</div>
-                  </div>
-              </div>
-          </div>
-            <div>
+                                            
 
-            </div>
-            <div class="w-full lg:w-6/12 px-4">
-              <div class="relative w-full mb-3">
-                <label
-                  class="block text-blueGray-600 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
-                  Rol
-                </label>
-                <select formControlName="RolId" id="RolId"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                  <option value="1">Administrador</option>
-                  <option value="2">Director</option>
-                </select><br>
-                <div *ngIf="UsuarioForm.get('RolId')?.touched" class="error-message">
-                  <div *ngIf="UsuarioForm.get('RolId')?.hasError('required')">
-                    El rol es obligatorio
-                  </div>
-              </div>
-              </div>
-            </div>
-          </div>
-          <div class="flex justify-between">
-            <div></div>
-            <div></div>
-            <div>
-              <button type="submit" class="bg-purple-900 text-white py-2 px-4 rounded-md hover:bg-red-950">
-                {{ isUpdating ? "ACTUALIZAR " : "AGREGAR " }}
-              </button>              </div>
-          </div>
+                                        </div>
+                                        
+                                      </div>
+                                      <div class="grid gap-x-8 gap-y-4 grid-cols-3">
+                                        <div>
+                                          <label
+                                            class="block text-blueGray-600 text-xs font-bold mb-2"
+                                            htmlFor="grid-password"
+                                          >
+                                            Rol
+                                          </label>
+                                          <select formControlName="RolId" id="RolId"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            <option value="1">Administrador</option>
+                                            <option value="2">Director</option>
+                                          </select><br>
+                                          <div *ngIf="UsuarioForm.get('RolId')?.touched" class="error-message">
+                                            <div *ngIf="UsuarioForm.get('RolId')?.hasError('required')">
+                                              El rol es obligatorio
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      
+                                    <div class="flex justify-between">
+                                      <div></div>
+                                      <div></div>
+                                      <div>
+                                        <button type="submit" class="bg-purple-900 text-white py-2 px-4 rounded-md hover:bg-red-950">
+                                          {{ isUpdating ? "ACTUALIZAR " : "AGREGAR " }}
+                                        </button>              </div>
+                                    </div>
         </form>
       </div>
 
