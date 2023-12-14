@@ -155,7 +155,9 @@
                                         <br>
                                         <br>
                                         <div class="flex justify-end">
-                                            <button type="submit" class="bg-purple-900 text-white py-2 px-4 rounded-md hover:bg-red-950">
+                                            <button  [disabled]="!SocialForm.valid"
+                                            [ngClass]="{'bg-gray-500': !SocialForm.valid, 'bg-purple-900': SocialForm.valid}"
+                                            class="text-white py-2 px-4 rounded-md hover:bg-red-950 custom-button">
                                       {{ isUpdating ? "ACTUALIZAR " : "AGREGAR " }}
                                     </button>
 
