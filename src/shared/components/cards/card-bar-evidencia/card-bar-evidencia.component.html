@@ -109,7 +109,7 @@
                           Todos los campos marcados con * son requeridos
                           <div class="flex justify-end">
                             <button type="submit" class="bg-purple-900 text-white py-2 px-4 rounded-md hover:bg-red-950" >
-                              {{ isUpdating ? "ACTUALIZAR " : "AGREGAR " }}
+                              {{ isUpdating ? "Actualizar " : "Agregar" }}
                             </button>
                           </div>
                           
@@ -129,7 +129,7 @@
 </div>
 <div class="block w-full overflow-x-auto">
     <table class="items-center w-full bg-transparent border-collapse">
-      <thead>
+      <thead class="table-header">
         <tr>
           <th class="table-header">
             #
@@ -153,33 +153,35 @@
           </th>
         </tr>
       </thead>
-      <tbody>
-        <tr >
-          <th
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold"
+      <tbody class="custom-th">
+        <!--
+        <tr class="custom-tr" *ngFor="let usuario of usuarios; let i = index" [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}"></tr>
+      -- estilo de tabla colores al pasar el cursor -->  
+        <th
+            class="border-t-0 px-6 align-middle  text-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-normal"
           >
             1
           </th>
           <th
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold"
+            class="border-t-0 px-6 align-middle  text-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-normal"
           >
             Alejandro	Martinez	Hdez
           </th>
           <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold"
+            class="border-t-0 px-6 align-middle  text-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-normal"
           >
             Foto
           </td>
           <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold"
+            class="border-t-0 px-6 align-middle text-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-normal"
           >
             Descripcion 1
           </td>
           <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            class="border-t-0 px-6 align-middle  text-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
           <button >
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg"  text-center class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M4 7l16 0" />
               <path d="M10 11l0 6" />
