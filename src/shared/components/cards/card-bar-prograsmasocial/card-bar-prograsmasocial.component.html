@@ -42,6 +42,7 @@
                 <!-- fomulario -->
                 <div >
                     <form [formGroup]="SocialForm" (ngSubmit)="submit()">
+                          <div class="grid grid-cols-3 gap-4">
                             <div>
                               <label for="Nombre" class="lavel">Nombre*:</label><!-- ESTILO table YENNI-->
                                 <input class="input" type="text" formControlName="Nombre">
@@ -56,7 +57,8 @@
                                       El Nombre no puede tener números ni signos
                                     </div>
                                 </div>
-                                <div>
+                              </div>
+                              <div>
                                   <label for="AreaAdscripcionId" class="lavel">Área de adscripción*:</label><!-- ESTILO table YENNI-->
                                 <select class="select" formControlName="AreaAdscripcionId">
                                   <option *ngFor="let area of areasadscripcion" [value]="area.id">{{ area.nombre }}</option>
@@ -66,8 +68,8 @@
                                       El área de adscripción es obligatoria
                                     </div>
                                 </div>
-                                </div>
-                                
+                              </div>
+                              <div>
                                 <label for="nombre" class="lavel">Acrónimo*:</label><!-- ESTILO table YENNI-->
                                 <input class="input" type="text" formControlName="Acronimo">
                                 <div *ngIf="SocialForm.get('Acronimo')?.touched" class="error-message">
@@ -81,7 +83,7 @@
                                       El acrónimo no puede tener números ni signos
                                     </div>
                                 </div>
-                                <div class="grid gap-4 grid-cols-2">
+                              </div>
                                   <div>
                                     <label for="Color" class="lavel">Color*:</label><!-- ESTILO table YENNI-->
                                     <input [(colorPicker)]="selectedColor" [style.background]="selectedColor" class="color-picker" (colorPickerChange)="updateColor($event)" formControlName="Color">
@@ -103,8 +105,7 @@
                                       </div>
                                     </div>
                                   </div>
-                                  
-                                </div>
+
 
                             </div>
                             <label for="Descripcion" class="lavel">Descripción*:</label><!-- ESTILO table YENNI-->
@@ -113,9 +114,11 @@
                           <br>      
                           Todos los campos marcados con * son requeridos
                           <div class="flex justify-end">
-                            <button type="submit" class="bg-purple-900 text-white py-2 px-4 rounded-md hover:bg-red-950 custom-button"
-                            >
-                            {{ isUpdating ? " ACTUALIZAR" : "AGREGAR" }}
+                            <button type="submit"
+                            [disabled]="!SocialForm.valid"
+                            [ngClass]="{'bg-gray-500': !SocialForm.valid, 'bg-purple-900': SocialForm.valid}"
+                            class="text-white py-2 px-4 rounded-md hover:bg-red-950 custom-button">
+                            {{ isUpdating ? " Actualizar" : "Agregar" }}
                           </button>
                           </div>
                     </form>
