@@ -192,13 +192,13 @@
                 </thead>
                 <tbody class="custom-th"><!-- ESTILO table YENNI-->
                     <tr class="custom-tr" *ngFor="let beneficiario of beneficiarios; let i = index"  [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}"><!-- ESTILO table YENNI-->
-                        <td style="font-size: .3cm;">{{ beneficiario.nombres }}</td>
-                        <td style="font-size: .3cm;">{{ beneficiario.apellidoPaterno }}</td>
-                        <td style="font-size: .3cm;">{{ beneficiario.apellidoMaterno }}</td>
-                        <td style="font-size: .3cm;">{{ beneficiario.fechaNacimiento }}</td>
-                        <td style="font-size: .3cm;">{{ beneficiario.curp }}</td>
-                        <td style="font-size: .3cm;">{{ sexos[beneficiario.sexo] }}</td>
-                        <td style="font-size: .3cm;">{{ beneficiario.domicilio }}</td>
+                        <td style="font-size: .32cm;">{{ beneficiario.nombres }}</td>
+                        <td style="font-size: .32cm;">{{ beneficiario.apellidoPaterno }}</td>
+                        <td style="font-size: .32cm;">{{ beneficiario.apellidoMaterno }}</td>
+                        <td style="font-size: .32cm;">{{ beneficiario.fechaNacimiento }}</td>
+                        <td style="font-size: .32cm;">{{ beneficiario.curp }}</td>
+                        <td style="font-size: .32cm;">{{ sexos[beneficiario.sexo] }}</td>
+                        <td style="font-size: .32cm;">{{ beneficiario.domicilio }}</td>
                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                             <button (click)="borrar(beneficiario.id, beneficiario.nombres)">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
