@@ -51,6 +51,7 @@
                                         <div class="grid grid-cols-3 gap-4">
                                             <div>
                                                 <label class="block  text-blueGray-600 text-xs font-bold mb-2" htmlFor="nombre">Nombre(s)*:</label> <!--se quito el uppercaseYENNI-->
+                                                
                                                 <input required id="nombres" type="text" formControlName="nombres" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value=""
                                                 />
                                                 <div *ngIf="SocialForm.get('Nombre')?.touched" class="error-message">
@@ -106,7 +107,7 @@
                                             <div class="col-span-1">
                                                 <div class="col-span-2">
                                                     <div class="relative w-full mb-3">
-                                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="programaSocialId">Programa Social:</label>
+                                                        <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="programaSocialId">Programa Social:</label>
                                                         <select formControlName="programaSocialId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                     <option *ngFor="let option of programasOptions" [value]="option.id">{{ option.label }}</option>
                                                 </select>
@@ -124,7 +125,7 @@
                                         </div>
                                         <div class="relative w-full mb-3">
                                             <label class="lavel" htmlFor="grid-password">
-                                          ESTATUS*
+                                          Estatus*
                                           </label>
                                             <label class="relative inline-flex items-center cursor-pointer">
                                           <input [(ngModel)]="toggleValue" type="checkbox" value="true" class="sr-only peer" formControlName="estatus" >
@@ -158,7 +159,7 @@
                                             <button  [disabled]="!SocialForm.valid"
                                             [ngClass]="{'bg-gray-500': !SocialForm.valid, 'bg-purple-900': SocialForm.valid}"
                                             class="text-white py-2 px-4 rounded-md hover:bg-red-950 custom-button">
-                                      {{ isUpdating ? "ACTUALIZAR " : "AGREGAR " }}
+                                      {{ isUpdating ? "Actualizar" : "Agregar " }}
                                     </button>
 
                                         </div>
