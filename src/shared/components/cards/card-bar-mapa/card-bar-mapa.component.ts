@@ -35,6 +35,7 @@ export class CardBarMapaComponent {
       // Llama a la función que inicializa el mapa aquí
       this.mapa();
     });
+    this.obtenerProgramas();
   }
   
   
@@ -205,5 +206,13 @@ mapa() {
 console.error('Error al obtener beneficiarios:', error);
 }
 );
+}
+obtenerProgramas() {
+  this.programaService.getPrograma().subscribe(
+    (prograsmasocial: Prograsmasocial[]) => {
+      console.log('Datos:', prograsmasocial); 
+      this.prograsmasocial = prograsmasocial;
+    }
+  );
 }
 }

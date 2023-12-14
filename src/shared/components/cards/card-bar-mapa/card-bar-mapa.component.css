@@ -1,0 +1,28 @@
+.color-bubble {
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%;
+    margin-left: 10px;
+    display: inline-block;
+    border: 2px solid white; 
+  }
+  .color-picker {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    position: relative;
+    width: 100%;
+  }
+  
+  .color-picker:focus {
+    @apply ring ring-blue-300;
+  }
+  .color-bubble {
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%;
+    margin-left: 10px;
+    display: inline-block;
+    border: 2px solid white; 
+  }  
