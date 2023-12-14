@@ -6,7 +6,7 @@
         <!-- Button trigger modal -->
         <div class="flex justify-between">
           <div>
-            <button (click)="openModal()" class="min-w-140-px bg-purple-900 text-white py-2 pr-2 pl-2 rounded-md hover:bg-purple-950">Agregar Prograna</button>
+            <button (click)="openModal()" class="min-w-140-px bg-purple-900 text-white py-2 pr-2 pl-2 rounded-md hover:bg-purple-950">Agregar Programa</button><!-- se modifico YENNI-->
           </div>          
           <div>
             <div style="display: flex; align-items: center;">
@@ -27,7 +27,7 @@
               <div  class=" modal-content py-4 text-left px-6">
                 <div class="flex justify-between items-center pb-3">
                   <div>
-                    <p class="text-2xl font-bold -mr-56"> PROGRAMAS SOCIALES</p>
+                    <p class="text-2xl font-bold -mr-56"> Programas sociales</p><!-- ESTILO table YENNI-->
                   </div>
                   <div></div>
                   <div>
@@ -43,7 +43,7 @@
                 <div >
                     <form [formGroup]="SocialForm" (ngSubmit)="submit()">
                             <div>
-                              <label for="Nombre" class="lavel">NOMBRE*:</label>
+                              <label for="Nombre" class="lavel">Nombre*:</label><!-- ESTILO table YENNI-->
                                 <input class="input" type="text" formControlName="Nombre">
                                 <div *ngIf="SocialForm.get('Nombre')?.touched" class="error-message">
                                     <div *ngIf="SocialForm.get('Nombre')?.hasError('required')">
@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                  <label for="AreaAdscripcionId" class="lavel">ÁREA DE ADSCRIPCIÓN*:</label>
+                                  <label for="AreaAdscripcionId" class="lavel">Área de adscripción*:</label><!-- ESTILO table YENNI-->
                                 <select class="select" formControlName="AreaAdscripcionId">
                                   <option *ngFor="let area of areasadscripcion" [value]="area.id">{{ area.nombre }}</option>
                                   </select>
@@ -68,7 +68,7 @@
                                 </div>
                                 </div>
                                 
-                                <label for="nombre" class="lavel">ACRÓNIMO*:</label>
+                                <label for="nombre" class="lavel">Acrónimo*:</label><!-- ESTILO table YENNI-->
                                 <input class="input" type="text" formControlName="Acronimo">
                                 <div *ngIf="SocialForm.get('Acronimo')?.touched" class="error-message">
                                     <div *ngIf="SocialForm.get('Acronimo')?.hasError('required')">
@@ -83,14 +83,14 @@
                                 </div>
                                 <div class="grid gap-4 grid-cols-2">
                                   <div>
-                                    <label for="Color" class="lavel">COLOR*:</label>
+                                    <label for="Color" class="lavel">Color*:</label><!-- ESTILO table YENNI-->
                                     <input [(colorPicker)]="selectedColor" [style.background]="selectedColor" class="color-picker" (colorPickerChange)="updateColor($event)" formControlName="Color">
                                   </div>
                                   <div>
                                     <div class="w-full lg:w-6/12 px-4">
                                       <div class="relative w-full mb-3">
                                         <label class="lavel" htmlFor="grid-password">
-                                          ESTATUS*
+                                          Estatus* <!-- ESTILO table YENNI-->
                                         </label>
                                         <label class="relative inline-flex items-center cursor-pointer">
                                           <input [(ngModel)]="toggleValue" type="checkbox" value="true" class="sr-only peer" formControlName="Estatus" required>
@@ -107,11 +107,11 @@
                                 </div>
 
                             </div>
-                            <label for="Descripcion" class="lavel">DESCRIPCION*:</label>
+                            <label for="Descripcion" class="lavel">Descripción*:</label><!-- ESTILO table YENNI-->
                                 <textarea id="Descripcion" name="Descripcion" rows="2" class="custom-textarea" formControlName="Descripcion"></textarea>
                           <br>  
                           <br>      
-                          TODOS LOS CAMPOS MARCADOS CON * SON REQUERIDOS
+                          Todos los campos marcados con * son requeridos
                           <div class="flex justify-end">
                             <button type="submit" class="bg-purple-900 text-white py-2 px-4 rounded-md hover:bg-red-950 custom-button"
                             >
@@ -132,7 +132,7 @@
   </div>
  
 </div>
-<div class="block w-full overflow-x-auto"> 
+<div class="block w-full overflow-x-auto">
     <table class="items-center w-full bg-transparent border-collapse">
       <thead class="table-header">
         <tr>
@@ -142,7 +142,7 @@
           <th>Acrónimo</th>
           <th>Acciones</th>
         </tr>
-      </thead>
+      </thead> 
       <tbody class="custom-th">
         <tr class="custom-tr" *ngFor="let programa of prograsmasocial; let i = index"  [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
           <td>{{ programa.nombre }}</td>

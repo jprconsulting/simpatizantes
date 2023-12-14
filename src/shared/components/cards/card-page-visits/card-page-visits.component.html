@@ -260,12 +260,12 @@
               <tbody class="custom-th">
       
                 <tr class="custom-tr" *ngFor="let usuario of usuarios; let i = index" [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
-                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold">{{ usuario.nombre }}</td>
-                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold">{{ usuario.apellidoPaterno }}</td>
-                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold">{{ usuario.apellidoMaterno }}</td>
-                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold">{{ usuario.correo }}</td>
-                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold">{{ usuario.nombreRol }}</td>
-                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold">
+                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{ usuario.nombre }}</td> <!--se quito el font-semibold YENNI-->
+                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{ usuario.apellidoPaterno }}</td><!--se quito el font-semibold YENNI-->
+                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{ usuario.apellidoMaterno }}</td><!--se quito el font-semibold YENNI-->
+                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{ usuario.correo }}</td><!--se quito el font-semibold YENNI-->
+                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{ usuario.nombreRol }}</td>
+                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
                           <ng-container *ngIf="usuario.estatus; else elseEST">
                               <span class="badge bg-success me-1"></span>Activo
                           </ng-container>
