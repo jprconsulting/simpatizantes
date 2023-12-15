@@ -35,34 +35,39 @@
           </div>
       </div>
       <br><br><br><br><br><br><br>
-        <div class="">
-          <div class="center-container">
+      <style>
+        .card {
+          border: 3px solid #511e74; /* Color del borde */
+          border-radius: 12px; /* Radio de borde para hacerlo redondeado */
+          overflow: hidden; /* Evita que el contenido sobresalga del borde */
+        }
+      </style>
+      
+      <div class="container mx-auto mt-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <!-- Primer Beneficio -->
+          <div class="card bg-gradient-to-r from-purple-400 to-purple-600 text-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">Registro de Beneficiarios</h2>
+            <p>Desarrolla un portal en línea fácil de usar para el registro de beneficiarios.</p>
+            <p>Proporciona información clara sobre el propósito del programa, los criterios de elegibilidad y los beneficios ofrecidos.</p>
           </div>
-          <p></p>         
-          <div class="container mx-auto mt-8">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-              <!-- Primer Beneficio -->
-              <div class="bg-gradient-to-r from-purple-400 to-purple-600 text-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-xl font-semibold mb-4">Registro de Beneficiarios</h2>
-                <p>Desarrolla un portal en línea fácil de usar para el registro de beneficiarios.</p>
-                <p>Proporciona información clara sobre el propósito del programa, los criterios de elegibilidad y los beneficios ofrecidos.</p>
-              </div>
-          
-              <!-- Segundo Beneficio -->
-              <div class="bg-gradient-to-r from-purple-400 to-purple-600 text-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-xl font-semibold mb-4">Registro de Evidencias de Entrega</h2>
-                <p>Implementa un proceso de verificación eficiente para garantizar la elegibilidad.</p>
-                <p>Puedes colaborar con instituciones locales para verificar la información proporcionada.</p>
-              </div>
-          
-              <!-- Tercer Beneficio -->
-              <div class="bg-gradient-to-r from-purple-400 to-purple-600 text-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-xl font-semibold mb-4">Historial de Actividades</h2>
-                <p>Brinda a los beneficiarios la opción de mantener su historial anónima o compartirla públicamente según su preferencia.</p>
-                <p>Crea un historial que registre la participación de cada beneficiario en actividades específicas del programa a lo largo del tiempo.</p>
-              </div>
-            </div>
+      
+          <!-- Segundo Beneficio -->
+          <div class="card bg-gradient-to-r from-purple-400 to-purple-600 text-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">Registro de Evidencias de Entrega</h2>
+            <p>Implementa un proceso de verificación eficiente para garantizar la elegibilidad.</p>
+            <p>Puedes colaborar con instituciones locales para verificar la información proporcionada.</p>
           </div>
+      
+          <!-- Tercer Beneficio -->
+          <div class="card bg-gradient-to-r from-purple-400 to-purple-600 text-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">Historial de Actividades</h2>
+            <p>Brinda a los beneficiarios la opción de mantener su historial anónima o compartirla públicamente según su preferencia.</p>
+            <p>Crea un historial que registre la participación de cada beneficiario en actividades específicas del programa a lo largo del tiempo.</p>
+          </div>
+        </div>
+      </div>
+      
           
   </div>
 </div>
