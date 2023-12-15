@@ -145,7 +145,7 @@ export class CardPageVisitsComponent implements OnInit {
         this.mensajeService.mensajeError("Error al agregar usuario");
       }
     });
-  }
+
     this.mensajeService.mensajeError("Error al agregar usuario");
   }
 
