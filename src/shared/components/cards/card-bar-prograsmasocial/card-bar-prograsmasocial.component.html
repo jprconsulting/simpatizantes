@@ -7,13 +7,10 @@
         <div class="flex justify-between">
           <div>
             <button (click)="openModal()" class="min-w-140-px bg-purple-900 text-white py-2 pr-2 pl-2 rounded-md hover:bg-purple-950">Agregar Programa</button><!-- se modifico YENNI-->
-          </div>          
+          </div>
           <div>
             <div style="display: flex; align-items: center;">
-            <input class="border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-            type="text"
-            placeholder="Buscar"
-            (input)="aplicarFiltro()" />
+              <input class="border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" type="text" (input)="actualizarFiltro($event)" placeholder="Buscar" />
             </div>
           </div>
 
@@ -36,7 +33,7 @@
                         <path d="M6.83 6l-5 5L2 10.83 6.83 6 2 1.17 3.17 0 8 4.83 12.83 0 14 1.17 9.17 6 14 10.83 12.83 12 8 7.17 3.17 12 2 10.83 6.83 6z"></path>
                       </svg>
                     </button>
-                    
+
                   </div>
                 </div>
                 <!-- fomulario -->
@@ -110,8 +107,8 @@
                             </div>
                             <label for="Descripcion" class="lavel">Descripción*:</label><!-- ESTILO table YENNI-->
                                 <textarea id="Descripcion" name="Descripcion" rows="2" class="custom-textarea" formControlName="Descripcion"></textarea>
-                          <br>  
-                          <br>      
+                          <br>
+                          <br>
                           Todos los campos marcados con * son requeridos
                           <div class="flex justify-end">
                             <button type="submit"
@@ -123,7 +120,7 @@
                           </div>
                     </form>
                   </div>
-                  
+
               </div>
 
             </div>
@@ -133,7 +130,7 @@
     </div>
 
   </div>
- 
+
 </div>
 <div class="block w-full overflow-x-auto">
     <table class="items-center w-full bg-transparent border-collapse">
@@ -141,13 +138,13 @@
         <tr style="font-size: .3cm;">
           <th>Nombre</th>
           <th>Color</th>
-          <th>Estatus</th>
           <th>Acrónimo</th>
+          <th>Estatus</th>
           <th>Acciones</th>
         </tr>
-      </thead> 
+      </thead>
       <tbody class="custom-th">
-        <tr class="custom-tr" *ngFor="let programa of prograsmasocial; let i = index"  [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
+        <tr class="custom-tr" *ngFor="let programa of prograsmasocial; let prograsmasocial of filtrarProgramas(); let i = index"  [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
           <td style="font-size: .32cm;">{{ programa.nombre }}</td>
           <td style="font-size: .32cm;"><div class="color-circle" [style.backgroundColor]="programa.color"></div></td>
           <td style="font-size: .32cm;">{{ programa.acronimo }}</td>
@@ -174,7 +171,7 @@
           </td>
 
         </tr>
-        
+
       </tbody>
     </table>
 

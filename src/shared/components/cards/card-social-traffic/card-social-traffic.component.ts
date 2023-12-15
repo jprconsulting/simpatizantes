@@ -246,7 +246,7 @@ export class CardSocialTrafficComponent{
     this.formData = this.SocialForm.value;
     console.log(this.SocialForm.value);
   }
-  
+
 
   map() {
     const mapElement = document.getElementById("map-canvas");
@@ -442,7 +442,7 @@ mapa2(): void {
   const autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.bindTo('bounds', map);
   autocomplete.addListener("place_changed", function () {
-    
+
     const place = autocomplete.getPlace();
     if (!place.geometry) {
       window.alert("Autocomplete's returned place contains no geometry");
@@ -464,13 +464,13 @@ mapa2(): void {
     title: "Hello World!",
   });
 
-  
+
   const infoWindowOpenOptions = {
     map: map,
     anchor: marker1,
     shouldFocus: false
   };
-  
+
 }
 }
 exportarDatosAExcel() {
@@ -516,5 +516,22 @@ toggleEstatus() {
     estatusControl.setValue(estatusControl.value === 1 ? 0 : 1);
   }
 }
+
+buscar: string = '';
+beneficiarioFiltrado: any [] = [];
+
+filtrarBeneficiario():  any {
+    return this.beneficiarios.filter(beneficioario =>
+      beneficioario.nombres.toLowerCase().includes(this.buscar.toLowerCase(),) ||
+      beneficioario.apellidoMaterno.toLowerCase().includes(this.buscar.toLowerCase(),)||
+      beneficioario.apellidoMaterno.toLowerCase().includes(this.buscar.toLowerCase(),)||
+      beneficioario.curp.toLowerCase().includes(this.buscar.toLowerCase(),)
+    );
+
+  }
+  actualizarFiltro(event: any): void {
+    this.buscar = event.target.value;
+    this.beneficiarioFiltrado = this.filtrarBeneficiario();
+  }
 
 }
