@@ -66,12 +66,16 @@ export class CardSocialTrafficComponent{
   openModal(): void {
     this.showModal = true;
     this.toggleValue = true;
-    this.ResetForm();
+    if (!this.isUpdating) {
+      // Restablecer el formulario si no está en modo de actualización
+      this.ResetForm();
+    }
   }
 
   closeModal(): void {
     this.showModal = false;
     this.ResetForm();
+    this.isUpdating = false;
   }
   ngOnInit() {
     this.obtenerMunicipios();
@@ -207,28 +211,42 @@ export class CardSocialTrafficComponent{
       }
     );
   }
-
+  formatoFecha(fecha: string): string {
+    // Aquí puedes utilizar la lógica para formatear la fecha según tus necesidades
+    const fechaFormateada = new Date(fecha).toISOString().split('T')[0];
+    return fechaFormateada;
+  }
   setDataModalUpdate(beneficiario: Beneficiario) {
     this.isUpdating = true;
     this.idToUpdate2 = beneficiario.id;
+    const fechaFormateada = this.formatoFecha(beneficiario.fechaNacimiento);
+    console.log('nfjnvf',fechaFormateada);
     this.SocialForm.patchValue({
       id: beneficiario.id,
       nombres: beneficiario.nombres,
       apellidoPaterno: beneficiario.apellidoPaterno,
       apellidoMaterno: beneficiario.apellidoMaterno,
-      fechaNacimiento: beneficiario.fechaNacimiento,
+      fechaNacimiento: fechaFormateada,
       domicilio: beneficiario.domicilio,
-      sexo: beneficiario.sexo,
-      curp: beneficiario.curp,
+      estatus: beneficiario.estatus,
       latitud: beneficiario.latitud,
       longitud: beneficiario.longitud,
-      estatus: beneficiario.estatus,
       municipioId: beneficiario.municipioId,
-      programaSocialId: beneficiario.programaSocialId,
+      curp: beneficiario.curp,
+      sexo: beneficiario.sexo,
+      programaSocialId: beneficiario.programaSocialId
     });
+
+    this.formData = this.SocialForm.value;
+    console.log(this.SocialForm.value);
+    setTimeout(() => {
+      this.openModal();
+      this.mapa2();
+    }, 500);
     this.formData = this.SocialForm.value;
     console.log(this.SocialForm.value);
   }
+  
 
   map() {
     const mapElement = document.getElementById("map-canvas");
@@ -248,11 +266,52 @@ export class CardSocialTrafficComponent{
     const myLatlng = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
 
     const mapOptions = {
-      zoom: 15,
+      zoom: 13,
       scrollwheel: false,
       center: myLatlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      // ... (otros ajustes de estilo)
+      styles: [
+        {
+          featureType: "administrative",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#444444" }],
+        },
+        {
+          featureType: "landscape",
+          elementType: "all",
+          stylers: [{ color: "#f2f2f2" }],
+        },
+        {
+          featureType: "poi",
+          elementType: "all",
+          stylers: [{ visibility: "off" }],
+        },
+        {
+          featureType: "road",
+          elementType: "all",
+          stylers: [{ saturation: -100 }, { lightness: 45 }],
+        },
+        {
+          featureType: "road.highway",
+          elementType: "all",
+          stylers: [{ visibility: "simplified" }],
+        },
+        {
+          featureType: "road.arterial",
+          elementType: "labels.icon",
+          stylers: [{ visibility: "off" }],
+        },
+        {
+          featureType: "transit",
+          elementType: "all",
+          stylers: [{ visibility: "off" }],
+        },
+        {
+          featureType: "water",
+          elementType: "all",
+          stylers: [{ color: "#0ba4e2" }, { visibility: "on" }],
+        },
+      ],
     };
 
     const map = new google.maps.Map(mapElement, mapOptions);
@@ -313,6 +372,7 @@ export class CardSocialTrafficComponent{
   }
 
 mapa2(): void {
+  this.formData = this.SocialForm.value;
   const latitudControl = this.SocialForm.get('latitud');
   const longitudControl = this.SocialForm.get('longitud');
 
@@ -326,12 +386,51 @@ mapa2(): void {
     const mapElement = document.getElementById("map-canvas") || null;
     const myLatlng = new google.maps.LatLng(latitud, longitud);
     const mapOptions = {
-      zoom: 15,
+      zoom: 13,
       scrollwheel: false,
       center: myLatlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       styles: [
-        // ... tus estilos ...
+        {
+          featureType: "administrative",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#444444" }],
+        },
+        {
+          featureType: "landscape",
+          elementType: "all",
+          stylers: [{ color: "#f2f2f2" }],
+        },
+        {
+          featureType: "poi",
+          elementType: "all",
+          stylers: [{ visibility: "off" }],
+        },
+        {
+          featureType: "road",
+          elementType: "all",
+          stylers: [{ saturation: -100 }, { lightness: 45 }],
+        },
+        {
+          featureType: "road.highway",
+          elementType: "all",
+          stylers: [{ visibility: "simplified" }],
+        },
+        {
+          featureType: "road.arterial",
+          elementType: "labels.icon",
+          stylers: [{ visibility: "off" }],
+        },
+        {
+          featureType: "transit",
+          elementType: "all",
+          stylers: [{ visibility: "off" }],
+        },
+        {
+          featureType: "water",
+          elementType: "all",
+          stylers: [{ color: "#0ba4e2" }, { visibility: "on" }],
+        },
       ],
     };
 
@@ -343,7 +442,7 @@ mapa2(): void {
   const autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.bindTo('bounds', map);
   autocomplete.addListener("place_changed", function () {
-    infowindow.close();
+    
     const place = autocomplete.getPlace();
     if (!place.geometry) {
       window.alert("Autocomplete's returned place contains no geometry");
@@ -365,40 +464,13 @@ mapa2(): void {
     title: "Hello World!",
   });
 
-  const contentString = `
-  <div class="max-w-sm rounded overflow-hidden shadow-lg">
-    <img class="w-24 h-24 mb-3 rounded-full shadow-lg justify-center " src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeJH_SWkfpDpy8Y0yPzJ0-7UBwkt9RTSFXUw&usqp=CAU" alt="Sunset in the mountains">
-    <div class="px-6 py-4">
-      <div class="font-bold text-xl mb-2">Cristian Carreto Trejo</div>
-      <p class="text-gray-900 text-base">
-        Programa inscrito:
-        <p class="text-gray-700 text-base">
-        Asistencia Jurídica
-        </p>
-      </p>
-      <p class="text-gray-900 text-base">
-      Dirección:
-        <p class="text-gray-700 text-base">
-          Calle Cuauhtémoc, Tlaxcala
-        </p>
-      </p>
-    </div>
-    <div class="px-6 pt-4 pb-2">
-      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Teléfono: 246 218 4918</span>
-    </div>
-  </div>
-  `;
-  const infowindow = new google.maps.InfoWindow({
-    content: contentString,
-  });
+  
   const infoWindowOpenOptions = {
     map: map,
     anchor: marker1,
     shouldFocus: false
   };
-  google.maps.event.addListener(marker1, "click", function () {
-    infowindow.open(infoWindowOpenOptions, marker1);
-  });
+  
 }
 }
 exportarDatosAExcel() {
