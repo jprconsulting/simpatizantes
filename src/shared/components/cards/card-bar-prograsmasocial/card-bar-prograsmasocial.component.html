@@ -138,7 +138,7 @@
 <div class="block w-full overflow-x-auto">
     <table class="items-center w-full bg-transparent border-collapse">
       <thead class="table-header">
-        <tr>
+        <tr style="font-size: .3cm;">
           <th>Nombre</th>
           <th>Color</th>
           <th>Estatus</th>
@@ -148,11 +148,11 @@
       </thead> 
       <tbody class="custom-th">
         <tr class="custom-tr" *ngFor="let programa of prograsmasocial; let i = index"  [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
-          <td>{{ programa.nombre }}</td>
-          <td><div class="color-circle" [style.backgroundColor]="programa.color"></div></td>
-          <td>{{ programa.estatus ? 'Activo' : 'Inactivo' }}</td>
-          <td>{{ programa.acronimo }}</td>
-          <td>
+          <td style="font-size: .32cm;">{{ programa.nombre }}</td>
+          <td style="font-size: .32cm;"><div class="color-circle" [style.backgroundColor]="programa.color"></div></td>
+          <td style="font-size: .32cm;">{{ programa.acronimo }}</td>
+          <td style="font-size: .32cm;">{{ programa.estatus ? 'Activo' : 'Inactivo' }}</td>
+          <td style="font-size: .32cm;">
           <button (click)="borrar(programa.id, programa.nombre)">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />

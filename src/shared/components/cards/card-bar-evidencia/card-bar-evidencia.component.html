@@ -134,8 +134,8 @@
 </div>
 <div class="block w-full overflow-x-auto">
     <table class="items-center w-full bg-transparent border-collapse">
-      <thead>
-        <tr>
+      <thead class="table-header">
+        <tr style="font-size: .3cm;">
           <th class="table-header">
             #
           </th>
@@ -204,7 +204,8 @@
           </td>
 
         </tr>
-        
+        <!--  <tr class="custom-tr" *ngFor="let beneficiario of beneficiarios; let i = index"  [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">ESTILO table YENNI-->
+      
       </tbody>
     </table>
 
