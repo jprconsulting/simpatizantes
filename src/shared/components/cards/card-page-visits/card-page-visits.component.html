@@ -199,8 +199,7 @@
                                             Rol
                                           </label>
                                           <select formControlName="RolId" id="RolId"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                            <option value="1">Administrador</option>
-                                            <option value="2">Director</option>
+                                            <option *ngFor="let roles of roles" [value]="roles.id">{{ roles.nombreRol }}</option>
                                           </select><br>
                                           <div *ngIf="UsuarioForm.get('RolId')?.touched" class="error-message">
                                             <div *ngIf="UsuarioForm.get('RolId')?.hasError('required')">
@@ -214,7 +213,9 @@
                                       <div></div>
                                       <div></div>
                                       <div>
-                                        <button type="submit" class="bg-purple-900 text-white py-2 px-4 rounded-md hover:bg-red-950">
+                                        <button  [disabled]="!UsuarioForm.valid"
+                                        [ngClass]="{'bg-gray-500': !UsuarioForm.valid, 'bg-purple-900': UsuarioForm.valid}"
+                                        class="text-white py-2 px-4 rounded-md hover:bg-red-950 custom-button">
                                           {{ isUpdating ? "Actualizar " : "Agregar " }}
                                         </button>              </div>
                                     </div>
