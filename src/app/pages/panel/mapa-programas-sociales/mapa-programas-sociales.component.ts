@@ -5,11 +5,13 @@ MapModule(Highcharts);
 
 
 
+
 @Component({
   selector: 'app-mapa-programas-sociales',
   templateUrl: './mapa-programas-sociales.component.html',
   styleUrls: ['./mapa-programas-sociales.component.css']
 })
+
 export class MapaProgramasSocialesComponent {
   Highcharts: typeof Highcharts = Highcharts;
 
@@ -28,6 +30,7 @@ export class MapaProgramasSocialesComponent {
         align: 'right',
         verticalAlign: 'top'
       }
+      
     },
     navigator: {
       enabled: false
