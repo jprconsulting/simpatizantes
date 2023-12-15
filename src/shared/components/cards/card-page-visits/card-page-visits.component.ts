@@ -136,7 +136,7 @@ export class CardPageVisitsComponent implements OnInit {
   }
     this.mensajeService.mensajeError("Error al agregar usuario");
   }
-  
+
 
   submit() {
     if (this.isUpdating) {
@@ -206,6 +206,22 @@ export class CardPageVisitsComponent implements OnInit {
     a.download = nombreArchivo;
     a.click();
     window.URL.revokeObjectURL(url);
+  }
+  buscar: string = '';
+  usuarioFiltrado: any [] = [];
+
+  filtrarUsuarios():  any {
+    return this.usuarios.filter(usuario =>
+      usuario.nombre.toLowerCase().includes(this.buscar.toLowerCase(),) ||
+      usuario.apellidoMaterno.toLowerCase().includes(this.buscar.toLowerCase(),)||
+      usuario.apellidoMaterno.toLowerCase().includes(this.buscar.toLowerCase(),)||
+      usuario.correo.toLowerCase().includes(this.buscar.toLowerCase(),)
+    );
+
+  }
+  actualizarFiltro(event: any): void {
+    this.buscar = event.target.value;
+    this.usuarioFiltrado = this.filtrarUsuarios();
   }
 }
 

@@ -22,8 +22,7 @@
                         <path d="M9 19l3 3l3 -3" />
                       </svg>
                     </button>
-
-                      <input class="border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" type="text" placeholder="Buscar" />
+                      <input class="border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" type="text" (input)="actualizarFiltro($event)" placeholder="Buscar" />
                   </div>
               </div>
               <!-- modal -->
@@ -186,10 +185,10 @@
                                                   <div *ngIf="UsuarioForm.get('estatus')?.hasError('required')">El estatus es obligatorio</div>
                                               </div>
 
-                                            
+
 
                                         </div>
-                                        
+
                                       </div>
                                       <div class="grid gap-x-8 gap-y-4 grid-cols-3">
                                         <div>
@@ -210,7 +209,7 @@
                                           </div>
                                         </div>
                                       </div>
-                                      
+
                                     <div class="flex justify-between">
                                       <div></div>
                                       <div></div>
@@ -232,9 +231,9 @@
 
       </div>
       <br><br>
-      
+
   </div>
-  <div class="block w-full overflow-x-auto"> 
+  <div class="block w-full overflow-x-auto">
     <!-- Projects table -->
     <table class="items-center w-full bg-transparent border-collapse">
       <thead class="table-header">
@@ -250,7 +249,7 @@
         </thead>
         <tbody class="custom-th">
 
-          <tr class="custom-tr" *ngFor="let usuario of usuarios; let i = index" [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
+          <tr class="custom-tr" *ngFor="let usuario of usuarios;let usuarios of filtrarUsuarios(); let i = index" [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
                 <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{ usuario.nombre }}</td> <!--se quito el font-semibold YENNI-->
                 <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{ usuario.apellidoPaterno }}</td><!--se quito el font-semibold YENNI-->
                 <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{ usuario.apellidoMaterno }}</td><!--se quito el font-semibold YENNI-->
