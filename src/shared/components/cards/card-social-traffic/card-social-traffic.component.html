@@ -142,8 +142,9 @@
                                                     <label class="block  text-blueGray-600 text-xs font-bold mb-2" formControlName="domicilio"> <!--se quito el uppercaseYENNI-->
                                                   Ubicar en el mapa*:
                                                 </label>
-                                                    <input id="searchInput" class="controls border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" type="text" placeholder="Enter a location"
-                                                        (input)="map()" />
+                                                <input id="searchInput" formControlName="domicilio" class="controls border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" type="text" placeholder="Enter a location"
+                                                (input)="map()" />
+                                            
                                                 </div>
                                                 <br>
                                                 <div class="col-md-9">
@@ -196,7 +197,7 @@
                     <td style="font-size: .32cm;">{{ beneficiario.nombres }}</td>
                     <td style="font-size: .32cm;">{{ beneficiario.apellidoPaterno }}</td>
                     <td style="font-size: .32cm;">{{ beneficiario.apellidoMaterno }}</td>
-                    <td style="font-size: .32cm;">{{ beneficiario.fechaNacimiento }}</td>
+                    <td style="font-size: .32cm;">{{ beneficiario.fechaNacimiento | date:'yyyy-MM-dd' }}</td>
                     <td style="font-size: .32cm;">{{ beneficiario.curp }}</td>
                     <td style="font-size: .32cm;">{{ sexos[beneficiario.sexo] }}</td>
                     <td style="font-size: .32cm;">{{ beneficiario.domicilio }}</td>

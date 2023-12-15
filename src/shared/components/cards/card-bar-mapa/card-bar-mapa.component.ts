@@ -43,7 +43,9 @@ export class CardBarMapaComponent {
 
   }
   
-
+dato(){
+  this.select ="";
+}
     filtrarPorPrograma(event: any) {
       console.log('Valor seleccionado:', event.target.value);
       const programaSocialId = event.target.value;
