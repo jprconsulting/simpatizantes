@@ -22,7 +22,7 @@ export class CardBarPrograsmasocialComponent implements OnInit {
   isUpdating: boolean = false;
   id!: number;
   nombre!: string;
-  programasFiltrados: Prograsmasocial[] = []; 
+  programasFiltrados: Prograsmasocial[] = [];
   filtroTexto: string = '';
   toggleValue = true;
 
@@ -62,12 +62,12 @@ export class CardBarPrograsmasocialComponent implements OnInit {
     this.selectedColor = '';
     this.ResetForm();
   }
-  
+
   ngOnInit() {
     this.obtenerA();
     this.obtenerProgramas();
     this.aplicarFiltro();
-    
+
   }
 
   ResetForm() {
@@ -79,23 +79,23 @@ export class CardBarPrograsmasocialComponent implements OnInit {
   agregar() {
     // Copia los valores del formulario
     const socialFormValue = { ...this.SocialForm.value };
-  
+
     // Elimina el campo 'id' del objeto
     delete socialFormValue.id;
-  
+
     console.log('Valor del campo Color:', socialFormValue);
-  
+
     // Convertir AreaAdscripcionId a número
     socialFormValue.AreaAdscripcionId = +socialFormValue.AreaAdscripcionId;
-  
+
     const selectedArea = this.areasadscripcion.find(area => area.id === socialFormValue.AreaAdscripcionId);
-  
+
     // Verificar que la área seleccionada existe
     if (selectedArea) {
       // Asignar el nombre de la área al objeto socialFormValue
       socialFormValue.areaAdscripcion = selectedArea.nombre;
     }
-  
+
     this.programaService.postPrograma(socialFormValue).subscribe({
       next: () => {
         this.ResetForm();
@@ -108,10 +108,10 @@ export class CardBarPrograsmasocialComponent implements OnInit {
       }
     });
   }
-  
-  
-  
-  
+
+
+
+
   updateColor(newColor: string) {
     // Asegúrate de que SocialForm no sea nulo
     if (this.SocialForm) {
@@ -125,7 +125,7 @@ export class CardBarPrograsmasocialComponent implements OnInit {
   }
   toggleEstatus() {
     const estatusControl = this.SocialForm.get('Estatus');
-  
+
     if (estatusControl) {
       estatusControl.setValue(estatusControl.value === 1 ? 0 : 1);
     }
@@ -137,14 +137,14 @@ export class CardBarPrograsmasocialComponent implements OnInit {
           console.log('Datos:', areasadscripcion);
           this.areasadscripcion = areasadscripcion;
         },
-        
+
       );
-    } 
+    }
   }
   obtenerProgramas() {
     this.programaService.getPrograma().subscribe(
       (prograsmasocial: Prograsmasocial[]) => {
-        console.log('Datos:', prograsmasocial); 
+        console.log('Datos:', prograsmasocial);
         this.prograsmasocial = prograsmasocial;
       }
     );
@@ -172,17 +172,17 @@ export class CardBarPrograsmasocialComponent implements OnInit {
       }
     );
   }
-  idToUpdate2!: number; 
+  idToUpdate2!: number;
 
   actualizar() {
     const socialFormValue = { ...this.SocialForm.value };
     console.log('Valor del campo Color:', socialFormValue);
-  
+
     // Convertir AreaAdscripcionId a número
     socialFormValue.AreaAdscripcionId = +socialFormValue.AreaAdscripcionId;
-  
+
     const selectedArea = this.areasadscripcion.find(area => area.id === socialFormValue.AreaAdscripcionId);
-  
+
     // Verificar que la área seleccionada existe
     if (selectedArea) {
       // Asignar el nombre de la área al objeto socialFormValue
@@ -190,7 +190,7 @@ export class CardBarPrograsmasocialComponent implements OnInit {
     }
     console.log('ferwohfw',this.idToUpdate2);
     this.programaService.putPrograma(this.idToUpdate2, socialFormValue).subscribe({
-      
+
       next: () => {
         this.mensajeService.mensajeExito("Programa social actualizado con éxito");
         this.ResetForm();
@@ -205,7 +205,7 @@ export class CardBarPrograsmasocialComponent implements OnInit {
       }
     });
   }
-  
+
   get isFormDirty(): boolean {
     return Object.values(this.SocialForm.controls).some(control => control.value !== null && control.value !== undefined && control.value !== '');
   }
@@ -244,8 +244,21 @@ aplicarFiltro() {
     programa.nombre.toLowerCase().includes(this.filtroTexto.toLowerCase())
   );
 }
+buscar: string = '';
+programaFiltrado: any [] = [];
 
+filtrarProgramas():  any {
+  return this.prograsmasocial.filter(programasocial =>
+    programasocial.nombre.toLowerCase().includes(this.buscar.toLowerCase(),) ||
+    programasocial.acronimo.toLowerCase().includes(this.buscar.toLowerCase(),) ||
+    programasocial.color.toLowerCase().includes(this.buscar.toLowerCase(),)
+  );
+
+}
+actualizarFiltro(event: any): void {
+  this.buscar = event.target.value;
+  this.programaFiltrado = this.filtrarProgramas();
+}
 
 
 }
-  

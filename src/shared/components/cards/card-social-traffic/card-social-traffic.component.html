@@ -20,7 +20,7 @@
                 <path d="M9 19l3 3l3 -3" />
               </svg>
             </button>
-                        <input class="border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" type="text" placeholder="Buscar" />
+                        <input class="border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" type="text" (input)="actualizarFiltro($event)" placeholder="Buscar" />
                     </div>
                 </div><br><br>
                 <!-- modal -->
@@ -51,7 +51,7 @@
                                         <div class="grid grid-cols-3 gap-4">
                                             <div>
                                                 <label class="block  text-blueGray-600 text-xs font-bold mb-2" htmlFor="nombre">Nombre(s)*:</label> <!--se quito el uppercaseYENNI-->
-                                                
+
                                                 <input required id="nombres" type="text" formControlName="nombres" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value=""
                                                 />
                                                 <div *ngIf="SocialForm.get('Nombre')?.touched" class="error-message">
@@ -144,7 +144,7 @@
                                                 </label>
                                                 <input id="searchInput" formControlName="domicilio" class="controls border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" type="text" placeholder="Enter a location"
                                                 (input)="map()" />
-                                            
+
                                                 </div>
                                                 <br>
                                                 <div class="col-md-9">
@@ -175,7 +175,7 @@
             </div>
 
         </div>
-        
+
     </div>
     <div class="block w-full overflow-x-auto">    <!-- ESTILO table YENNI-->
         <!-- Projects table -->
@@ -193,7 +193,7 @@
                 </tr>
             </thead>
             <tbody class="custom-th"><!-- ESTILO table YENNI-->
-                <tr class="custom-tr" *ngFor="let beneficiario of beneficiarios; let i = index"  [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}"><!-- ESTILO table YENNI-->
+                <tr class="custom-tr" *ngFor="let beneficiario of beneficiarios; let benef of filtrarBeneficiario(); let i = index"  [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}"><!-- ESTILO table YENNI-->
                     <td style="font-size: .32cm;">{{ beneficiario.nombres }}</td>
                     <td style="font-size: .32cm;">{{ beneficiario.apellidoPaterno }}</td>
                     <td style="font-size: .32cm;">{{ beneficiario.apellidoMaterno }}</td>
