@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import MapModule from 'highcharts/modules/map';
+import { BeneficiarioMunicipio } from '../../models/beneficiariomunicipios';
+import { MunicipiosService } from '../../core/services/municipios.service';
+
 MapModule(Highcharts);
 
 
@@ -14,10 +17,40 @@ MapModule(Highcharts);
 
 export class MapaProgramasSocialesComponent {
   Highcharts: typeof Highcharts = Highcharts;
-
+  beneficiarioMunicipio: BeneficiarioMunicipio [] = [];
   chartMapImage!: unknown;
 
+  constructor(
+    private municipiosService: MunicipiosService,
+    ) {}
 
+    ngOnInit() {
+      this.obtenerMunicipios()
+    }
+
+    obtenerMunicipios() {
+      if (this.municipiosService) {
+        this.municipiosService.getBeneficiariosMunicipio().subscribe(
+          (beneficiarioMunicipio: BeneficiarioMunicipio[]) => {
+            console.log('Datos de municipios recibidos:', beneficiarioMunicipio);
+            this.beneficiarioMunicipio = beneficiarioMunicipio;
+            this.beneficiarioMunicipio = beneficiarioMunicipio.map(beneficiarioMunicipio => ({
+              id: beneficiarioMunicipio.id,
+              nombre: beneficiarioMunicipio.id.toString(),
+              label: beneficiarioMunicipio.nombre,
+              totalBeneficiarios:beneficiarioMunicipio.totalBeneficiarios,
+              color:beneficiarioMunicipio.color,
+              descripcionIndicador:beneficiarioMunicipio.descripcionIndicador,
+            }));
+          },
+          (error: any) => {
+            console.error('Error al obtener municipios:', error);
+          }
+        );
+      } else {
+        console.error('El servicio de municipios no está definido.');
+      }
+    }
   chartMap: Highcharts.Options = {
     chart: {
       backgroundColor: '#F8F9F9'
@@ -30,7 +63,7 @@ export class MapaProgramasSocialesComponent {
         align: 'right',
         verticalAlign: 'top'
       }
-      
+
     },
     navigator: {
       enabled: false
@@ -89,15 +122,15 @@ export class MapaProgramasSocialesComponent {
       pointFormat:
         `<div style="width: 360px; height: 120px; background: #ffffff; box-shadow: 0px 0px 12px 2px rgba(0,0,0,0.40); border-radius: 10px; opacity: 1;">
         <div style="width: 20px; height: 100%; box-sizing: border-box; float: left; background-color: {point.color}; border-radius: 10px 0px 0px 10px;"></div>
-        <div class="d-flex align-items-center" style="padding: 5px; box-sizing: border-box; height: 60px; width: 340px; float: left;background: #fff;border-radius: 0px 10px 0px 0px;"> 
+        <div class="d-flex align-items-center" style="padding: 5px; box-sizing: border-box; height: 60px; width: 340px; float: left;background: #fff;border-radius: 0px 10px 0px 0px;">
         <img src="assets/img/logos-partidos/{point.candidatura}.png" onerror="this.src='assets/img/logos-partidos/SG.png'" height="30">
-        </div>    
+        </div>
         <div style="padding: 5px; float: left;box-sizing: border-box; width: 340px; height: 60px; background: #f7f7f7; border-radius: 0px 0px 10px 0px;">
           <div class="d-flex flex-row justify-content-between w-100">
-            <span class="px14 text-bold">Municipio</span>      
+            <span class="px14 text-bold">Municipio</span>
             <a class="txRosaIne" href="{point.ruta}"  ><span class="txRosaIne px12 text-bold" style="width: 40%; text-decoration: underline;">Ver detalle</span></a>
           </div>
-          <span class="px15 text-bold align-self-center" style="width: 60%;">{point.name}</span>       
+          <span class="px15 text-bold align-self-center" style="width: 60%;">{point.name}</span>
         </div>
       </div>`
     },

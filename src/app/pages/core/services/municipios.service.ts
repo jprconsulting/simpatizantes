@@ -5,6 +5,7 @@ import { catchError, tap} from 'rxjs/operators';
 import { Municipios } from '../../models/municipios';
 import { environment } from 'src/environment/environment';
 import { Injectable } from '@angular/core';
+import { BeneficiarioMunicipio } from '../../models/beneficiariomunicipios';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,11 @@ export class MunicipiosService {
       catchError(this.handleErrorService.handleError)
     );
   }
-  
+
+  getBeneficiariosMunicipio():Observable<BeneficiarioMunicipio[]> {
+    return this.http.get<BeneficiarioMunicipio[]>(`${this.route}/obtener-indicador`).pipe(
+      catchError(this.handleErrorService.handleError)
+    );
+  }
+
 }
