@@ -29,6 +29,7 @@ body {
   border-color: #e2e8f0;
   border-radius: 0.375rem;
   width: 100%;
+  
 }
 
 .select {
@@ -103,19 +104,19 @@ body {
   display: inline-block;
   border: 2px solid white; /* Añade un borde blanco para mayor visibilidad */
 }
-
+/*Aqui inician el estilo de las tablas */
 .table-header {
   background-color: #4f0d6b;
-  color: #ffffff;
+  color: #ffffff; 
   height: 32px;
 }
 
-/* Table Cells */
+
 .table-cell {
-  padding: 0.75rem; /* Padding for cells */
-  text-align: left; /* Text alignment */
-  font-size: 0.75rem; /* Font size */
-  white-space: nowrap; /* Prevent text wrapping */
+  padding: 0.75rem; 
+  text-align: left;
+  font-size: 0.75rem;
+  white-space: nowrap; 
 }
 .custom-table-header {
   border-t: 0;
@@ -127,14 +128,27 @@ body {
 }
 
 .custom-table-row {
-  border-bottom: 1px solid #d2c9d8; /* Cambia el color a tu preferencia */
+  border-bottom: 1px solid #d2c9d8;
 }
 .custom-table-row:hover {
-  background-color: #ddd1dd; /* Cambia el color a tu preferencia */
+  background-color: #ddd1dd;
 }
-.error-message {
-  color: #e53e3e;
-  font-size: 0.875rem;
+
+.custom-th {
+  border-top: 0;
+  padding-left: 6px;
+  vertical-align: middle;
+  border-left: 0;
+  height: 42px;
+  border-right: 0;
+  font-size: 0.90rem; 
+  white-space: nowrap;
+  padding: 4px;
+  text-align: center;
+}
+
+.custom-tr {
+  height: 55px;
 }
 
 

@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AreasadscripcionService } from "src/app/pages/core/services/areasadscripcion.service";
 import { MensajeService } from "src/app/pages/core/services/mensaje.service";
 import { Areasadscripcion } from "src/app/pages/models/areasadscripcion";
-import { FormsModule } from '@angular/forms';
 import * as XLSX from 'xlsx';
+
 
 @Component({
   selector: "app-card-areas",
@@ -18,6 +18,7 @@ export class CardAreasComponent implements OnInit {
   formData: any;
   toggleValue = true;
   buscar: string = '';
+  areasFiltradas: any [] = [];
   constructor(
     private areasadscripcionService: AreasadscripcionService,
     private formBuilder: FormBuilder,
@@ -51,6 +52,7 @@ export class CardAreasComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerAreas();
+    this.areasFiltradas = this.areasadscripcion;
   }
 
   obtenerAreas(): void {
@@ -164,31 +166,31 @@ export class CardAreasComponent implements OnInit {
       areas.nombre.toLowerCase().includes(filtroLowerCase) ||
       areas.descripcion.toLowerCase().includes(filtroLowerCase)
     );
-    
+
     }
     exportarDatosAExcel() {
       if (this.areasadscripcion.length === 0) {
         console.warn('La lista de usuarios está vacía. No se puede exportar.');
         return;
       }
-  
+
       const datosParaExportar = this.areasadscripcion.map(areasadscripcion => {
         return {
           'ID': areasadscripcion.id,
           'Nombre': areasadscripcion.nombre,
           'Descripcion': areasadscripcion.descripcion,
           'Estatus': areasadscripcion.estatus,
-          
+
         };
       });
-  
+
       const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(datosParaExportar);
       const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
       const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-  
+
       this.guardarArchivoExcel(excelBuffer, 'areas_adscripcion.xlsx');
     }
-  
+
     guardarArchivoExcel(buffer: any, nombreArchivo: string) {
       const data: Blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
       const url: string = window.URL.createObjectURL(data);
@@ -197,6 +199,27 @@ export class CardAreasComponent implements OnInit {
       a.download = nombreArchivo;
       a.click();
       window.URL.revokeObjectURL(url);
+    }
+
+    areas: any[] = [
+      // Llama a un método de tu servicio para obtener los usuarios desde la base de datos
+      this.areasadscripcionService.getAreasadscripcion().subscribe((data: any) => {
+        this.areas = data;
+        console.log(data)
+      })
+    ];
+
+    filtrarAreas():  any {
+      return this.areasadscripcion.filter(area =>
+        area.nombre.toLowerCase().includes(this.buscar.toLowerCase(),)||
+        area.descripcion.toLowerCase().includes(this.buscar.toLowerCase(),)
+      );
+
+    }
+
+    actualizarFiltro(event: any): void {
+      this.buscar = event.target.value;
+      this.areasFiltradas = this.filtrarAreas();
     }
   }
 

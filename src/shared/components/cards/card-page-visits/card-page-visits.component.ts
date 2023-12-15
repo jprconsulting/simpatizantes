@@ -39,6 +39,7 @@ export class CardPageVisitsComponent implements OnInit {
 
   showModal = false;
   usuarios: Usuarios[] = [];
+  roles: Roles[] = [];
 
   openModal(): void {
     this.showModal = true;
@@ -57,6 +58,7 @@ export class CardPageVisitsComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerUsuarios();
+    this.obtenerRol();
   }
   ResetForm() {
     this.UsuarioForm.reset();
@@ -78,6 +80,17 @@ export class CardPageVisitsComponent implements OnInit {
       },
       (error) => {
         console.error('Error al obtener usuarios:', error);
+      }
+    );
+  }
+  obtenerRol(): void {
+    this.usuariosService.getRoles().subscribe(
+      (roles) => {
+        this.roles = roles;
+        console.log('estos son los roles',roles);
+      },
+      (error) => {
+        console.error('Error al obtener roles:', error);
       }
     );
   }
@@ -119,7 +132,6 @@ export class CardPageVisitsComponent implements OnInit {
 
 
   agregar() {
-    if (this.UsuarioForm.valid) {
     const usuarioFormValue = { ...this.UsuarioForm.value };
     delete usuarioFormValue.id;
     this.usuariosService.postUsuario(usuarioFormValue).subscribe({
@@ -133,10 +145,10 @@ export class CardPageVisitsComponent implements OnInit {
         this.mensajeService.mensajeError("Error al agregar usuario");
       }
     });
-  }
+
     this.mensajeService.mensajeError("Error al agregar usuario");
   }
-  
+
 
   submit() {
     if (this.isUpdating) {
@@ -206,6 +218,22 @@ export class CardPageVisitsComponent implements OnInit {
     a.download = nombreArchivo;
     a.click();
     window.URL.revokeObjectURL(url);
+  }
+  buscar: string = '';
+  usuarioFiltrado: any [] = [];
+
+  filtrarUsuarios():  any {
+    return this.usuarios.filter(usuario =>
+      usuario.nombre.toLowerCase().includes(this.buscar.toLowerCase(),) ||
+      usuario.apellidoMaterno.toLowerCase().includes(this.buscar.toLowerCase(),)||
+      usuario.apellidoMaterno.toLowerCase().includes(this.buscar.toLowerCase(),)||
+      usuario.correo.toLowerCase().includes(this.buscar.toLowerCase(),)
+    );
+
+  }
+  actualizarFiltro(event: any): void {
+    this.buscar = event.target.value;
+    this.usuarioFiltrado = this.filtrarUsuarios();
   }
 }
 

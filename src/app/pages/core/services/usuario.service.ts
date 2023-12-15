@@ -19,7 +19,7 @@ export class UsuariosService {
   ) { }
 
   getRoles(): Observable<Roles[]> {
-    return this.http.get<Roles[]>(`${this.route}/GetRols`).pipe(
+    return this.http.get<Roles[]>(`${this.route2}`).pipe(
       catchError(this.handleErrorService.handleError)
     );
   }

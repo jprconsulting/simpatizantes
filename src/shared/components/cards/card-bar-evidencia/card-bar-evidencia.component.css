@@ -4,9 +4,7 @@ body {
     font-family: 'sans-serif';
   }
   .modal-container {
-    margin-top: 5%; 
-    border-bottom-width: 50px;
-    padding-bottom: 10px;
+    margin-top: 4%; 
   }
   .container {
     margin-left: auto;
@@ -74,34 +72,54 @@ body {
     border-radius: 0.375rem;
     resize: none; 
   }
-  .table-header {
-    background-color: #4f0d6b;
-    color: #ffffff; 
-    height: 32px;
-  }
-  
-  /* Table Cells */
-  .table-cell {
-    padding: 0.75rem; /* Padding for cells */
-    text-align: left; /* Text alignment */
-    font-size: 0.75rem; /* Font size */
-    white-space: nowrap; /* Prevent text wrapping */
-  }
-  .custom-table-header {
-    border-t: 0;
-    border-l: 0;
-    border-right: 0;
-    font-size: 0.5rem;
-    font-weight: bold;
-    padding: 4px;
-  }
-  
-  .custom-table-row {
-    border-bottom: 1px solid #d2c9d8; /* Cambia el color a tu preferencia */
-  }
-  .custom-table-row:hover {
-    background-color: #ddd1dd; /* Cambia el color a tu preferencia */
-  }
+  /*Aqui inician el estilo de las tablas */
+.table-header {
+  background-color: #4f0d6b;
+  color: #ffffff; 
+  height: 32px;
+  text-align: middle;
+}
+
+
+
+.table-cell {
+  padding: 0.75rem; 
+  text-align: left;
+  font-size: 0.75rem;
+  white-space: nowrap; 
+}
+.custom-table-header {
+  border-t: 0;
+  border-l: 0;
+  border-right: 0;
+  font-size: 0.5rem;
+  font-weight: bold;
+  padding: 4px;
+}
+
+.custom-table-row {
+  border-bottom: 1px solid #d2c9d8;
+}
+.custom-table-row:hover {
+  background-color: #ddd1dd;
+}
+
+.custom-th {
+  border-top: 0;
+  padding-left: 6px;
+  vertical-align: middle;
+  border-left: 0;
+  height: 42px;
+  border-right: 0;
+  font-size: 0.90rem; 
+  white-space: nowrap;
+  padding: 4px;
+  text-align: center;
+}
+
+.custom-tr {
+  height: 55px;
+}
   .input[type="file"] {
     margin-top: 0.25rem;
     padding: 0.5rem;

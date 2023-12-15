@@ -24,7 +24,7 @@
             <div class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200">
                 <div class="flex flex-wrap">
                     <div class="w-6/12">
-                        <a [routerLink]="['/']" class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
+                        <a [routerLink]="['/']" class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm  font-bold p-4 px-0">
               Notus Angular
             </a>
                     </div>
@@ -48,7 +48,7 @@
 
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                 <li class="items-center">
-                    <a [routerLink]="['bienvenida']" class="text-xs uppercase py-3 font-bold block" routerLinkActive #adminDashboard="routerLinkActive" [ngClass]="
+                    <a [routerLink]="['bienvenida']" class="text-xs  py-3 font-bold block" routerLinkActive #adminDashboard="routerLinkActive" [ngClass]="
               adminDashboard.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
@@ -60,7 +60,7 @@
                 </li>
 
                 <li class="items-center">
-                    <a [routerLink]="['dashboard']" class="text-xs uppercase py-3 font-bold block" routerLinkActive #tablero="routerLinkActive" [ngClass]="
+                    <a [routerLink]="['dashboard']" class="text-xs py-3 font-bold block" routerLinkActive #tablero="routerLinkActive" [ngClass]="
               tablero.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
@@ -72,7 +72,7 @@
                 </li>
 
                 <li class="items-center">
-                    <a [routerLink]="['usuarios']" class="text-xs uppercase py-3 font-bold block" routerLinkActive #usuarios="routerLinkActive" [ngClass]="
+                    <a [routerLink]="['usuarios']" class="text-xs  py-3 font-bold block" routerLinkActive #usuarios="routerLinkActive" [ngClass]="
               usuarios.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
@@ -84,7 +84,7 @@
                 </li>
 
                 <li class="items-center">
-                    <a [routerLink]="['areas']" class="text-xs uppercase py-3 font-bold block" routerLinkActive #adminTables="routerLinkActive" [ngClass]="
+                    <a [routerLink]="['areas']" class="text-xs py-3 font-bold block" routerLinkActive #adminTables="routerLinkActive" [ngClass]="
               adminTables.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
@@ -97,7 +97,7 @@
 
 
                 <li class="items-center">
-                    <a [routerLink]="['maps']" class="text-xs uppercase py-3 font-bold block" routerLinkActive #adminMaps="routerLinkActive" [ngClass]="
+                    <a [routerLink]="['maps']" class="text-xs  py-3 font-bold block" routerLinkActive #adminMaps="routerLinkActive" [ngClass]="
               adminMaps.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
@@ -109,7 +109,7 @@
                 </li>
 
                 <li class="items-center">
-                    <a [routerLink]="['beneficiario']" class="text-xs uppercase py-3 font-bold block" routerLinkActive  #beneficiario="routerLinkActive" [ngClass]="
+                    <a [routerLink]="['beneficiario']" class="text-xs  py-3 font-bold block" routerLinkActive  #beneficiario="routerLinkActive" [ngClass]="
               beneficiario.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
@@ -120,7 +120,7 @@
                     </a>
                 </li>
                 <li class="items-center">
-                    <a [routerLink]="['programasocial']" class="text-xs uppercase py-3 font-bold block" routerLinkActive  #programas="routerLinkActive" [ngClass]="
+                    <a [routerLink]="['programasocial']" class="text-xs  py-3 font-bold block" routerLinkActive  #programas="routerLinkActive" [ngClass]="
               programas.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
@@ -131,7 +131,7 @@
                     </a>
                 </li>
                 <li class="items-center">
-                    <a [routerLink]="['mapa-programas-sociales']" class="text-xs uppercase py-3 font-bold block" routerLinkActive  #mapsocial="routerLinkActive" [ngClass]="
+                    <a [routerLink]="['mapa-programas-sociales']" class="text-xs py-3 font-bold block" routerLinkActive  #mapsocial="routerLinkActive" [ngClass]="
               mapsocial.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
@@ -142,7 +142,7 @@
                     </a>
                 </li>
                 <li class="items-center">
-                    <a [routerLink]="['evidencias']" class="text-xs uppercase py-3 font-bold block" routerLinkActive  #evidencias="routerLinkActive" [ngClass]="
+                    <a [routerLink]="['evidencias']" class="text-xs py-3 font-bold block" routerLinkActive  #evidencias="routerLinkActive" [ngClass]="
               evidencias.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
@@ -153,7 +153,7 @@
                     </a>
                 </li>
                 <li class="items-center">
-                  <a [routerLink]="['nube-palabras']" class="text-xs uppercase py-3 font-bold block" routerLinkActive #palabras="routerLinkActive" [ngClass]="
+                  <a [routerLink]="['nube-palabras']" class="text-xs  py-3 font-bold block" routerLinkActive #palabras="routerLinkActive" [ngClass]="
             palabras.isActive
               ? 'text-purple-900 hover:text-purple-900'
               : 'text-blueGray-700 hover:text-blueGray-500'
@@ -163,6 +163,17 @@
             "></i> Nube de palabras
                   </a>
               </li>
+              <li class="items-center">
+                <a [routerLink]="['mapaben']" class="text-xs  py-3 font-bold block" routerLinkActive  #mapaben="routerLinkActive" [ngClass]="
+          mapaben.isActive
+            ? 'text-purple-900 hover:text-purple-900'
+            : 'text-blueGray-700 hover:text-blueGray-500'
+        ">
+                    <i class="fas fa-map-marked mr-2 text-sm" [ngClass]="
+            mapaben.isActive ? 'opacity-75' : 'text-blueGray-300'
+          "></i> Mapa Beneficiario
+                </a>
+            </li>
 
             </ul>
         </div>
