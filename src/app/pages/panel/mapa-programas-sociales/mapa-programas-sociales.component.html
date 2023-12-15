@@ -1,12 +1,365 @@
-<div class="flex flex-wrap">
-  <div class="w-full px-4">
-    <highcharts-chart
-      [Highcharts]="Highcharts"
-      [constructorType]="'mapChart'"
-      [options]="chartMap"
-      id="baseMap"
-      style="width: 100%; height: 650px; display: block"
-    >
-    </highcharts-chart>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabla con Colores y Mapa</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Agrega los estilos de Highcharts -->
+  <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+  <style>
+    .color-cell {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #ccc;
+    }
+
+    #baseMap {
+      width: 100%;
+      height: 650px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <!-- Mapa -->
+  <div class="flex flex-wrap">
+    <div class="w-full px-4">
+      <highcharts-chart
+        [Highcharts]="Highcharts"
+        [constructorType]="'mapChart'"
+        [options]="chartMap"
+        id="baseMap"
+        style="width: 100%; height: 650px; display: block"
+      >
+      </highcharts-chart>
+    </div>
+  </div>
+  
+  <!-- Tabla con colores -->
+  <div class="flex flex-wrap mt-3">
+    <div class="w-full px-4">
+      <table class="table bg-white">
+        <thead style="background-color: rgb(75, 43, 105);" class="table-header text-white">
+
+          <tr>
+            <th scope="col">Nombre Del Municipio</th>
+            <th scope="col">Indicador</th>
+            <th scope="col">Total De Programas Sociales</th>
+          </tr>
+          
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Color</th>
+            <th scope="col">#</th>
+          </tr>
+         
+        </tbody>
+        <tbody id="table-body">
+       
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
+
+
