@@ -23,7 +23,7 @@ export class MunicipiosService {
     return this._refreshLisMunicipios$;
   }
   getMunicipios():Observable<Municipios[]> {
-    return this.http.get<Municipios[]>(`${this.route}`).pipe(
+    return this.http.get<Municipios[]>(`${this.route}/obtener-todos`).pipe(
       catchError(this.handleErrorService.handleError)
     );
   }

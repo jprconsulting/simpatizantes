@@ -137,10 +137,6 @@
       <thead class="table-header">
         <tr style="font-size: .3cm;">
           <th class="table-header">
-            #
-          </th>
-          
-          <th class="table-header">
               Beneficiario
           </th>
           <th class="table-header">
@@ -154,36 +150,31 @@
           <th
           class="table-header"
           >
-            Acciones
+              Acciones
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr >
+        <tr *ngFor="let evidencias of evidencias; let i = index">
           <th
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold"
           >
-            1
-          </th>
-          <th
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold"
-          >
-            Alejandro	Martinez	Hdez
+          {{ evidencias.beneficiarioId }}
           </th>
           <td
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold"
           >
-            Foto
+          {{ evidencias.beneficiarioId }}
           </td>
           <td
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-semibold"
           >
-            Descripcion 1
+            {{ evidencias.descripcion }}
           </td>
           <td
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
-          <button >
+          <button (click)="eliminar(evidencias.id)">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M4 7l16 0" />
