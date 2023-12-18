@@ -48,18 +48,28 @@ dato(){
 }
     filtrarPorPrograma(event: any) {
       console.log('Valor seleccionado:', event.target.value);
+      
       const programaSocialId = event.target.value;
+      
       const beneficiariosFiltrados = this.beneficiarios.filter(beneficiario => {
+       
+    
         return beneficiario.programaSocialId == programaSocialId;
       });
+      
+      this.select = beneficiariosFiltrados.length > 0
+      ? this.prograsmasocial.find(p => p.id === beneficiariosFiltrados[0].programaSocialId)?.nombre || ''
+      : '';
+    
+
+      
+      
       const mapElement = document.getElementById("map-canvas") || null;
       const lat = mapElement?.getAttribute("data-lat") || null;
       const lng = mapElement?.getAttribute("data-lng") || null;
       const myLatlng = new google.maps.LatLng(lat, lng);
     
-      this.select = beneficiariosFiltrados.length > 0
-    ? this.prograsmasocial.find(p => p.id === beneficiariosFiltrados[0].programaSocialId)?.nombre || ''
-    : '';
+      
 
   console.log('Valor de this.select:', this.select);
     
@@ -176,6 +186,7 @@ dato(){
             </div>
           </div>
         `;
+        
   
             google.maps.event.addListener(marker, "click", () => {
               if (infowindow && infowindow.getMap()) {
@@ -188,7 +199,7 @@ dato(){
             });
           }
         });
-      },
+        return beneficiariosFiltrados;},
       (error: any) => {
         console.error('Error al obtener programas sociales:', error);
       }
