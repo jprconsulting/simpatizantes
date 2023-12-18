@@ -69,6 +69,21 @@ export class MapaProgramasSocialesComponent {
         }
       });
     }
+    buscar: string = '';
+    municipioFiltrado: any [] = [];
+
+    actualizarFiltro(event: any): void {
+      this.buscar = event.target.value;
+      this.municipioFiltrado = this.filtrarMunicipio();
+      console.log('Municipios filtrados:', this.municipioFiltrado);
+    }
+
+    filtrarMunicipio(): any[] {
+      return this.beneficiarioMunicipio.filter(muni =>
+        muni.nombre.toLowerCase().includes(this.buscar.toLowerCase(),)
+      );
+    }
+
 
   chartMap: Highcharts.Options = {
     chart: {
