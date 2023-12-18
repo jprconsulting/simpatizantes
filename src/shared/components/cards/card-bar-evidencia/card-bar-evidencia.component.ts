@@ -86,8 +86,8 @@ export class CardBarEvidenciaComponent {
 formularioEvidencia(){
   this.EvidenciaForm = this.formBuilder.group({
     id: [null],
-    Beneficiario: ['', [Validators.required]],
-    Foto: ['',Validators.required],
+    beneficiarioId: ['', [Validators.required]],
+    imagenBase64: ['',Validators.required],
     Descripcion: ['', [Validators.required,Validators.minLength(10)]],
   });
 }
@@ -125,12 +125,12 @@ onFileChange(event: Event) {
 
     reader.onload = () => {
       this.EvidenciaForm.patchValue({
-        Foto: reader.result
+        imagenBase64: reader.result
       });
     };
   }
+
 }
-// En tu componente
 
 
 get concatenatedLabel() {
@@ -202,8 +202,23 @@ actualizarTabla() {
     }
   );
 }
+
+
+
 agregar() {
   const FormValue = { ...this.EvidenciaForm.value };
+
+
+  //aqui inicia 
+  const filePath = FormValue.imagenBase64; // Asumiendo que la propiedad es Foto
+  this.readFileAsDataURL(filePath)
+    .then(base64String => {
+      const base64SinEncabezado = base64String.split(',')[1];
+      console.log('Imagen en formato base64:', base64SinEncabezado);
+    FormValue.imagenBase64 = base64SinEncabezado;
+
+
+
   delete FormValue.id;
   this.evidenciasService.postEvidencias(FormValue).subscribe({
     next: () => {
@@ -216,8 +231,32 @@ agregar() {
       this.mensajeService.mensajeError("Error al agregar evidencia");
     }
   });
-
+})
 }
+
+
+readFileAsDataURL(filePath: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      if (typeof reader.result === 'string') {
+        resolve(reader.result);
+      } else {
+        reject(new Error('Error al leer el archivo como URL de datos.'));
+      }
+    };
+
+    reader.onerror = () => {
+      reject(new Error('Error al leer el archivo.'));
+    };
+
+    // Leer el archivo como URL de datos
+    reader.readAsDataURL(new Blob([filePath]));
+  });
+}
+
+
 eliminar(id: number) {
   this.mensajeService.mensajeAdvertencia(
     `¿Estás seguro de eliminar la evidencia?`,
@@ -232,6 +271,14 @@ eliminar(id: number) {
     }
   );
 }
+obtenerRutaImagen(nombreArchivo: string): string {
+  const rutaBaseApp = 'https://localhost:7154/';
+  if (nombreArchivo) {
+    return `${rutaBaseApp}images/${nombreArchivo}`;
+  }
+  return '/assets/images/';
+}
+
 }
 
 
