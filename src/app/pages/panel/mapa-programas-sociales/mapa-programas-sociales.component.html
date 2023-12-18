@@ -16,7 +16,7 @@
                     height: 30px;
                     border: 1px solid #ccc;
                 }
-                
+
                 #baseMap {
                     width: 400px;
                     height: 500px;
@@ -29,12 +29,13 @@
         <div class="container mt-5">
 
             <!-- Mapa -->
-            <div class=" " style="max-height: 600px; overflow-y: auto;">
+            <div class="" style="max-height: 600px; overflow-y: auto; width: 50%; margin: 0;">
                 <label for="searchInput" class="form-label">Buscar municipio:</label>
-                <input type="text" class="form-control" id="searchInput">
+                <input type="text" class="form-control" id="searchInput" (input)="actualizarFiltro($event)" placeholder="Buscar">
             </div>
+
             <div class="flex ">
-                <div class="flex  mt-3">
+                <div class="flex  mt-3"style="overflow-y: hidden;">
                     <div class=" " style="max-height: 600px; overflow-y: auto;">
                         <div class=" ">
                             <table class="table bg-white">
@@ -46,7 +47,7 @@
                                     </tr>
 
                                     <tbody class="custom-th">
-                                        <tr class="custom-tr" *ngFor="let municipio of beneficiarioMunicipio; let i = index" [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
+                                        <tr class="custom-tr" *ngFor="let municipio of beneficiarioMunicipio; let municipios of filtrarMunicipio();   let i = index" [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
                                             <td style="font-size: .32cm;">{{ municipio.nombre }}</td>
                                             <td style="font-size: .32cm;">
                                                 <div class="color-circle" [style.backgroundColor]="municipio.color"></div>

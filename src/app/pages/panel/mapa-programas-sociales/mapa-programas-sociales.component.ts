@@ -19,6 +19,7 @@ export class MapaProgramasSocialesComponent {
   Highcharts: typeof Highcharts = Highcharts;
   beneficiarioMunicipio: BeneficiarioMunicipio [] = [];
   chartMapImage!: unknown;
+  mapData: any[] = [];
 
   constructor(
     private municipiosService: MunicipiosService,
@@ -36,7 +37,7 @@ export class MapaProgramasSocialesComponent {
             this.beneficiarioMunicipio = beneficiarioMunicipio;
             this.beneficiarioMunicipio = beneficiarioMunicipio.map(beneficiarioMunicipio => ({
               id: beneficiarioMunicipio.id,
-              nombre: beneficiarioMunicipio.id.toString(),
+              nombre: beneficiarioMunicipio.nombre.toString(),
               label: beneficiarioMunicipio.nombre,
               totalBeneficiarios:beneficiarioMunicipio.totalBeneficiarios,
               color:beneficiarioMunicipio.color,
@@ -51,6 +52,39 @@ export class MapaProgramasSocialesComponent {
         console.error('El servicio de municipios no está definido.');
       }
     }
+
+    actualizarColoresEnMapa(datosMapa: any[]) {
+      console.log('Entrando en actualizarColoresEnMapa');
+
+      this.mapData.forEach(municipio => {
+        console.log(`Procesando municipio: ${municipio.name}`);
+
+        const datosMunicipio = datosMapa.find(item => item.id === municipio.id);
+        if (datosMunicipio) {
+          console.log(`Coincidencia encontrada para ${municipio.name}`);
+          municipio.color = datosMunicipio.color;
+          console.log(`Se ha actualizado el color para ${municipio.name} a ${municipio.color}`);
+        } else {
+          console.log(`No se encontraron datos para ${municipio.name}`);
+        }
+      });
+    }
+    buscar: string = '';
+    municipioFiltrado: any [] = [];
+
+    actualizarFiltro(event: any): void {
+      this.buscar = event.target.value;
+      this.municipioFiltrado = this.filtrarMunicipio();
+      console.log('Municipios filtrados:', this.municipioFiltrado);
+    }
+
+    filtrarMunicipio(): any[] {
+      return this.beneficiarioMunicipio.filter(muni =>
+        muni.nombre.toLowerCase().includes(this.buscar.toLowerCase(),)
+      );
+    }
+
+
   chartMap: Highcharts.Options = {
     chart: {
       backgroundColor: '#F8F9F9'
@@ -620,68 +654,6 @@ export class MapaProgramasSocialesComponent {
             "path": "M419.9808886271815,-608.1001060488072L418.64965709601665,-610.1360804073458L417.70999311932025,-611.4673047213029L416.8485935765036,-613.2683692718456L416.06554094994306,-615.2260472345837L417.47506372176,-616.0874106913607L420.0591798678337,-617.6535448133135L421.6253407965588,-618.436632494884L423.6613058758302,-618.6715319925829L426.87189216716024,-619.8461532046416L428.67295465564365,-619.9244083592539L429.0644954033398,-622.7434910199572L429.22110572244594,-626.5805093084447L429.3777160415521,-629.7128084832415L428.2814149389772,-632.2186333886631L426.08883850957,-634.1763113514012L425.30575804520737,-635.037674808178L424.395365001837,-638.6379480557947L424.395365001837,-638.6379480557947L427.1851406431745,-638.9530307336544L429.4560351200061,-638.6398039092637L430.7872439685175,-638.8747034069626L430.8656022261004,-640.8323813697007L431.10053265469037,-641.3805283123842L432.82326987854145,-641.5371417245793L434.9375612534748,-641.6154999821623L436.73861549372054,-640.3625926846001L438.617997060658,-638.1699842932721L439.24444039914215,-637.1520074242997L440.4973580070015,-637.1520074242997L441.5936622026655,-638.7181415462525L444.33441753667705,-639.3446055053307L445.0391778915559,-639.3446055053307L447.7799022946763,-640.2059792724048L453.0264825341094,-634.5678655024834L452.4000082647342,-631.2006668299879L452.63493869332416,-629.0080893695509L451.53863449766015,-625.3276432520706L452.16510876703535,-623.9181225423131L453.0264825341094,-623.2133621874342L454.8275470846522,-621.3340012410908L456.9418281492886,-618.9064727314699L458.74289269983143,-617.6535551236105L460.30902682178424,-615.6175910753689L461.0137871766631,-614.0514363328219L460.77885674807305,-612.4853022108691L460.6222433358778,-610.1360907176429L461.01121991269747,-607.7288734932112L460.4126040659524,-606.3076505963013L457.7996757947715,-606.3999277549023L455.00344075233176,-606.5937407188553L453.34228693276265,-606.2891951645811L452.78857242967194,-604.8772206041256L452.56709693873273,-603.3545134533489L451.7365200289481,-602.9115212302822L449.63241522750053,-602.9392559293478L448.5526693688994,-601.8041334652892L447.55596264274203,-600.6413484742443L447.05762474510897,-599.838465022337L445.8117800010262,-599.6169895313978L440.4582098091013,-599.6428683769942L436.4253989796271,-599.9560952013849L433.21481371932674,-600.2301635175781L429.7692980304364,-600.2301635175781L426.129144553829,-599.577944436468L424.36610850292686,-599.1730384507056L421.5862090951338,-599.7603335912893L418.92377387060606,-600.2301635175781L416.6920244985856,-601.1698543010468L415.47828498848804,-603.01006704949L415.47828498848804,-604.3804395613472L417.1618832937061,-605.3592785427162L419.0803841897122,-606.9254126646691"
           }
         ],
-        data: [
-          { "id": "id0", "color": "#00C853" },
-          { "id": "id1", "color": "#00C853" },
-          { "id": "id2", "color": "#FFC107" },
-          { "id": "id3", "color": "#FFC107" },
-          { "id": "id4", "color": "#C62828" },
-          { "id": "id5", "color": "#00C853" },
-          { "id": "id6", "color": "#FFC107" },
-          { "id": "id7", "color": "#C62828" },
-          { "id": "id8", "color": "#00C853" },
-          { "id": "id9", "color": "#C62828" },
-          { "id": "id10", "color": "#FFC107" },
-          { "id": "id11", "color": "#C62828" },
-          { "id": "id12", "color": "#FFC107" },
-          { "id": "id13", "color": "#00C853" },
-          { "id": "id14", "color": "#00C853" },
-          { "id": "id15", "color": "#FFC107" },
-          { "id": "id16", "color": "#C62828" },
-          { "id": "id17", "color": "#FFC107" },
-          { "id": "id18", "color": "#C62828" },
-          { "id": "id19", "color": "#00C853" },
-          { "id": "id20", "color": "#C62828" },
-          { "id": "id21", "color": "#00C853" },
-          { "id": "id22", "color": "#C62828" },
-          { "id": "id23", "color": "#FFC107" },
-          { "id": "id24", "color": "#00C853" },
-          { "id": "id25", "color": "#FFC107" },
-          { "id": "id26", "color": "#C62828" },
-          { "id": "id27", "color": "#FFC107" },
-          { "id": "id28", "color": "#C62828" },
-          { "id": "id29", "color": "#00C853" },
-          { "id": "id30", "color": "#FFC107" },
-          { "id": "id31", "color": "#C62828" },
-          { "id": "id32", "color": "#00C853" },
-          { "id": "id33", "color": "#FFC107" },
-          { "id": "id34", "color": "#C62828" },
-          { "id": "id35", "color": "#FFC107" },
-          { "id": "id36", "color": "#00C853" },
-          { "id": "id37", "color": "#C62828" },
-          { "id": "id38", "color": "#FFC107" },
-          { "id": "id39", "color": "#00C853" },
-          { "id": "id40", "color": "#C62828" },
-          { "id": "id41", "color": "#00C853" },
-          { "id": "id42", "color": "#FFC107" },
-          { "id": "id43", "color": "#C62828" },
-          { "id": "id44", "color": "#FFC107" },
-          { "id": "id45", "color": "#00C853" },
-          { "id": "id46", "color": "#FFC107" },
-          { "id": "id47", "color": "#C62828" },
-          { "id": "id48", "color": "#00C853" },
-          { "id": "id49", "color": "#FFC107" },
-          { "id": "id50", "color": "#C62828" },
-          { "id": "id51", "color": "#00C853" },
-          { "id": "id52", "color": "#C62828" },
-          { "id": "id53", "color": "#FFC107" },
-          { "id": "id54", "color": "#00C853" },
-          { "id": "id55", "color": "#FFC107" },
-          { "id": "id56", "color": "#C62828" },
-          { "id": "id57", "color": "#00C853" },
-          { "id": "id58", "color": "#C62828" },
-          { "id": "id59", "color": "#FFC107" }
-        ]
       }
     ]
 
