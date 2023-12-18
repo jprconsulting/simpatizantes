@@ -1,75 +1,72 @@
 <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
     <div class="rounded-t mb-0 px-4 py-3 border-0">
         <!DOCTYPE html>
-<html lang="es">
+        <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabla con Colores y Mapa</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Agrega los estilos de Highcharts -->
-    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-    <style>
-        .color-cell {
-            width: 30px;
-            height: 30px;
-            border: 1px solid #ccc;
-        }
-        
-        #baseMap {
-            width: 400px;
-            height: 500px;
-            display: block;
-        }
-    </style>
-</head>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Tabla con Colores y Mapa</title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <!-- Agrega los estilos de Highcharts -->
+            <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+            <style>
+                .color-cell {
+                    width: 30px;
+                    height: 30px;
+                    border: 1px solid #ccc;
+                }
+                
+                #baseMap {
+                    width: 400px;
+                    height: 500px;
+                    display: block;
+                }
+            </style>
+        </head>
 
-<body>
 
-    <div class="container mt-5">
+        <div class="container mt-5">
 
-        <!-- Mapa -->
-        <div class="flex ">
-            <div class="flex  mt-3">
-                <div class=" " style="max-height: 600px; overflow-y: auto;">
-                    <div class=" ">
-                        <table class="table bg-white">
-                            <div class="mb-3">
-                                <label for="searchInput" class="form-label">Buscar:</label>
-                                <input type="text" class="form-control" id="searchInput">
-                            </div>
-
-                            <thead style="background-color: rgb(75, 43, 105);" class="table-header text-white">
-                                <tr>
-                                    <th scope="col">Nombre Del Municipio</th>
-                                    <th scope="col">Indicador</th>
-                                    <th scope="col">Total De Programas Sociales</th>
-                                </tr>
-
-                                <tbody class="custom-th">
-                                    <tr class="custom-tr" *ngFor="let municipio of beneficiarioMunicipio; let i = index" [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
-                                        <td style="font-size: .32cm;">{{ municipio.nombre }}</td>
-                                        <td style="font-size: .32cm;">
-                                            <div class="color-circle" [style.backgroundColor]="municipio.color"></div>
-                                        </td>
-                                        <td style="font-size: .32cm;">{{ municipio.totalBeneficiarios }}</td>
+            <!-- Mapa -->
+            <div class=" " style="max-height: 600px; overflow-y: auto;">
+                <label for="searchInput" class="form-label">Buscar municipio:</label>
+                <input type="text" class="form-control" id="searchInput">
+            </div>
+            <div class="flex ">
+                <div class="flex  mt-3">
+                    <div class=" " style="max-height: 600px; overflow-y: auto;">
+                        <div class=" ">
+                            <table class="table bg-white">
+                                <thead style="background-color: rgb(75, 43, 105);" class="table-header text-white">
+                                    <tr>
+                                        <th scope="col">Nombre del municipio</th>
+                                        <th scope="col">Indicador</th>
+                                        <th scope="col">Total de programas sociales</th>
                                     </tr>
 
-                                </tbody>
-                        </table>
+                                    <tbody class="custom-th">
+                                        <tr class="custom-tr" *ngFor="let municipio of beneficiarioMunicipio; let i = index" [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
+                                            <td style="font-size: .32cm;">{{ municipio.nombre }}</td>
+                                            <td style="font-size: .32cm;">
+                                                <div class="color-circle" [style.backgroundColor]="municipio.color"></div>
+                                            </td>
+                                            <td style="font-size: .32cm;">{{ municipio.totalBeneficiarios }}</td>
+                                        </tr>
+
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="w-75 px-4">
+                        <highcharts-chart [Highcharts]="Highcharts" [constructorType]="'mapChart'" [options]="chartMap" id="baseMap" style="width: 100%; height: 700px; display: block">
+                        </highcharts-chart>
+
                     </div>
                 </div>
-                <div class="w-75 px-4">
-                    <highcharts-chart [Highcharts]="Highcharts" [constructorType]="'mapChart'" [options]="chartMap" id="baseMap" style="width: 100%; height: 700px; display: block">
-                    </highcharts-chart>
 
-                </div>
+                <!-- Tabla con colores -->
+
+
             </div>
-
-            <!-- Tabla con colores -->
-
-        
-    </div>
-</div>
-
+        </div>
