@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BeneficiarioService } from 'src/app/pages/core/services/Beneficiario.service';
 import { AreasadscripcionService } from 'src/app/pages/core/services/areasadscripcion.service';
+import { EvidenciasService } from 'src/app/pages/core/services/evidencias.service';
+import { MensajeService } from 'src/app/pages/core/services/mensaje.service';
 import { ProgramaService } from 'src/app/pages/core/services/programasocial.service';
 import { Areasadscripcion } from 'src/app/pages/models/areasadscripcion';
 import { Beneficiario } from 'src/app/pages/models/beneficiario';
+import { Evidencias } from 'src/app/pages/models/evidencias';
 import { Prograsmasocial } from 'src/app/pages/models/programasocial';
 
 @Component({
@@ -25,6 +28,7 @@ export class CardBarEvidenciaComponent {
   beneficiarios: any[] = []; 
   programasPorArea: Prograsmasocial[] = [];
   beneficiario: Beneficiario [] = [];
+  evidencias: Evidencias [] = [];
   beneficiariosPorprogramas: Beneficiario [] = [];
   filteredBeneficiarios: Beneficiario[] = [];
   searchTerm: FormControl = new FormControl();
@@ -33,6 +37,7 @@ export class CardBarEvidenciaComponent {
     this.obtenerBeneficiarios();
     this.obtenerProgramas();
     this.obtenerAreas();
+    this.obtenerEvidencias();
   }
   openModal(): void {
     this.showModal = true;
@@ -64,7 +69,7 @@ export class CardBarEvidenciaComponent {
     if (this.isUpdating) {
       //this.actualizar();
     } else {
-      //this.agregar();
+      this.agregar();
     }
   }
   constructor(
@@ -72,6 +77,8 @@ export class CardBarEvidenciaComponent {
     private beneficiarioService: BeneficiarioService,
     private programaService: ProgramaService,
     private areasadscripcionService: AreasadscripcionService,
+    private mensajeService: MensajeService,
+    private evidenciasService: EvidenciasService,
     
   ) {
     this.formularioEvidencia();
@@ -90,6 +97,17 @@ obtenerBeneficiarios() {
       console.log('Datos de beneficiarios recibidos:', beneficiarios);
       this.beneficiarios = beneficiarios;
       this.filteredBeneficiarios = beneficiarios; // Inicializar con la lista completa
+    },
+    (error: any) => {
+      console.error('Error al obtener beneficiarios:', error);
+    }
+  );
+}
+obtenerEvidencias() {
+  this.evidenciasService.getEvidencias().subscribe(
+    (evidencias: Evidencias[]) => {
+      console.log('Datos dscdscdscds:', evidencias);
+      this.evidencias = evidencias;
     },
     (error: any) => {
       console.error('Error al obtener beneficiarios:', error);
@@ -176,7 +194,44 @@ onBeneficiarioChange(event: any): void {
   // Puedes realizar acciones adicionales aquí, como mostrar información sobre el beneficiario seleccionado
   console.log('Beneficiario seleccionado:', beneficiarioSeleccionado);
 }
+actualizarTabla() {
+  this.evidenciasService.getEvidencias().subscribe(
+    (evidencia: Evidencias[]) => {
+      console.log('Datos actualizados:', evidencia);
+      this.evidencias = evidencia;
+    }
+  );
+}
+agregar() {
+  const FormValue = { ...this.EvidenciaForm.value };
+  delete FormValue.id;
+  this.evidenciasService.postEvidencias(FormValue).subscribe({
+    next: () => {
+      this.ResetForm();
+      this.mensajeService.mensajeExito("Evidencia agregada");
+      this.actualizarTabla();
+      this.closeModal();
+    },
+    error: () => {
+      this.mensajeService.mensajeError("Error al agregar evidencia");
+    }
+  });
 
+}
+eliminar(id: number) {
+  this.mensajeService.mensajeAdvertencia(
+    `¿Estás seguro de eliminar la evidencia?`,
+    () => {
+      this.evidenciasService.deletePrograma(id).subscribe({
+        next: () => {
+          this.mensajeService.mensajeExito('Evidencia borrado correctamente');
+          this.actualizarTabla();
+        },
+        error: (error) => this.mensajeService.mensajeError(error)
+      });
+    }
+  );
+}
 }
 
 
