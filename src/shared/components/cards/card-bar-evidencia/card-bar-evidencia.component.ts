@@ -34,6 +34,8 @@ export class CardBarEvidenciaComponent {
   filteredBeneficiarios: Beneficiario[] = [];
   searchTerm: FormControl = new FormControl();
   imagenAmpliada: string | null = null;
+  idToUpdate2!: number;
+  formData: any;
 
   ngOnInit() {
     this.obtenerBeneficiarios();
@@ -75,7 +77,7 @@ export class CardBarEvidenciaComponent {
   }
   submit() {
     if (this.isUpdating) {
-      //this.actualizar();
+      this.actualizar();
     } else {
       this.agregar();
     }
@@ -292,6 +294,45 @@ cerrarModal() {
   this.imagenAmpliada = null;
 }
 
+setDataModalUpdate(evidencia: Evidencias) {
+  this.isUpdating = true;
+  this.idToUpdate2 = evidencia.id;
+  this.EvidenciaForm.patchValue({
+    id: evidencia.id,
+    beneficiarioId: evidencia.beneficiarioId,
+    imagenBase64: evidencia.imagenBase64,
+    Descripcion: evidencia.descripcion,
+
+  });
+
+  this.formData = this.EvidenciaForm.value;
+  console.log(this.EvidenciaForm.value);
+  setTimeout(() => {
+    this.openModal();
+  }, 500);
+  this.formData = this.EvidenciaForm.value;
+  console.log(this.EvidenciaForm.value);
+}
+
+actualizar() {
+  const socialFormValue = { ...this.EvidenciaForm.value };
+  console.log('ferwohfw',this.idToUpdate2);
+  this.evidenciasService.putPrograma(this.idToUpdate2, socialFormValue).subscribe({
+
+    next: () => {
+      this.mensajeService.mensajeExito("Evidencia actualizada con éxito");
+      this.ResetForm();
+      this.actualizarTabla();
+      console.log(socialFormValue);
+      this.closeModal();
+    },
+    error: (error) => {
+      this.mensajeService.mensajeError("Error al actualizar la evidencia");
+      console.error(error);
+      console.log(socialFormValue);
+    }
+  });
+}
 }
 
 
