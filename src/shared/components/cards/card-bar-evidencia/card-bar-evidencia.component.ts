@@ -17,6 +17,7 @@ import { Prograsmasocial } from 'src/app/pages/models/programasocial';
 })
 export class CardBarEvidenciaComponent {
   showModal = false;
+  mostrarModal = false;
   isUpdating: boolean = false;
   programaSeleccionado: string = '';
   EvidenciaForm!: FormGroup;
@@ -32,6 +33,7 @@ export class CardBarEvidenciaComponent {
   beneficiariosPorprogramas: Beneficiario [] = [];
   filteredBeneficiarios: Beneficiario[] = [];
   searchTerm: FormControl = new FormControl();
+  imagenAmpliada: string | null = null;
 
   ngOnInit() {
     this.obtenerBeneficiarios();
@@ -39,6 +41,12 @@ export class CardBarEvidenciaComponent {
     this.obtenerAreas();
     this.obtenerEvidencias();
   }
+
+  getNombreBeneficiario(beneficiarioId: number): string {
+    const beneficiario = this.beneficiarios.find(b => b.id === beneficiarioId);
+    return beneficiario ? beneficiario.nombreCompleto : 'Nombre no encontrado';
+  }
+
   openModal(): void {
     this.showModal = true;
     if (!this.isUpdating) {
@@ -274,6 +282,15 @@ obtenerRutaImagen(nombreArchivo: string): string {
   return ''; // O una URL predeterminada si no hay nombre de archivo
 }
 
+mostrarImagenAmpliada(rutaImagen: string) {
+  this.imagenAmpliada = rutaImagen;
+  this.mostrarModal = true;
+}
+
+cerrarModal() {
+  this.mostrarModal = false;
+  this.imagenAmpliada = null;
+}
 
 }
 
