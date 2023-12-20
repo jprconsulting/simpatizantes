@@ -33,5 +33,10 @@ export class MunicipiosService {
       catchError(this.handleErrorService.handleError)
     );
   }
+  getMunicipioscolor():Observable<BeneficiarioMunicipio[]> {
+    return this.http.get<BeneficiarioMunicipio[]>(`${this.route}/obtener-color`).pipe(
+      catchError(this.handleErrorService.handleError)
+    );
+  }
 
 }
