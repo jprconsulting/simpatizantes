@@ -17,6 +17,7 @@ import { Prograsmasocial } from 'src/app/pages/models/programasocial';
 })
 export class CardBarEvidenciaComponent {
   showModal = false;
+  mostrarModal = false;
   isUpdating: boolean = false;
   programaSeleccionado: string = '';
   EvidenciaForm!: FormGroup;
@@ -25,13 +26,16 @@ export class CardBarEvidenciaComponent {
   areasadscripcion: Areasadscripcion[] = [];
   programaSocialSeleccionado!: number;
   areasadscripcionSeleccionado!: number;
-  beneficiarios: any[] = []; 
+  beneficiarios: any[] = [];
   programasPorArea: Prograsmasocial[] = [];
   beneficiario: Beneficiario [] = [];
   evidencias: Evidencias [] = [];
   beneficiariosPorprogramas: Beneficiario [] = [];
   filteredBeneficiarios: Beneficiario[] = [];
   searchTerm: FormControl = new FormControl();
+  imagenAmpliada: string | null = null;
+  idToUpdate2!: number;
+  formData: any;
 
   ngOnInit() {
     this.obtenerBeneficiarios();
@@ -39,17 +43,23 @@ export class CardBarEvidenciaComponent {
     this.obtenerAreas();
     this.obtenerEvidencias();
   }
+
+  getNombreBeneficiario(beneficiarioId: number): string {
+    const beneficiario = this.beneficiarios.find(b => b.id === beneficiarioId);
+    return beneficiario ? beneficiario.nombreCompleto : 'Nombre no encontrado';
+  }
+
   openModal(): void {
     this.showModal = true;
     if (!this.isUpdating) {
       // Restablecer el formulario si no está en modo de actualización
       this.ResetForm();
     }
-    
+
     this.beneficiarioService.getBeneficiario().subscribe((beneficiarios) => {
       this.beneficiarios = beneficiarios;
     });
-  
+
   }
 
   closeModal(): void {
@@ -60,14 +70,14 @@ export class CardBarEvidenciaComponent {
     fotoControl.setValue(null);
   }
   this.ResetForm();
- 
+
   }
   ResetForm() {
     this.EvidenciaForm.reset();
   }
   submit() {
     if (this.isUpdating) {
-      //this.actualizar();
+      this.actualizar();
     } else {
       this.agregar();
     }
@@ -79,7 +89,7 @@ export class CardBarEvidenciaComponent {
     private areasadscripcionService: AreasadscripcionService,
     private mensajeService: MensajeService,
     private evidenciasService: EvidenciasService,
-    
+
   ) {
     this.formularioEvidencia();
   }
@@ -114,24 +124,6 @@ obtenerEvidencias() {
     }
   );
 }
-onFileChange(event: Event) {
-  const inputElement = event.target as HTMLInputElement;
-
-  if (inputElement.files && inputElement.files.length > 0) {
-    const file = inputElement.files[0];
-    const reader = new FileReader();
-
-    reader.readAsDataURL(file);
-
-    reader.onload = () => {
-      this.EvidenciaForm.patchValue({
-        imagenBase64: reader.result
-      });
-    };
-  }
-
-}
-
 
 get concatenatedLabel() {
   const beneficiario = this.EvidenciaForm.get('Beneficiario')?.value;
@@ -175,11 +167,12 @@ aplicarFiltro() {
     // Filtra los beneficiarios basándose en el programa social seleccionado
     this.beneficiariosPorprogramas = this.beneficiarios.filter(beneficiario => beneficiario.programaSocialId === this.programaSocialSeleccionado);
   }
-  
+
 filtrarArea(event: any, tipo: string) {
   this.areasadscripcionSeleccionado = Number(event.target.value);
   this.programasPorArea = this.prograsmasocial.filter(programa => programa.areaAdscripcionId == this.areasadscripcionSeleccionado);
 }
+
 filterBeneficiarios(searchTerm: string): Beneficiario[] {
   return this.beneficiarios.filter(beneficiario =>
     beneficiario.nombres.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -187,6 +180,7 @@ filterBeneficiarios(searchTerm: string): Beneficiario[] {
     beneficiario.apellidoMaterno.toLowerCase().includes(searchTerm.toLowerCase())
   );
 }
+
 onBeneficiarioChange(event: any): void {
   // Obtén el beneficiario seleccionado del evento
   const beneficiarioSeleccionado = event;
@@ -194,6 +188,7 @@ onBeneficiarioChange(event: any): void {
   // Puedes realizar acciones adicionales aquí, como mostrar información sobre el beneficiario seleccionado
   console.log('Beneficiario seleccionado:', beneficiarioSeleccionado);
 }
+
 actualizarTabla() {
   this.evidenciasService.getEvidencias().subscribe(
     (evidencia: Evidencias[]) => {
@@ -203,37 +198,47 @@ actualizarTabla() {
   );
 }
 
+onFileChange(event: Event) {
+  const inputElement = event.target as HTMLInputElement;
 
+  if (inputElement.files && inputElement.files.length > 0) {
+    const file = inputElement.files[0];
+    const reader = new FileReader();
 
-agregar() {
-  const FormValue = { ...this.EvidenciaForm.value };
+    reader.onload = () => {
+      const base64String = reader.result as string;
+      const base64WithoutPrefix = base64String.split(';base64,').pop() || '';
 
+      this.EvidenciaForm.patchValue({
+        imagenBase64: base64WithoutPrefix
+      });
+    };
 
-  //aqui inicia 
-  const filePath = FormValue.imagenBase64; // Asumiendo que la propiedad es Foto
-  this.readFileAsDataURL(filePath)
-    .then(base64String => {
-      const base64SinEncabezado = base64String.split(',')[1];
-      console.log('Imagen en formato base64:', base64SinEncabezado);
-    FormValue.imagenBase64 = base64SinEncabezado;
-
-
-
-  delete FormValue.id;
-  this.evidenciasService.postEvidencias(FormValue).subscribe({
-    next: () => {
-      this.ResetForm();
-      this.mensajeService.mensajeExito("Evidencia agregada");
-      this.actualizarTabla();
-      this.closeModal();
-    },
-    error: () => {
-      this.mensajeService.mensajeError("Error al agregar evidencia");
-    }
-  });
-})
+    reader.readAsDataURL(file);
+  }
 }
 
+agregar() {
+  const imagenBase64 = this.EvidenciaForm.get('imagenBase64')?.value;
+
+  if (imagenBase64) {
+    const FormValue = { ...this.EvidenciaForm.value, imagenBase64 };
+
+    this.evidenciasService.postEvidencias(FormValue).subscribe({
+      next: () => {
+        this.ResetForm();
+        this.mensajeService.mensajeExito("Evidencia agregada");
+        this.actualizarTabla();
+        this.closeModal();
+      },
+      error: () => {
+        this.mensajeService.mensajeError("Error al agregar evidencia");
+      }
+    });
+  } else {
+    console.error('Error: No se encontró una representación válida en base64 de la imagen.');
+  }
+}
 
 readFileAsDataURL(filePath: string): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -272,13 +277,62 @@ eliminar(id: number) {
   );
 }
 obtenerRutaImagen(nombreArchivo: string): string {
-  const rutaBaseApp = 'https://localhost:7154/';
+  const rutaBaseAPI = 'https://localhost:7224/';
   if (nombreArchivo) {
-    return `${rutaBaseApp}images/${nombreArchivo}`;
+    return `${rutaBaseAPI}images/${nombreArchivo}`;
   }
-  return '/assets/images/';
+  return ''; // O una URL predeterminada si no hay nombre de archivo
 }
 
+mostrarImagenAmpliada(rutaImagen: string) {
+  this.imagenAmpliada = rutaImagen;
+  this.mostrarModal = true;
+}
+
+cerrarModal() {
+  this.mostrarModal = false;
+  this.imagenAmpliada = null;
+}
+
+setDataModalUpdate(evidencia: Evidencias) {
+  this.isUpdating = true;
+  this.idToUpdate2 = evidencia.id;
+  this.EvidenciaForm.patchValue({
+    id: evidencia.id,
+    beneficiarioId: evidencia.beneficiarioId,
+    imagenBase64: evidencia.imagenBase64,
+    Descripcion: evidencia.descripcion,
+
+  });
+
+  this.formData = this.EvidenciaForm.value;
+  console.log(this.EvidenciaForm.value);
+  setTimeout(() => {
+    this.openModal();
+  }, 500);
+  this.formData = this.EvidenciaForm.value;
+  console.log(this.EvidenciaForm.value);
+}
+
+actualizar() {
+  const socialFormValue = { ...this.EvidenciaForm.value };
+  console.log('ferwohfw',this.idToUpdate2);
+  this.evidenciasService.putPrograma(this.idToUpdate2, socialFormValue).subscribe({
+
+    next: () => {
+      this.mensajeService.mensajeExito("Evidencia actualizada con éxito");
+      this.ResetForm();
+      this.actualizarTabla();
+      console.log(socialFormValue);
+      this.closeModal();
+    },
+    error: (error) => {
+      this.mensajeService.mensajeError("Error al actualizar la evidencia");
+      console.error(error);
+      console.log(socialFormValue);
+    }
+  });
+}
 }
 
 

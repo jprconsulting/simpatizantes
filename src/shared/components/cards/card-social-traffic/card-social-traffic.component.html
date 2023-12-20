@@ -12,7 +12,7 @@
                     <div>
                     </div>
                     <div>
-                        <button title="Descargar base de datos de usuarios" class="mr-5" (click)="exportarDatosAExcel()">
+                        <button title="Descargar base de datos de beneficiarios" class="mr-5" (click)="exportarDatosAExcel()">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cloud-download" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M19 18a3.5 3.5 0 0 0 0 -7h-1a5 4.5 0 0 0 -11 -2a4.6 4.4 0 0 0 -2.1 8.4" />
@@ -32,7 +32,8 @@
                             <div class=" modal-content py-4 text-left px-6">
                                 <div class="flex justify-between items-center pb-3">
                                     <div>
-                                        <p class="text-2xl font-bold -mr-56"> Beneficiaria/Beneficiario </p> <!--se edito el texto YENNI-->
+                                        <p class="text-2xl font-bold -mr-56"> Beneficiaria/Beneficiario </p>
+                                        <!--se edito el texto YENNI-->
                                     </div>
                                     <div></div>
                                     <div>
@@ -50,7 +51,8 @@
                                     <form [formGroup]="SocialForm" (ngSubmit)="submit()">
                                         <div class="grid grid-cols-3 gap-4">
                                             <div>
-                                                <label class="block  text-blueGray-600 text-xs font-bold mb-2" htmlFor="nombre">Nombre(s)*:</label> <!--se quito el uppercaseYENNI-->
+                                                <label class="block  text-blueGray-600 text-xs font-bold mb-2" htmlFor="nombre">Nombre(s)*:</label>
+                                                <!--se quito el uppercaseYENNI-->
 
                                                 <input required id="nombres" type="text" formControlName="nombres" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value=""
                                                 />
@@ -61,7 +63,8 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="apellidoPaterno">Apellido paterno:</label>  <!--se quito el uppercaseYENNI-->
+                                                <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="apellidoPaterno">Apellido paterno:</label>
+                                                <!--se quito el uppercaseYENNI-->
                                                 <input required id="apellidoPaterno" type="text" formControlName="apellidoPaterno" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                     value="" />
                                                 <div *ngIf="SocialForm.get('apellidoPaterno')?.touched" class="error-message">
@@ -71,7 +74,8 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="apellidoMaterno">Apellido materno:</label> <!--se quito el uppercaseYENNI-->
+                                                <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="apellidoMaterno">Apellido materno:</label>
+                                                <!--se quito el uppercaseYENNI-->
                                                 <input required id="apellidoMaterno" type="text" formControlName="apellidoMaterno" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                     value="" />
                                                 <div *ngIf="SocialForm.get('apellidoMaterno')?.touched" class="error-message">
@@ -84,7 +88,8 @@
                                         <br>
                                         <div class="grid grid-cols-3 gap-4">
                                             <div>
-                                                <label class="block  text-blueGray-600 text-xs font-bold mb-2" htmlFor="fechaNacimiento">Fecha de nacimiento*:</label> <!--se quito el uppercaseYENNI-->
+                                                <label class="block  text-blueGray-600 text-xs font-bold mb-2" htmlFor="fechaNacimiento">Fecha de nacimiento*:</label>
+                                                <!--se quito el uppercaseYENNI-->
                                                 <input type="date" formControlName="fechaNacimiento" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" />
                                             </div>
                                             <div>
@@ -95,7 +100,8 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <label class="block  text-blueGray-600 text-xs font-bold mb-2" htmlFor="sexo">Género:</label> <!--se quito el uppercaseYENNI-->
+                                                <label class="block  text-blueGray-600 text-xs font-bold mb-2" htmlFor="sexo">Género:</label>
+                                                <!--se quito el uppercaseYENNI-->
                                                 <select formControlName="sexo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                   <option value="1">Masculino</option>
                                                   <option value="2">Femenino</option>
@@ -116,7 +122,8 @@
                                             </div>
                                             <div class="col-span-1">
                                                 <div class="relative w-full mb-3">
-                                                    <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="municipio">Municipio*:</label> <!--se quito el uppercaseYENNI-->
+                                                    <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="municipio">Municipio*:</label>
+                                                    <!--se quito el uppercaseYENNI-->
                                                     <select formControlName="municipioId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                       <option *ngFor="let option of municipiosOptions" [value]="option.id">{{ option.label }}</option>
                                                   </select>
@@ -142,8 +149,8 @@
                                                     <label class="block  text-blueGray-600 text-xs font-bold mb-2" formControlName="domicilio"> <!--se quito el uppercaseYENNI-->
                                                   Ubicar en el mapa*:
                                                 </label>
-                                                <input id="searchInput" formControlName="domicilio" class="controls border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" type="text" placeholder="Enter a location"
-                                                (input)="map()" />
+                                                    <input id="searchInput" formControlName="domicilio" class="controls border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" type="text"
+                                                        placeholder="Enter a location" (input)="map()" />
 
                                                 </div>
                                                 <br>
@@ -157,9 +164,7 @@
                                         <br>
                                         <br>
                                         <div class="flex justify-end">
-                                            <button  [disabled]="!SocialForm.valid"
-                                            [ngClass]="{'bg-gray-500': !SocialForm.valid, 'bg-purple-900': SocialForm.valid}"
-                                            class="text-white py-2 px-4 rounded-md hover:bg-red-950 custom-button">
+                                            <button [disabled]="!SocialForm.valid" [ngClass]="{'bg-gray-500': !SocialForm.valid, 'bg-purple-900': SocialForm.valid}" class="text-white py-2 px-4 rounded-md hover:bg-red-950 custom-button">
                                       {{ isUpdating ? "Actualizar" : "Agregar " }}
                                     </button>
                                         </div>
@@ -177,23 +182,36 @@
         </div>
 
     </div>
-    <div class="block w-full overflow-x-auto">    <!-- ESTILO table YENNI-->
+    <div class="block w-full overflow-x-auto">
+        <!-- ESTILO table YENNI-->
         <!-- Projects table -->
-        <table class="items-center w-full bg-transparent border-collapse"> <!-- ESTILO table YENNI-->
-            <thead class="table-header"> <!-- ESTILO table YENNI-->
+        <table class="items-center w-full bg-transparent border-collapse">
+            <!-- ESTILO table YENNI-->
+            <thead class="table-header">
+                <!-- ESTILO table YENNI-->
                 <tr>
-                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">Nombre(s)</th>  <!--se quito el uppercaseYENNI-->
-                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">Apellido paterno</th> <!--se quito el uppercaseYENNI-->
-                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">Apellido materno</th> <!--se quito el uppercaseYENNI-->
-                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">Fecha de nacimiento</th> <!--se quito el uppercaseYENNI-->
-                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">CURP</th> <!--se quito el uppercaseYENNI-->
-                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">Género</th> <!--se quito el uppercaseYENNI-->
-                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">Dirección</th> <!--se quito el uppercaseYENNI-->
-                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">Acciones</th> <!--se quito el uppercaseYENNI-->
+                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">Nombre(s)</th>
+                    <!--se quito el uppercaseYENNI-->
+                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">Apellido paterno</th>
+                    <!--se quito el uppercaseYENNI-->
+                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">Apellido materno</th>
+                    <!--se quito el uppercaseYENNI-->
+                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">Fecha de nacimiento</th>
+                    <!--se quito el uppercaseYENNI-->
+                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">CURP</th>
+                    <!--se quito el uppercaseYENNI-->
+                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">Género</th>
+                    <!--se quito el uppercaseYENNI-->
+                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">Dirección</th>
+                    <!--se quito el uppercaseYENNI-->
+                    <th class="table-header px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">Acciones</th>
+                    <!--se quito el uppercaseYENNI-->
                 </tr>
             </thead>
-            <tbody class="custom-th"><!-- ESTILO table YENNI-->
-                <tr class="custom-tr" *ngFor="let beneficiario of beneficiarios; let benef of filtrarBeneficiario(); let i = index"  [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}"><!-- ESTILO table YENNI-->
+            <tbody class="custom-th">
+                <!-- ESTILO table YENNI-->
+                <tr class="custom-tr" *ngFor="let beneficiario of beneficiarios; let benef of filtrarBeneficiario(); let i = index" [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
+                    <!-- ESTILO table YENNI-->
                     <td style="font-size: .32cm;">{{ beneficiario.nombres }}</td>
                     <td style="font-size: .32cm;">{{ beneficiario.apellidoPaterno }}</td>
                     <td style="font-size: .32cm;">{{ beneficiario.apellidoMaterno }}</td>

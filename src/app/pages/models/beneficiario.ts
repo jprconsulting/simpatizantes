@@ -12,4 +12,5 @@ export interface Beneficiario {
   estatus: boolean;
   municipioId: number;
   programaSocialId: number;
+  nombreCompleto:string
 }

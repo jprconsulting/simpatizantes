@@ -9,6 +9,7 @@ import { PanelModule } from './pages/panel/panel.module';
 import { FormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
 import { CardBienvenidaComponent } from '../shared/components/cards/card-bienvenida/card-bienvenida.component';
+import { LoginModule } from './pages/login/login.module';
 {
   }
 
@@ -23,6 +24,7 @@ import { CardBienvenidaComponent } from '../shared/components/cards/card-bienven
     PanelModule,
     FormsModule,
     HttpClientModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
