@@ -10,9 +10,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ],
     imports: [
         CommonModule,
+        FormsModule,
         NgxSpinnerModule,
         ReactiveFormsModule,
-        FormsModule
     ],
     exports: [LoginComponent],
 })

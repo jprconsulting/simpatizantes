@@ -7,7 +7,7 @@ const routes: Routes = [{
   component: PanelComponent,
   children: [
     {
-      path: '', redirectTo: 'dashboard', pathMatch: 'full'
+      path: '', redirectTo: 'bienvenida', pathMatch: 'full'
     },
     {
       path: 'bienvenida',
