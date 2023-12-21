@@ -1,6 +1,230 @@
 <div class="flex flex-wrap">
     <div class="w-full xl:w-12/12 mb-12 xl:mb-0 px-4">
-      <app-card-bar-prograsmasocial></app-card-bar-prograsmasocial>
+
+<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <div class="flex flex-wrap items-center">
+      <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+        <!-- Button trigger modal -->
+        <div class="flex justify-between">
+          <div>
+            <button (click)="openModal()" class="min-w-140-px bg-purple-900 text-white py-2 pr-2 pl-2 rounded-md hover:bg-purple-950">Agregar Programa</button><!-- se modifico YENNI-->
+          </div>
+          <div>
+            <div style="display: flex; align-items: center;">
+              <input class="border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" type="text" (input)="actualizarFiltro($event)" placeholder="Buscar" />
+            </div>
+          </div>
+
+        </div><br><br>
+        <!-- modal -->
+        <div class="modal fixed inset-0 flex" *ngIf="showModal">
+          <div class="flex items-center justify-center w-full h-full">
+            <div class="modal-overlay absolute w-full h-full bg-gray-800 opacity-50"></div>
+            <div class="modal-container bg-white w-6/12 mx-auto my-auto rounded shadow-lg z-50 overflow-y-auto max-h-full top-1/4 left-1/4">
+              <!-- Add your modal content here -->
+              <div  class=" modal-content py-4 text-left px-6">
+                <div class="flex justify-between items-center pb-3">
+                  <div>
+                    <p class="text-2xl font-bold -mr-56"> Programas sociales</p><!-- ESTILO table YENNI-->
+                  </div>
+                  <div></div>
+                  <div>
+                    <button (click)="closeModal()" style="background-color: white;" class="modal-close custom-button cursor-pointer z-50">
+                      <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                        <path d="M6.83 6l-5 5L2 10.83 6.83 6 2 1.17 3.17 0 8 4.83 12.83 0 14 1.17 9.17 6 14 10.83 12.83 12 8 7.17 3.17 12 2 10.83 6.83 6z"></path>
+                      </svg>
+                    </button>
+
+                  </div>
+                </div>
+                <!-- fomulario -->
+                <div >
+                    <form [formGroup]="SocialForm" (ngSubmit)="submit()">
+                          <div class="grid grid-cols-3 gap-4">
+                            <div>
+                              <label for="Nombre" class="lavel">Nombre*:</label><!-- ESTILO table YENNI-->
+                                <input class="input" type="text" formControlName="Nombre">
+                                <div *ngIf="SocialForm.get('Nombre')?.touched" class="error-message">
+                                    <div *ngIf="SocialForm.get('Nombre')?.hasError('required')">
+                                        El Nombre es obligatorio
+                                    </div>
+                                    <div *ngIf="SocialForm.get('Nombre')?.hasError('minlength')">
+                                        El Nombre debe tener al menos 3 caracteres
+                                    </div>
+                                    <div *ngIf="SocialForm.get('Nombre')?.hasError('pattern')">
+                                      El Nombre no puede tener números ni signos
+                                    </div>
+                                </div>
+                              </div>
+                              <div>
+                                  <label for="AreaAdscripcionId" class="lavel">Área de adscripción*:</label><!-- ESTILO table YENNI-->
+                                <select class="select" formControlName="AreaAdscripcionId">
+                                  <option *ngFor="let area of areasadscripcion" [value]="area.id">{{ area.nombre }}</option>
+                                  </select>
+                                <div *ngIf="SocialForm.get('AreaAdscripcionId')?.touched" class="error-message">
+                                    <div *ngIf="SocialForm.get('AreaAdscripcionId')?.hasError('required')">
+                                      El área de adscripción es obligatoria
+                                    </div>
+                                </div>
+                              </div>
+                              <div>
+                                <label for="nombre" class="lavel">Acrónimo*:</label><!-- ESTILO table YENNI-->
+                                <input class="input" type="text" formControlName="Acronimo">
+                                <div *ngIf="SocialForm.get('Acronimo')?.touched" class="error-message">
+                                    <div *ngIf="SocialForm.get('Acronimo')?.hasError('required')">
+                                      El acrónimo es obligatorio
+                                    </div>
+                                    <div *ngIf="SocialForm.get('Acronimo')?.hasError('minlength')">
+                                      El acrónimo debe tener al menos 4 caracteres
+                                    </div>
+                                    <div *ngIf="SocialForm.get('Acronimo')?.hasError('pattern')">
+                                      El acrónimo no puede tener números ni signos
+                                    </div>
+                                </div>
+                              </div>
+                                  <div>
+                                    <label for="Color" class="lavel">Color*:</label><!-- ESTILO table YENNI-->
+                                    <input [(colorPicker)]="selectedColor" [style.background]="selectedColor" class="color-picker" (colorPickerChange)="updateColor($event)" formControlName="Color">
+                                  </div>
+                                  <div>
+                                    <div class="w-full lg:w-6/12 px-4">
+                                      <div class="relative w-full mb-3">
+                                        <label class="lavel" htmlFor="grid-password">
+                                          Estatus* <!-- ESTILO table YENNI-->
+                                        </label>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                          <input [(ngModel)]="toggleValue" type="checkbox" value="true" class="sr-only peer" formControlName="Estatus" required>
+                                          <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500"></div>
+                                          <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                        </label>
+                                        <div *ngIf="SocialForm.get('Estatus')?.touched" class="error-message">
+                                          <div *ngIf="SocialForm.get('Estatus')?.hasError('required')">El estatus es obligatorio</div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+                            </div>
+                            <label for="Descripcion" class="lavel">Descripción*:</label><!-- ESTILO table YENNI-->
+                                <textarea id="Descripcion" name="Descripcion" rows="2" class="custom-textarea" formControlName="Descripcion"></textarea>
+                          <br>
+                          <br>
+                          Todos los campos marcados con * son requeridos
+                          <div class="flex justify-end">
+                            <button type="submit"
+                            [disabled]="!SocialForm.valid"
+                            [ngClass]="{'bg-gray-500': !SocialForm.valid, 'bg-purple-900': SocialForm.valid}"
+                            class="text-white py-2 px-4 rounded-md hover:bg-red-950 custom-button">
+                            {{ isUpdating ? " Actualizar" : "Agregar" }}
+                          </button>
+                          </div>
+                    </form>
+                  </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+  </div>
+
+</div>
+<div class="block w-full overflow-x-auto">
+    <table class="items-center w-full bg-transparent border-collapse">
+      <thead class="table-header">
+        <tr style="font-size: .3cm;">
+          <th class="text-left pl-20">Nombre</th>
+          <th>Color</th>
+          <th>Acrónimo</th>
+          <th>Estatus</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="custom-th">
+        <tr class="custom-tr" *ngFor="let programa of prograsmasocial; let prograsmasocial of filtrarProgramas(); let i = index"  [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
+          <td style="font-size: .32cm;" class="text-left pl-20">{{ programa.nombre }}</td>
+          <td style="font-size: .32cm;"><div class="color-circle" [style.backgroundColor]="programa.color"></div></td>
+          <td style="font-size: .32cm;">{{ programa.acronimo }}</td>
+          <td style="font-size: .32cm;">{{ programa.estatus ? 'Activo' : 'Inactivo' }}</td>
+          <td style="font-size: .32cm;">
+          <button (click)="borrar(programa.id, programa.nombre)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 7l16 0" />
+              <path d="M10 11l0 6" />
+              <path d="M14 11l0 6" />
+              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+            </svg>
+          </button>
+          <button class="ml-4" (click)="setDataModalUpdate(programa);openModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+              <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+              <path d="M16 5l3 3" />
+            </svg>
+          </button>
+          </td>
+
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="flex justify-between">
+      <div></div>
+      <div>
+        <nav class="" aria-label="Page navigation example">
+          <ul class="flex items-center -space-x-px h-8 text-sm">
+            <li>
+              <a href="" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                <span class="sr-only">Previous</span>
+                <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-current="page" class="z-10 flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">1</a>
+
+            </li>
+            <li>
+              <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">3</a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                <span class="sr-only">Next</span>
+                <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div></div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
+
+
     </div>
 </div>
-  
