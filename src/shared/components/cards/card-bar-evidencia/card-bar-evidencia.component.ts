@@ -30,6 +30,7 @@ export class CardBarEvidenciaComponent {
   programasPorArea: Prograsmasocial[] = [];
   beneficiario: Beneficiario [] = [];
   evidencias: Evidencias [] = [];
+  programasFiltrados: Evidencias[] = [];
   beneficiariosPorprogramas: Beneficiario [] = [];
   filteredBeneficiarios: Beneficiario[] = [];
   searchTerm: FormControl = new FormControl();
@@ -333,6 +334,19 @@ actualizar() {
     }
   });
 }
+
+obtenerProgramaSocial(beneficiarioId: number): string {
+  const beneficiario = this.beneficiarios.find(b => b.id === beneficiarioId);
+  if (beneficiario) {
+    const programa = this.prograsmasocial.find(p => p.id === beneficiario.programaSocialId);
+    if (programa) {
+      return programa.nombre;
+    }
+  }
+  return 'Sin programa';
+}
+
+
 }
 
 
