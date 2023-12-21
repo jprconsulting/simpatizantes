@@ -15,7 +15,7 @@ import { MensajeService } from '../core/services/mensaje.service';
 export class LoginComponent implements OnInit {
   formUserLogin!: FormGroup;
   user!: AppUser;
-  returnUrl = 'panel/inicio';
+  returnUrl = 'panel/bienvenida';
 
 
   constructor(
@@ -51,10 +51,10 @@ export class LoginComponent implements OnInit {
 
   createFormUserLogin() {
     this.formUserLogin = this.formBuilder.group({
-      email: ['', Validators.compose([
+      email: ['test@test.com', Validators.compose([
         Validators.required, Validators.minLength(3)
       ])],
-      password: ['', Validators.compose([
+      password: ['admin123', Validators.compose([
         Validators.required, Validators.minLength(3)
       ])]
     });
