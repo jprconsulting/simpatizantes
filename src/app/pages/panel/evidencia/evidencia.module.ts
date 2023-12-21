@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { EvidenciaRoutingModule } from './evidencia-routing.module';
 import { EvidenciaComponent } from './evidencia.component';
 import { SharedModule } from 'src/shared/shared.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SharedModule } from 'src/shared/shared.module';
   imports: [
     CommonModule,
     EvidenciaRoutingModule,
-      SharedModule
+      SharedModule,
+      NgSelectModule
   ]
 })
 export class EvidenciaModule { }
