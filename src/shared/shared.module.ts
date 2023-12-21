@@ -6,7 +6,6 @@ import { FooterAdminComponent } from './components/footer-admin/footer-admin.com
 import { HeaderStatsComponent } from './components/header-stats/header-stats.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CardBarChartComponent } from './components/cards/card-bar-chart/card-bar-chart.component';
-import { CardLineChartComponent } from './components/cards/card-line-chart/card-line-chart.component';
 import { CardSettingsComponent } from './components/cards/card-settings/card-settings.component';
 import { CardSocialTrafficComponent } from './components/cards/card-social-traffic/card-social-traffic.component';
 import { CardStatsComponent } from './components/cards/card-stats/card-stats.component';
@@ -35,7 +34,6 @@ import { MapabenComponent } from 'src/app/pages/panel/mapaben/mapaben.component'
         HeaderStatsComponent,
         SidebarComponent,
         CardBarChartComponent,
-        CardLineChartComponent,
         CardSettingsComponent,
         CardSocialTrafficComponent,
         CardStatsComponent,
@@ -64,7 +62,6 @@ import { MapabenComponent } from 'src/app/pages/panel/mapaben/mapaben.component'
         HeaderStatsComponent,
         SidebarComponent,
         CardBarChartComponent,
-        CardLineChartComponent,
         CardSettingsComponent,
         CardSocialTrafficComponent,
         CardStatsComponent,
