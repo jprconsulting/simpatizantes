@@ -1,309 +1,171 @@
-<nav
-  class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6"
->
-  <div
-    class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto"
-  >
-    <!-- Toggler -->
-    <button
-      class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
-      type="button"
-      (click)="toggleCollapseShow('bg-white m-2 py-3 px-6')"
-    >
+<nav class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
+    <div class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
+        <!-- Toggler -->
+        <button class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent" type="button" (click)="toggleCollapseShow('bg-white m-2 py-3 px-6')">
       <i class="fas fa-bars"></i>
     </button>
-    <!-- Brand -->
-    <a
-      class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-    >
-      <img
-        src="data:image/jpeg;base64,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"
-        alt=""
-      />
-    </a>
-    <!-- User -->
-    <ul class="md:hidden items-center flex flex-wrap list-none">
-      <li class="inline-block relative">
-        <app-notification-dropdown class="block"></app-notification-dropdown>
-      </li>
-      <li class="inline-block relative">
-        <app-user-dropdown class="block"></app-user-dropdown>
-      </li>
-    </ul>
-    <!-- Collapse -->
-    <div
-      class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded"
-      [ngClass]="collapseShow"
-    >
-      <!-- Collapse header -->
-      <div
-        class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200"
-      >
-        <div class="flex flex-wrap">
-          <div class="w-6/12">
-            <a
-              [routerLink]="['/']"
-              class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm font-bold p-4 px-0"
-            >
+        <!-- Brand -->
+        <a class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
+            <img src="data:image/jpeg;base64,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"
+                alt="" />
+        </a>
+        <!-- User -->
+        <ul class="md:hidden items-center flex flex-wrap list-none">
+            <li class="inline-block relative">
+                <app-notification-dropdown class="block"></app-notification-dropdown>
+            </li>
+            <li class="inline-block relative">
+                <app-user-dropdown class="block"></app-user-dropdown>
+            </li>
+        </ul>
+        <!-- Collapse -->
+        <div class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded" [ngClass]="collapseShow">
+            <!-- Collapse header -->
+            <div class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200">
+                <div class="flex flex-wrap">
+                    <div class="w-6/12">
+                        <a [routerLink]="['/']" class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm font-bold p-4 px-0">
               Notus Angular
             </a>
-          </div>
-          <div class="w-6/12 flex justify-end">
-            <button
-              type="button"
-              class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
-              (click)="toggleCollapseShow('hidden')"
-            >
+                    </div>
+                    <div class="w-6/12 flex justify-end">
+                        <button type="button" class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent" (click)="toggleCollapseShow('hidden')">
               <i class="fas fa-times"></i>
             </button>
-          </div>
-        </div>
-      </div>
-      <!-- Form -->
-      <form class="mt-6 mb-4 md:hidden">
-        <div class="mb-3 pt-0">
-          <input
-            type="text"
-            placeholder="Search"
-            class="px-3 py-2 h-12 border border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
-          />
-        </div>
-      </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Form -->
+            <form class="mt-6 mb-4 md:hidden">
+                <div class="mb-3 pt-0">
+                    <input type="text" placeholder="Search" class="px-3 py-2 h-12 border border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal" />
+                </div>
+            </form>
 
-      <!-- Divider -->
-      <hr class="my-4 md:min-w-full" />
-      <!-- Navigation -->
+            <!-- Divider -->
+            <hr class="my-4 md:min-w-full" />
+            <!-- Navigation -->
 
-      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
-        <li class="items-center">
-          <a
-            [routerLink]="['bienvenida']"
-            class="text-xs py-3 font-bold block"
-            routerLinkActive
-            #adminDashboard="routerLinkActive"
-            [ngClass]="
+            <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+                <li class="items-center">
+                    <a [routerLink]="['bienvenida']" class="text-xs py-3 font-bold block" routerLinkActive #adminDashboard="routerLinkActive" [ngClass]="
               adminDashboard.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-            <i
-              class="fas fa-tv mr-2 text-sm"
-              [ngClass]="
+            ">
+                        <i class="fas fa-tv mr-2 text-sm" [ngClass]="
                 adminDashboard.isActive ? 'opacity-75' : 'text-blueGray-300'
-              "
-            ></i>
-            Bienvenida
-          </a>
-        </li>
+              "></i> Bienvenida
+                    </a>
+                </li>
 
-        <li class="items-center">
-          <a
-            [routerLink]="['dashboard']"
-            class="text-xs py-3 font-bold block"
-            routerLinkActive
-            #tablero="routerLinkActive"
-            [ngClass]="
+                <li class="items-center">
+                    <a [routerLink]="['dashboard']" class="text-xs py-3 font-bold block" routerLinkActive #tablero="routerLinkActive" [ngClass]="
               tablero.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-            <i
-              class="fas fa-tv mr-2 text-sm"
-              [ngClass]="tablero.isActive ? 'opacity-75' : 'text-blueGray-300'"
-            ></i>
-            Tablero
-          </a>
-        </li>
+            ">
+                        <i class="fas fa-tv mr-2 text-sm" [ngClass]="tablero.isActive ? 'opacity-75' : 'text-blueGray-300'"></i> Tablero
+                    </a>
+                </li>
 
-        <li class="items-center">
-          <a
-            [routerLink]="['usuarios']"
-            class="text-xs py-3 font-bold block"
-            routerLinkActive
-            #usuarios="routerLinkActive"
-            [ngClass]="
+                <li class="items-center">
+                    <a [routerLink]="['usuarios']" class="text-xs py-3 font-bold block" routerLinkActive #usuarios="routerLinkActive" [ngClass]="
               usuarios.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-            <i
-              class="fas fa-tools mr-2 text-sm"
-              [ngClass]="usuarios.isActive ? 'opacity-75' : 'text-blueGray-300'"
-            ></i>
-            Usuarios
-          </a>
-        </li>
+            ">
+                        <i class="fas fa-tools mr-2 text-sm" [ngClass]="usuarios.isActive ? 'opacity-75' : 'text-blueGray-300'"></i> Usuarios
+                    </a>
+                </li>
 
-        <li class="items-center">
-          <a
-            [routerLink]="['areas']"
-            class="text-xs py-3 font-bold block"
-            routerLinkActive
-            #adminTables="routerLinkActive"
-            [ngClass]="
+                <li class="items-center">
+                    <a [routerLink]="['areas']" class="text-xs py-3 font-bold block" routerLinkActive #adminTables="routerLinkActive" [ngClass]="
               adminTables.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-            <i
-              class="fas fa-table mr-2 text-sm"
-              [ngClass]="
+            ">
+                        <i class="fas fa-table mr-2 text-sm" [ngClass]="
                 adminTables.isActive ? 'opacity-75' : 'text-blueGray-300'
-              "
-            ></i>
-            Áreas de adscripción
-          </a>
-        </li>
+              "></i> Áreas de adscripción
+                    </a>
+                </li>
 
-        <li class="items-center">
-          <a
-            [routerLink]="['maps']"
-            class="text-xs py-3 font-bold block"
-            routerLinkActive
-            #adminMaps="routerLinkActive"
-            [ngClass]="
+                <li class="items-center">
+                    <a [routerLink]="['maps']" class="text-xs py-3 font-bold block" routerLinkActive #adminMaps="routerLinkActive" [ngClass]="
               adminMaps.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-            <i
-              class="fas fa-map-marked mr-2 text-sm"
-              [ngClass]="
+            ">
+                        <i class="fas fa-map-marked mr-2 text-sm" [ngClass]="
                 adminMaps.isActive ? 'opacity-75' : 'text-blueGray-300'
-              "
-            ></i>
-            Maps
-          </a>
-        </li>
+              "></i> Maps
+                    </a>
+                </li>
 
-        <li class="items-center">
-          <a
-            [routerLink]="['beneficiario']"
-            class="text-xs py-3 font-bold block"
-            routerLinkActive
-            #beneficiario="routerLinkActive"
-            [ngClass]="
+                <li class="items-center">
+                    <a [routerLink]="['beneficiario']" class="text-xs py-3 font-bold block" routerLinkActive #beneficiario="routerLinkActive" [ngClass]="
               beneficiario.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-            <i
-              class="fas fa-map-marked mr-2 text-sm"
-              [ngClass]="
+            ">
+                        <i class="fas fa-map-marked mr-2 text-sm" [ngClass]="
                 beneficiario.isActive ? 'opacity-75' : 'text-blueGray-300'
-              "
-            ></i>
-            Beneficiario
-          </a>
-        </li>
-        <li class="items-center">
-          <a
-            [routerLink]="['programasocial']"
-            class="text-xs py-3 font-bold block"
-            routerLinkActive
-            #programas="routerLinkActive"
-            [ngClass]="
+              "></i> Beneficiario
+                    </a>
+                </li>
+                <li class="items-center">
+                    <a [routerLink]="['programasocial']" class="text-xs py-3 font-bold block" routerLinkActive #programas="routerLinkActive" [ngClass]="
               programas.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-            <i
-              class="fas fa-map-marked mr-2 text-sm"
-              [ngClass]="
+            ">
+                        <i class="fas fa-map-marked mr-2 text-sm" [ngClass]="
                 programas.isActive ? 'opacity-75' : 'text-blueGray-300'
-              "
-            ></i>
-            Programas Sociales
-          </a>
-        </li>
-        <li class="items-center">
-          <a
-            [routerLink]="['mapa-programas-sociales']"
-            class="text-xs py-3 font-bold block"
-            routerLinkActive
-            #mapsocial="routerLinkActive"
-            [ngClass]="
+              "></i> Programas sociales
+                    </a>
+                </li>
+                <li class="items-center">
+                    <a [routerLink]="['mapa-programas-sociales']" class="text-xs py-3 font-bold block" routerLinkActive #mapsocial="routerLinkActive" [ngClass]="
               mapsocial.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-            <i
-              class="fas fa-map-marked mr-2 text-sm"
-              [ngClass]="
+            ">
+                        <i class="fas fa-map-marked mr-2 text-sm" [ngClass]="
                 mapsocial.isActive ? 'opacity-75' : 'text-blueGray-300'
-              "
-            ></i>
-            Mapa Programas Sociales
-          </a>
-        </li>
-        <li class="items-center">
-          <a
-            [routerLink]="['evidencias']"
-            class="text-xs py-3 font-bold block"
-            routerLinkActive
-            #evidencias="routerLinkActive"
-            [ngClass]="
+              "></i> Mapa programas sociales
+                    </a>
+                </li>
+                <li class="items-center">
+                    <a [routerLink]="['evidencias']" class="text-xs py-3 font-bold block" routerLinkActive #evidencias="routerLinkActive" [ngClass]="
               evidencias.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-            <i
-              class="fas fa-map-marked mr-2 text-sm"
-              [ngClass]="
+            ">
+                        <i class="fas fa-map-marked mr-2 text-sm" [ngClass]="
                 evidencias.isActive ? 'opacity-75' : 'text-blueGray-300'
-              "
-            ></i>
-            Evidencias
-          </a>
-        </li>
-        <li class="items-center">
-          <a
-            [routerLink]="['nube-palabras']"
-            class="text-xs py-3 font-bold block"
-            routerLinkActive
-            #palabras="routerLinkActive"
-            [ngClass]="
+              "></i> Evidencias
+                    </a>
+                </li>
+                <li class="items-center">
+                    <a [routerLink]="['nube-palabras']" class="text-xs py-3 font-bold block" routerLinkActive #palabras="routerLinkActive" [ngClass]="
               palabras.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-            <i
-              class="fas fa-map-marked mr-2 text-sm"
-              [ngClass]="palabras.isActive ? 'opacity-75' : 'text-blueGray-300'"
-            ></i>
-            Nube de palabras
-          </a>
-        </li>
-        <li class="items-center">
-          <a
-            [routerLink]="['mapaben']"
-            class="text-xs py-3 font-bold block"
-            routerLinkActive
-            #mapaben="routerLinkActive"
-            [ngClass]="
+            ">
+                        <i class="fas fa-map-marked mr-2 text-sm" [ngClass]="palabras.isActive ? 'opacity-75' : 'text-blueGray-300'"></i> Nube de palabras
+                    </a>
+                </li>
+                <li class="items-center">
+                    <a [routerLink]="['mapaben']" class="text-xs py-3 font-bold block" routerLinkActive #mapaben="routerLinkActive" [ngClass]="
               mapaben.isActive
                 ? 'text-purple-900 hover:text-purple-900'
                 : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-            <i
-              class="fas fa-map-marked mr-2 text-sm"
-              [ngClass]="mapaben.isActive ? 'opacity-75' : 'text-blueGray-300'"
-            ></i>
-            Mapa Beneficiario
-          </a>
-        </li>
-      </ul>
+            ">
+                        <i class="fas fa-map-marked mr-2 text-sm" [ngClass]="mapaben.isActive ? 'opacity-75' : 'text-blueGray-300'"></i> Mapa beneficiario
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
