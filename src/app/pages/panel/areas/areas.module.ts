@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TablesRoutingModule } from './areas-routing.module';
 import { TablesComponent } from './areas.component';
 import { SharedModule } from 'src/shared/shared.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SharedModule } from 'src/shared/shared.module';
   imports: [
     CommonModule,
     TablesRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class TablesModule { }

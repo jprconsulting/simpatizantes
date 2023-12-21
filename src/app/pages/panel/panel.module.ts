@@ -7,6 +7,7 @@ import { SharedModule } from 'src/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgChartsModule } from 'ng2-charts';
 import { NubePalabrasComponent } from './nube-palabras/nube-palabras.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NubePalabrasComponent } from './nube-palabras/nube-palabras.component';
     PanelRoutingModule,
     SharedModule,
     HttpClientModule,
-    NgChartsModule    
+    NgChartsModule ,
+    FormsModule
   ],
   exports: [PanelComponent]
 })
