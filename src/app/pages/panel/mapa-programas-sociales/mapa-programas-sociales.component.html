@@ -10,8 +10,8 @@
                 <div class="table-container" style="max-height: 400px; overflow-y: auto;">
                    <div class="flex">
                       <table class="table bg-white">
-                                <thead style="background-color: rgb(75, 43, 105);" class="table-header text-white">
-                                    <tr>
+                                <thead style="background-color: rgb(75, 43, 105);" class="table-header ">
+                                    <tr style="font-size: .38cm;">
                                         <th scope="col">Nombre del municipio</th>
                                         <th scope="col">Indicador</th>
                                         <th scope="col">Total de programas sociales</th>
@@ -19,11 +19,11 @@
                                 </thead>
                                     <tbody class="custom-th">
                                         <tr class="custom-tr" *ngFor="let municipio of beneficiarioMunicipio; let municipios of filtrarMunicipio();   let i = index" [ngClass]="{'bg-gray-100': i % 2 === 0, 'bg-white': i % 2 !== 0, 'custom-table-row': true}">
-                                            <td style="font-size: .32cm;">{{ municipio.nombre }}</td>
-                                            <td style="font-size: .32cm;">
+                                            <td style="font-size: .38cm;">{{ municipio.nombre }}</td>
+                                            <td style="font-size: .38cm;">
                                                 <div class="color-circle" [style.backgroundColor]="municipio.color"></div>
                                             </td>
-                                            <td style="font-size: .32cm;">{{ municipio.totalBeneficiarios }}</td>
+                                            <td style="font-size: .38cm;">{{ municipio.totalBeneficiarios }}</td>
                                         </tr>
                                     </tbody>
                         </table>
