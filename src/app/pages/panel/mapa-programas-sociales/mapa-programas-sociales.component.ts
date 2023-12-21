@@ -36,6 +36,7 @@ export class MapaProgramasSocialesComponent implements OnInit {
   ngOnInit() {
     this.obtenerMunicipios();
     this.setSettingsMapa();
+    this.obtenerMunicipios2();
   }
 
   actualizarFiltro(event: any): void {
@@ -70,9 +71,19 @@ export class MapaProgramasSocialesComponent implements OnInit {
     );
 
   }
+  obtenerMunicipios2() {
+    this.municipiosService.getBeneficiariosMunicipio().subscribe({
+      next: (beneficiarioMunicipioAPI: BeneficiarioMunicipio[]) => {
+        this.municipiosService.updateDataMapa(beneficiarioMunicipioAPI.map((i) => ({ id: i.id.toString(), color: i.color })));
+        this.beneficiarioMunicipio = beneficiarioMunicipioAPI;
+       console.log('ndjde',this.beneficiarioMunicipio);
+      }
+    });
 
+  }
   setSettingsMapa() {
     this.municipiosService.dataMapa$.subscribe((newData) => {
+      
       this.chartMap = {
         chart: {
           backgroundColor: '#F8F9F9'
@@ -142,6 +153,7 @@ export class MapaProgramasSocialesComponent implements OnInit {
           stickOnContact: true,
           shared: false,
           pointFormat:
+          
             `<div style="width: 360px; height: 120px; background: #ffffff; box-shadow: 0px 0px 12px 2px rgba(0,0,0,0.40); border-radius: 10px; opacity: 1;">
             <div style="width: 20px; height: 100%; box-sizing: border-box; float: left; background-color: {point.color}; border-radius: 10px 0px 0px 10px;"></div>
             <div class="d-flex align-items-center" style="padding: 5px; box-sizing: border-box; height: 60px; width: 340px; float: left;background: #fff;border-radius: 0px 10px 0px 0px;">
@@ -156,6 +168,7 @@ export class MapaProgramasSocialesComponent implements OnInit {
             </div>
           </div>`
         },
+        
         series: [
           {
             type: "map",
